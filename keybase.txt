@@ -1,0 +1,74 @@
+==================================================================
+https://keybase.io/techninja
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://tn42.com
+  * I am techninja (https://keybase.io/techninja) on keybase.
+  * I have a public key with fingerprint BA3D BEA8 C6E7 5EBE D934  E9B9 5D4E C748 7646 B245
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101af54cc223c56506dfdf809313f9b418abc4d98ccdbc97c68b6f6abc6bb79c9e30a",
+            "fingerprint": "ba3dbea8c6e75ebed934e9b95d4ec7487646b245",
+            "host": "keybase.io",
+            "key_id": "5d4ec7487646b245",
+            "kid": "0101af54cc223c56506dfdf809313f9b418abc4d98ccdbc97c68b6f6abc6bb79c9e30a",
+            "uid": "2676d3f19b62c8f98e9c2eae47965f19",
+            "username": "techninja"
+        },
+        "service": {
+            "hostname": "tn42.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1480958846,
+    "expire_in": 157680000,
+    "prev": "1125988202eba77383962955c057c595f9a30d71507add320de63984556a3e66",
+    "seqno": 6,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.58
+Comment: https://keybase.io/crypto
+
+yMM+AnicrZJ9TFVlHMfvBa4pmWBqKGHp2Zwh7Hpen3OeK0EweYtgKMuuG+x2Xp7D
+PSjnXO4LCEzzBTDF3MQZC5aFaRRLEpALwYyh5HWSVMtMxRQpmWQFhhQRWeew/K8/
+e/559nz3+X5/L3v6ngg2hZrzsgJpxSmtyeb+3sM+kz35vR3lmKBJpZitHNuCZi+0
+VUIer2OLImE2DCdwgpcZWhRJkhIZwOBAkiWZwyFFUDIUaILjBZGWICeKkiBCVgSc
+AGSgi0AQWChCROE8FovJipqP3C63onr1WIGnJAHxnAgQyyABSZCiERQgI9FIZGmO
+BTQQSJrRjU7NYzj05gTeg6yKpmv6wzHb3n/w/3Pfvtk4ErBAomQCCoAUORlyCIok
+4hHNQsDosgF6kFvlC5FOe5HoVBW1gMe2x2K6XKyIyNisMcojRKVJq6gV6kaXW/Nq
+orZVV51er8tmmLylLoMqQYLjX79DUFRJ36FuKEZuj6KpmI3QSdGrGIEErY/GcBwN
+YjG0zaW4kUMxCIYFHK4fowwq1iMJgmQgx5E4iQSeZSmOgoCEDCPiDCsykJEhT+ES
+SzA4y0sSReISAhTkaIYBPIUAwIyJilQNs+mVvHy+HulR8lXe63MjbPvZ3twQkznU
+NMcSZPwtU+i88Ec/buWDsIer9r6+wdw1Xld0KtGxI/dISWX6tclA4NTEtrhu685A
+eNiG8c3PeOSv+mp3zYsryYnMHPvswx44cmbdRMZTUcGLdlfmtja9GuaLiv49bcFg
+Q3a9f4+/b+B2XERwX3DXz38urEiydU4n3+vqOndrJPHtlsyfOu/gl9sylv2W0FC2
+4mZ04bHNt605Kx/77pM7K54L8btifAcbL53/GGZ2Xl9kj3csvOXwpQh5e7otWN14
+N/P52caqCxu7gnpi1685Gnn5TMvyX45ter6qu3x/7z47/WXpppz5Dx6vsLZtLNqF
+xhaPgm+XVGTf1FIt/OkmbQ45mGmeqa/2xw9PJx1oLkpNH+qv2JnWfrL8xuphBS3l
+7lUSkyk1wl9vHPo1a3T51NI8Wxh6azRx6HjyguypgD3io+aZyM6Xjt5/v9E+t602
+EIlZooKmC3rTI5ovjnbUO9dceie/uqZdSfXLi1+r1l5MWH0IN7fXky3nrzwsNu3N
+KykIq0b308s89U8PzhSVyYXX/355PdGxrKaD2mdfW5NUVXth93B4+Iw0ankl4WAT
+HTJy4up0U7D4fdKTz4K5E1F3x0zim9Z3oSMmt/FE9OGeRkY+F3oy89OqqbIbMdnR
+V/dfe+HHPufa+UvYrOHTQ0qKZXJV5MDFKxmt/oGI/HS+oa4fHDGtm/nA+c3xu/F5
+f/wwlvDF6W6P7Wv1H3ffvUg=
+=dOIr
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/techninja
+
+==================================================================
