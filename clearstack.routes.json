@@ -1,0 +1,18 @@
+{
+  "/": {
+    "title": "tn42.com — tech ninja 42",
+    "description": "Enhancing your webernet since 1998. Personal site of TechNinja."
+  },
+  "/b/:slug": {
+    "title": "{slug.title} | tn42.com",
+    "description": "{slug.title}",
+    "image": "{slug.image}",
+    "data": "src/content/b/manifest.json:posts"
+  },
+  "/g/:slug": {
+    "title": "{slug.title} | tn42.com",
+    "description": "{slug.title}",
+    "image": "{slug.image}",
+    "data": "src/content/g/manifest.json:posts"
+  }
+}
