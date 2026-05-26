@@ -1,0 +1,107 @@
+/* Prose — rich typography for blog post bodies. */
+
+.post-body {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.post-body > p:first-child::first-letter {
+  font-size: 3.2em;
+  float: left;
+  line-height: 0.8;
+  margin: 0.05em 0.1em 0 0;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.post-body p {
+  margin: 0 0 1.4em;
+}
+
+.post-body a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.15s;
+}
+
+.post-body a:hover {
+  text-decoration-color: var(--color-primary);
+}
+
+.post-body img {
+  border-radius: var(--radius-lg);
+  margin: var(--space-lg) 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.post-body h2 {
+  font-size: 1.5rem;
+  margin: 2em 0 0.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.post-body h3 {
+  font-size: 1.25rem;
+  margin: 1.5em 0 0.4em;
+  color: var(--color-primary);
+}
+
+.post-body h4 {
+  font-size: 1.1rem;
+  margin: 1.2em 0 0.3em;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.post-body strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.post-body em {
+  font-style: italic;
+}
+
+.post-body ul {
+  margin: 0 0 1.4em 1.5em;
+  padding: 0;
+}
+
+.post-body li {
+  margin-bottom: 0.4em;
+}
+
+.post-body blockquote {
+  border-left: 3px solid var(--color-primary);
+  margin: 1.5em 0;
+  padding: 0.5em 1em;
+  color: var(--color-text-muted);
+  font-style: italic;
+  background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.post-body iframe {
+  border-radius: var(--radius-lg);
+  margin: var(--space-lg) 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Gallery images in a grid */
+.gallery-view .post-body img {
+  display: inline-block;
+  width: calc(33% - var(--space-sm));
+  margin: var(--space-xs);
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .gallery-view .post-body img {
+    width: calc(50% - var(--space-sm));
+  }
+}

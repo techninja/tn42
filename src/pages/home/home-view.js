@@ -8,7 +8,9 @@ import { formatDate } from '#utils/formatDate.js';
 import BlogPostView from '#pages/blog/blog-post-view.js';
 import GalleryPostView from '#pages/blog/gallery-post-view.js';
 import TagView from '#pages/tag/tag-view.js';
+import TagIndexView from '#pages/tag/tag-index-view.js';
 import UserView from '#pages/user/user-view.js';
+import '#atoms/theme-toggle/theme-toggle.js';
 
 const PER_PAGE = 10;
 
@@ -32,7 +34,7 @@ function collectTags(posts) {
 
 export default define({
   tag: 'home-view',
-  [router.connect]: { stack: [BlogPostView, GalleryPostView, TagView, UserView] },
+  [router.connect]: { stack: [BlogPostView, GalleryPostView, TagView, TagIndexView, UserView] },
   posts: {
     value: undefined,
     connect(host) {
@@ -55,7 +57,8 @@ export default define({
           </div>
           <nav class="site-nav">
             <a href="/" class="active">home</a>
-            <a href="/users/techninja/">who is tn?</a>
+            <a href="/users/techninja">who is tn?</a>
+            <theme-toggle></theme-toggle>
           </nav>
         </header>
 
@@ -101,8 +104,9 @@ export default define({
                 <aside class="site-sidebar">
                   <h3>Tags</h3>
                   <ul class="tag-list">
-                    ${tags.map(([t, count]) => html`<li><a href="${router.url(TagView, { tagName: t })}" class="tag">${t} (${count})</a></li>`)}
+                    ${tags.map(([t, count]) => html`<li><a href="/t/${encodeURIComponent(t)}" class="tag">${t} (${count})</a></li>`)}
                   </ul>
+                  <a href="/t" class="sidebar-more">View all tags →</a>
                 </aside>
               `
             : html``}

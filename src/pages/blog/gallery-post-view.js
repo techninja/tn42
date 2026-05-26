@@ -8,6 +8,7 @@ import { html, define, router } from 'hybrids';
 import { parseFrontmatter } from '#utils/parseFrontmatter.js';
 import { renderMarkdown } from '#utils/renderMarkdown.js';
 import { formatDate } from '#utils/formatDate.js';
+import '#atoms/theme-toggle/theme-toggle.js';
 
 /** @param {string} slug */
 async function loadPost(slug) {
@@ -25,7 +26,7 @@ export default define({
   post: {
     value: undefined,
     connect(host) {
-      if (host.slug) loadPost(host.slug).then((p) => { host.post = p; });
+      if (host.slug) loadPost(host.slug).then((p) => { host.post = p || false; });
     },
   },
   render: {
@@ -37,13 +38,23 @@ export default define({
         </div>
         <nav class="site-nav">
           <a href="/">home</a>
-          <a href="/users/techninja/">who is tn?</a>
+          <a href="/users/techninja">who is tn?</a>
+          <theme-toggle></theme-toggle>
         </nav>
       </header>
 
       <main class="post-view gallery-view">
-        ${post
-          ? html`
+        ${post === undefined
+          ? html`<p>Loading…</p>`
+          : post === false
+            ? html`
+                <div class="not-found__content">
+                  <h1>404</h1>
+                  <p>This gallery post doesn't exist.</p>
+                  <a href="/" class="btn btn-primary">← Back to home</a>
+                </div>
+              `
+            : html`
               <article>
                 <header class="post-header">
                   <h1>${post.meta.title}</h1>
@@ -55,8 +66,7 @@ export default define({
                 <div class="post-body" innerHTML="${post.html}"></div>
                 <a href="/" class="btn btn-ghost">← Back to posts</a>
               </article>
-            `
-          : html`<p>Loading…</p>`}
+            `}
       </main>
 
       <footer class="site-footer">

@@ -2,10 +2,41 @@
 
 /* --- Layout Shell --- */
 
+/* --- Page Transitions --- */
+
 .app-router {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+home-view > main,
+blog-post-view > main,
+gallery-post-view > main,
+tag-view > main,
+tag-index-view > main,
+user-view > main,
+not-found-view > main {
+  animation: page-enter 0.3s ease-out both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  home-view > main,
+  blog-post-view > main,
+  gallery-post-view > main,
+  tag-view > main,
+  tag-index-view > main,
+  user-view > main,
+  not-found-view > main {
+    animation: none;
+  }
 }
 
 /* --- Site Header --- */
@@ -16,7 +47,7 @@
   justify-content: space-between;
   padding: var(--space-md) var(--space-lg);
   border-bottom: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: var(--color-nav);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -90,6 +121,13 @@
   gap: var(--space-xs);
   list-style: none;
   padding: 0;
+}
+
+.sidebar-more {
+  display: block;
+  margin-top: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-primary);
 }
 
 /* Wide layout with sidebar */
@@ -231,6 +269,38 @@
   color: var(--color-text-muted);
 }
 
+.tag-nav {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+/* --- Tag Index / Cloud --- */
+
+.tag-index h1 {
+  margin-bottom: var(--space-xl);
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.tag-cloud__item {
+  font-size: calc(var(--text-sm) + min(var(--count), 10) * 0.5px);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.tag-count {
+  opacity: 0.6;
+  font-size: 0.8em;
+  margin-left: 2px;
+}
+
 /* --- Post Body (rendered markdown) --- */
 
 .post-body {
@@ -304,6 +374,24 @@
 }
 
 /* --- Site Footer --- */
+
+.not-found__content {
+  text-align: center;
+  padding: var(--space-xl) 0;
+}
+
+.not-found__content h1 {
+  font-size: 6rem;
+  margin: 0;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.not-found__content p {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  margin: var(--space-md) 0 var(--space-xl);
+}
 
 .user-profile img {
   max-width: 120px;

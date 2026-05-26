@@ -1,21 +1,24 @@
 /**
  * Tag view — lists posts filtered by a tag slug.
- * Route: /t/:tag
+ * Route: /t/:tagName
  * @module pages/tag/tag-view
  */
 
 import { html, define, router } from 'hybrids';
 import { formatDate } from '#utils/formatDate.js';
+import '#atoms/theme-toggle/theme-toggle.js';
+import BlogPostView from '#pages/blog/blog-post-view.js';
 
 async function loadByTag(tag) {
+  const decoded = decodeURIComponent(tag);
   const res = await fetch('/content/b/manifest.json');
   const { posts } = await res.json();
-  return posts.filter((p) => p.tags?.includes(tag));
+  return posts.filter((p) => p.tags?.includes(decoded));
 }
 
 export default define({
   tag: 'tag-view',
-  [router.connect]: { url: '/t/:tagName' },
+  [router.connect]: { url: '/t/:tagName', stack: [BlogPostView] },
   tagName: '',
   posts: {
     value: undefined,
@@ -33,19 +36,20 @@ export default define({
         </div>
         <nav class="site-nav">
           <a href="/">home</a>
-          <a href="/users/techninja/">who is tn?</a>
+          <a href="/users/techninja">who is tn?</a>
+          <theme-toggle></theme-toggle>
         </nav>
       </header>
 
       <main class="home-view">
         <section class="post-list">
-          <h2 class="tag-heading">Posts tagged "${tagName}"</h2>
-          ${posts
+          <h2 class="tag-heading">Posts tagged "${decodeURIComponent(tagName)}"</h2>
+          ${Array.isArray(posts)
             ? posts.length
               ? posts.map(
                   (p) => html`
                     <article class="post-card">
-                      <a href="/b/${p.slug}">
+                      <a href="${router.url(BlogPostView, { slug: p.slug })}">
                         <img
                           class="post-card__img"
                           src="${p.image || '/images/default.svg'}"
@@ -60,6 +64,11 @@ export default define({
                 )
               : html`<p>No posts found for this tag.</p>`
             : html`<p>Loading…</p>`}
+
+          <nav class="tag-nav">
+            <a href="/" class="btn btn-ghost">← Back to posts</a>
+            <a href="/t" class="btn btn-ghost">All tags</a>
+          </nav>
         </section>
       </main>
 

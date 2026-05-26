@@ -7,6 +7,7 @@
 import { html, define, router } from 'hybrids';
 import { parseFrontmatter } from '#utils/parseFrontmatter.js';
 import { renderMarkdown } from '#utils/renderMarkdown.js';
+import '#atoms/theme-toggle/theme-toggle.js';
 
 /** @param {string} slug */
 async function loadProfile(slug) {
@@ -24,7 +25,7 @@ export default define({
   profile: {
     value: undefined,
     connect(host) {
-      if (host.slug) loadProfile(host.slug).then((p) => { host.profile = p; });
+      if (host.slug) loadProfile(host.slug).then((p) => { host.profile = p || false; });
     },
   },
   render: {
@@ -36,20 +37,29 @@ export default define({
         </div>
         <nav class="site-nav">
           <a href="/">home</a>
-          <a href="/users/techninja/">who is tn?</a>
+          <a href="/users/techninja">who is tn?</a>
+          <theme-toggle></theme-toggle>
         </nav>
       </header>
 
       <main class="post-view user-profile">
-        ${profile
-          ? html`
+        ${profile === undefined
+          ? html`<p>Loading…</p>`
+          : profile === false
+            ? html`
+                <div class="not-found__content">
+                  <h1>404</h1>
+                  <p>User not found.</p>
+                  <a href="/" class="btn btn-primary">← Back to home</a>
+                </div>
+              `
+            : html`
               <article>
                 <h1>${profile.meta.title}</h1>
                 <div class="post-body" innerHTML="${profile.html}"></div>
                 <a href="/" class="btn btn-ghost">← Back to posts</a>
               </article>
-            `
-          : html`<p>Loading…</p>`}
+            `}
       </main>
 
       <footer class="site-footer">

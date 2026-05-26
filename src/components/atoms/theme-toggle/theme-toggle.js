@@ -1,20 +1,13 @@
 /**
  * Theme toggle atom — switches between light and dark mode.
- * Persists via AppState store (localStorage-backed).
  * @module components/atoms/theme-toggle
  */
 
 import { html, define, store } from 'hybrids';
 import AppState from '#store/AppState.js';
+import '#atoms/app-icon/app-icon.js';
 
-/**
- * @typedef {Object} ThemeToggleHost
- * @property {import('#store/AppState.js').AppState} state
- */
-
-/**
- * @param {ThemeToggleHost & HTMLElement} host
- */
+/** @param {HTMLElement & { state: any }} host */
 function toggle(host) {
   if (!store.ready(host.state)) return;
   const next = host.state.theme === 'light' ? 'dark' : 'light';
@@ -22,7 +15,6 @@ function toggle(host) {
   document.documentElement.setAttribute('data-theme', next);
 }
 
-/** @type {import('hybrids').Component<ThemeToggleHost>} */
 export default define({
   tag: 'theme-toggle',
   state: store(AppState),
@@ -32,8 +24,8 @@ export default define({
         document.documentElement.setAttribute('data-theme', state.theme);
       }
       return html`
-        <button class="btn btn-ghost theme-toggle-btn" onclick="${toggle}">
-          ${store.ready(state) && state.theme === 'light' ? '🌙' : '☀️'}
+        <button class="btn btn-ghost theme-toggle-btn" onclick="${toggle}" aria-label="Toggle theme">
+          <app-icon name="${store.ready(state) && state.theme === 'light' ? 'moon' : 'sun'}"></app-icon>
         </button>
       `;
     },

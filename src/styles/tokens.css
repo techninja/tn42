@@ -1,21 +1,19 @@
 :root {
-  /* Colors — Light */
-  --color-primary: #2563eb;
-  --color-primary-hover: #1d4ed8;
+  /* Colors — Dark (original tn42 theme) */
+  --color-primary: #2d769e;
+  --color-primary-hover: #3a8db8;
   --color-success: #16a34a;
-  --color-success-hover: #15803d;
   --color-warning: #d97706;
-  --color-warning-hover: #b45309;
   --color-danger: #dc2626;
-  --color-danger-hover: #b91c1c;
-  --color-info: #0284c7;
-  --color-info-hover: #0369a1;
-  --color-text: #1e293b;
-  --color-text-muted: #64748b;
-  --color-text-inverse: #ffffff;
-  --color-bg: #f8fafc;
-  --color-surface: #ffffff;
-  --color-border: #e2e8f0;
+  --color-info: #2d769e;
+  --color-text: #e8eaed;
+  --color-text-muted: #9aa4ab;
+  --color-text-inverse: #041325;
+  --color-bg: #041325;
+  --color-surface: #1f2b3b;
+  --color-border: #2a3a4e;
+  --color-nav: #1f2b3b;
+  --color-submitted: #5b7380;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -25,7 +23,7 @@
   --space-xl: 2rem;
 
   /* Typography */
-  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: ui-monospace, monospace;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -38,28 +36,22 @@
   --radius-lg: 0.5rem;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-}
-
-/* Dark mode */
-[data-theme='dark'] {
-  --color-primary: #3b82f6;
-  --color-primary-hover: #60a5fa;
-  --color-success: #22c55e;
-  --color-success-hover: #4ade80;
-  --color-warning: #f59e0b;
-  --color-warning-hover: #fbbf24;
-  --color-danger: #ef4444;
-  --color-danger-hover: #f87171;
-  --color-info: #38bdf8;
-  --color-info-hover: #7dd3fc;
-  --color-text: #e2e8f0;
-  --color-text-muted: #94a3b8;
-  --color-text-inverse: #0f172a;
-  --color-bg: #0f172a;
-  --color-surface: #1e293b;
-  --color-border: #334155;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Light mode */
+[data-theme='light'] {
+  --color-primary: #1a5f82;
+  --color-primary-hover: #14496a;
+  --color-text: #1c2539;
+  --color-text-muted: #5b7380;
+  --color-text-inverse: #ffffff;
+  --color-bg: #f0f0f0;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-nav: #ffffff;
+  --color-submitted: #5b7380;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
 }
