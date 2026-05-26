@@ -9,6 +9,7 @@ import { parseFrontmatter } from '#utils/parseFrontmatter.js';
 import { renderMarkdown } from '#utils/renderMarkdown.js';
 import { formatDate } from '#utils/formatDate.js';
 import authors from '#config/authors.js';
+import { applyNameCorrection, correctTitle, correctTag } from '#utils/nameCorrection.js';
 import '#atoms/theme-toggle/theme-toggle.js';
 
 /** @param {string} slug */
@@ -17,7 +18,8 @@ async function loadPost(slug) {
   if (!res.ok) return null;
   const raw = await res.text();
   const { meta, content } = parseFrontmatter(raw);
-  return { meta, html: renderMarkdown(content) };
+  const rendered = applyNameCorrection(renderMarkdown(content), meta);
+  return { meta, html: rendered };
 }
 
 export default define({
@@ -59,13 +61,15 @@ export default define({
               <article>
                 <header class="post-header">
                   <img class="post-hero" src="${post.meta.image || '/images/default.svg'}" alt="${post.meta.title}" />
-                  <h1>${post.meta.title}</h1>
+                  <h1 innerHTML="${correctTitle(post.meta.title, post.meta)}"></h1>
                   <div class="post-meta">
                     ${authors[post.meta.author]
                       ? html`
                           <a href="${authors[post.meta.author].url}" class="post-author">
                             <img class="post-author__avatar" src="${authors[post.meta.author].avatar}" alt="${authors[post.meta.author].name}" />
-                            <span>${authors[post.meta.author].name}</span>
+                            ${authors[post.meta.author].displayHtml
+                              ? html`<span innerHTML="${authors[post.meta.author].displayHtml}"></span>`
+                              : html`<span>${authors[post.meta.author].name}</span>`}
                           </a>
                         `
                       : html`<span class="post-author">${post.meta.author}</span>`}
@@ -74,7 +78,7 @@ export default define({
                   ${post.meta.tags
                     ? html`
                         <div class="post-tags">
-                          ${post.meta.tags.map((t) => html`<a href="/t/${encodeURIComponent(t)}" class="tag">${t}</a>`)}
+                          ${post.meta.tags.map((t) => html`<a href="/t/${encodeURIComponent(t)}" class="tag">${correctTag(t)}</a>`)}
                         </div>
                       `
                     : html``}

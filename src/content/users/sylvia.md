@@ -1,13 +1,17 @@
 ---
-title: "Sylvia"
+title: "Zeph"
 slug: sylvia
 type: user
 ---
 
-![Sylvia's picture](/images/picture-3/index.jpg)
+![Zeph's picture](/images/picture-3/index.jpg)
 
-### Who I Am
+### Who He Is
 
-My name is Sylvia, and I'm 9 years old. My dad made this crazy website and wanted me to do some stuff on it, so here I am!
+*Formerly known as Sylvia on this blog (2009–2016).*
 
-I like to draw, go swimming and make robots. I love Mythbusters, Calvin and Hobbes, making sock monkeys and my Super-Awesome Maker show. Check it out at [sylviashow.com](http://sylviashow.com/)
+Zeph (he/him) is a talented artist and maker who co-created [Super Awesome Maker Show](https://sylviashow.com/) with his dad starting at age 7. He's since grown up, come out as transgender, and moved on to new adventures.
+
+Read his [final goodbye to the show](https://sylviashow.com/blog/zephyrus/2019/01/29/final-goodbye-show/).
+
+![Zeph's goodbye comic](https://sylviashow.com/sites/default/files/zoof-comic/index.png)

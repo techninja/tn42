@@ -8,6 +8,7 @@ import { html, define, router } from 'hybrids';
 import { parseFrontmatter } from '#utils/parseFrontmatter.js';
 import { renderMarkdown } from '#utils/renderMarkdown.js';
 import { formatDate } from '#utils/formatDate.js';
+import { applyNameCorrection } from '#utils/nameCorrection.js';
 import '#atoms/theme-toggle/theme-toggle.js';
 
 /** @param {string} slug */
@@ -16,7 +17,8 @@ async function loadPost(slug) {
   if (!res.ok) return null;
   const raw = await res.text();
   const { meta, content } = parseFrontmatter(raw);
-  return { meta, html: renderMarkdown(content) };
+  const rendered = applyNameCorrection(renderMarkdown(content), meta);
+  return { meta, html: rendered };
 }
 
 export default define({
