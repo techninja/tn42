@@ -31,7 +31,7 @@ html::before {
     180deg,
     transparent 0%,
     var(--color-primary) 20%,
-    var(--glow-accent, #3b82f6) 50%,
+    var(--color-accent) 50%,
     var(--color-primary) 80%,
     transparent 100%
   );
@@ -114,11 +114,11 @@ html::before {
 /* --- Theme-specific glow accent --- */
 
 :root {
-  --glow-accent: #3b82f6;
+  --glow-accent: var(--color-accent);
 }
 
 [data-theme='light'] {
-  --glow-accent: #1a5f82;
+  --glow-accent: var(--color-accent);
 }
 
 /* --- Reduce motion for accessibility --- */

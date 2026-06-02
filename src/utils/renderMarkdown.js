@@ -31,6 +31,8 @@ export function renderMarkdown(md) {
     .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    // Inline code
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
     // Unordered lists
     .replace(/^- (.+)$/gm, '<li>$1</li>')
     // Paragraphs: split on double newlines

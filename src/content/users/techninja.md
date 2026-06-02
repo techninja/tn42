@@ -4,40 +4,20 @@ slug: techninja
 type: user
 ---
 
-![TechNinja's picture](/images/picture-1/index.jpg)
+![James](/images/picture-1/index.jpg)
 
 ### Who I Am
 
-#### How I Became
+My name is James (he/him), known online as `techninja` or `techninja42`. I've been programming and contributing to the open source community since 2004. I've been professionally building RESTful APIs, wrappers, and developer documentation since 2010, with a strong focus on making code and examples readable and user-friendly.
 
-Hi there! My name is James. At a young age, I started messing with rewiring electronics, boobytrapping my door with industrial flash units to blind trespassers, and hacking games in basic to do my bidding. Hacking electronics has always been my true love, next to programming.
+I've spoken at open source software conferences, traveled the world getting kids into STEAM through instructional video series and drawing robots, and now I'm exploring what happens when you build entire applications through human-LLM collaboration — with specs that enforce themselves.
 
-After working for the local newspaper as a photo monkey for years, I noticed that I had much more to offer than they were willing to tell me to do, so I just did it. In less than a year I was their webmaster, and began creating intranet software to manage their grossly inadequate filing schemes and content upload techniques. One Halloween I dressed up as a ninja and the moniker Tech Ninja was born.
+### Family
 
-I realize I am not the only one of the guild of Tech Ninjas.. I am one of many, I have a number. Since we ninja's are pretty sly and secretive, the ninja-numbering is never usually discussed, so I can only take a good guess that I'm probably not number 41...
+I'm a proud dad to 6 amazing kids, most recently Willow and Finley who've been joyfully taking all my free time since 2021. Hopefully soon I'll have more time to dedicate to resurrecting my older projects with next-generation goals.
 
-#### Right Now
+### Find Me
 
-I'm in my early 30s, and live in Northern California with my growing family. On the side I make and design complex user-based dynamic websites with Drupal, JavaScript and NodeJS. For fun I like to make Arduino based projects and robots with my kids, and especially making a crazy world famous [webshow](http://sylviashow.com/) with my oldest daughter Sylvia.
+I've mostly abandoned social media for sovereign ground here — may it be free from constant corruption and the restriction of the free internet.
 
-### Things I Know
-
-#### Programming/Scripting
-
-I have over 12 years of self taught experience in programming, with languages ranging from Visual Basic to Javascript to PHP to Arduino C. I have written over 100 standalone client programs with a combined user-base of over 200. I have written over 25 server and client side web applications with a combined virtual user-base of over 100,000 spread across 15 sites.
-
-#### Audio/Video
-
-Since 2003, I've worked on 4 feature length DV films, and at least two dozen short films. Lending a hand on everything from script editing, visual effects, acting, director of photography (DP) and editing.
-
-In an aside to my day job, I record and master audio tracks using a Behringer Mic and mixing board through Sony Vegas. I've also remixed/mastered an entire film audio track, cleaning up bad on camera audio, adding sound effects and music
-
-#### Misc
-
-I play piano in an amateur fashion, and am obsessed with music of all kinds.
-
-### Need More Info?
-
-Email me anytime about potential freelance work, including but not limited to, audio/video design, infrastructure, anything you can think of.
-
-[james@tn42.com](mailto:james@tn42.com)
+Reach out on [GitHub](https://github.com/techninja) if you want to collab! 👋

@@ -53,7 +53,9 @@ media-detail-view > main {
   justify-content: space-between;
   padding: var(--space-md) var(--space-lg);
   border-bottom: 1px solid var(--color-border);
-  background: var(--color-nav);
+  background: color-mix(in srgb, var(--color-nav) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -67,6 +69,10 @@ media-detail-view > main {
 .site-header h1 a {
   color: var(--color-text);
   text-decoration: none;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .site-slogan {
@@ -460,12 +466,29 @@ media-detail-view > main {
 }
 
 .user-profile img {
-  max-width: 120px;
+  width: 140px;
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 50%;
   float: left;
-  margin: 0 var(--space-lg) var(--space-md) 0;
+  margin: var(--space-sm) var(--space-lg) var(--space-md) 0;
+  border: 3px solid var(--color-primary);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--color-primary) 30%, transparent);
+  shape-outside: circle(50% at 50% 50%);
+  shape-margin: var(--space-md);
+}
+
+.user-profile .post-body img {
+  width: 140px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  float: left;
+  margin: var(--space-sm) var(--space-lg) var(--space-md) 0;
+  border: 3px solid var(--color-primary);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--color-primary) 30%, transparent);
+  shape-outside: circle(50% at 50% 50%);
+  shape-margin: var(--space-md);
 }
 
 .site-footer {
