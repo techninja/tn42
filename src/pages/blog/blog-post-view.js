@@ -54,7 +54,7 @@ export default define({
                 <div class="not-found__content">
                   <h1>404</h1>
                   <p>This post doesn't exist.</p>
-                  <a href="/" class="btn btn-primary">← Back to home</a>
+                  <a href="${router.backUrl() || '/'}" class="btn btn-primary">← Back to home</a>
                 </div>
               `
             : html`
@@ -84,7 +84,7 @@ export default define({
                     : html``}
                 </header>
                 <div class="post-body" innerHTML="${post.html}"></div>
-                <a href="/" class="btn btn-ghost">← Back to posts</a>
+                <a href="${router.backUrl() || '/'}" class="btn btn-ghost">← Back to posts</a>
               </article>
             `}
       </main>

@@ -67,7 +67,7 @@ export default define({
                 </div>
               `
             : html`<p>Loading…</p>`}
-          <a href="/" class="btn btn-ghost">← Back to posts</a>
+          <a href="${router.backUrl() || '/'}" class="btn btn-ghost">← Back to posts</a>
         </section>
       </main>
 

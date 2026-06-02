@@ -1,0 +1,6 @@
+name = "tn42"
+send_metrics = false
+
+[[r2_buckets]]
+binding = "DATA"
+bucket_name = "tn42-data"

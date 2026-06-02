@@ -27,7 +27,7 @@ export default define({
         <div class="not-found__content">
           <h1>404</h1>
           <p>This page has vanished into the webernet.</p>
-          <a href="/" class="btn btn-primary">← Back to home</a>
+          <a href="${router.backUrl() || '/'}" class="btn btn-primary">← Back to home</a>
         </div>
       </main>
 

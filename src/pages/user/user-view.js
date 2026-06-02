@@ -50,14 +50,14 @@ export default define({
                 <div class="not-found__content">
                   <h1>404</h1>
                   <p>User not found.</p>
-                  <a href="/" class="btn btn-primary">← Back to home</a>
+                  <a href="${router.backUrl() || '/'}" class="btn btn-primary">← Back to home</a>
                 </div>
               `
             : html`
               <article>
                 <h1>${profile.meta.title}</h1>
                 <div class="post-body" innerHTML="${profile.html}"></div>
-                <a href="/" class="btn btn-ghost">← Back to posts</a>
+                <a href="${router.backUrl() || '/'}" class="btn btn-ghost">← Back to posts</a>
               </article>
             `}
       </main>

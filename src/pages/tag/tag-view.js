@@ -66,7 +66,7 @@ export default define({
             : html`<p>Loading…</p>`}
 
           <nav class="tag-nav">
-            <a href="/" class="btn btn-ghost">← Back to posts</a>
+            <a href="${router.backUrl() || '/'}" class="btn btn-ghost">← Back to posts</a>
             <a href="/t" class="btn btn-ghost">All tags</a>
           </nav>
         </section>

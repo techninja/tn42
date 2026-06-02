@@ -9,6 +9,7 @@ import BlogPostView from '#pages/blog/blog-post-view.js';
 import GalleryPostView from '#pages/blog/gallery-post-view.js';
 import TagView from '#pages/tag/tag-view.js';
 import TagIndexView from '#pages/tag/tag-index-view.js';
+import MediaGridView from '#pages/media/media-grid-view.js';
 import UserView from '#pages/user/user-view.js';
 import '#atoms/theme-toggle/theme-toggle.js';
 
@@ -34,7 +35,7 @@ function collectTags(posts) {
 
 export default define({
   tag: 'home-view',
-  [router.connect]: { stack: [BlogPostView, GalleryPostView, TagView, TagIndexView, UserView] },
+  [router.connect]: { stack: [BlogPostView, GalleryPostView, TagView, TagIndexView, UserView, MediaGridView] },
   posts: {
     value: undefined,
     connect(host) {
@@ -57,6 +58,7 @@ export default define({
           </div>
           <nav class="site-nav">
             <a href="/" class="active">home</a>
+            <a href="/media">media</a>
             <a href="/users/techninja">who is tn?</a>
             <theme-toggle></theme-toggle>
           </nav>

@@ -9,7 +9,10 @@
     "dev": "node --watch --env-file=.env --env-file=.env.local src/server.js",
     "postinstall": "node scripts/setup.js",
     "build": "npx clearstack build og --url=https://tn42.com",
+    "build:deploy": "node scripts/prepare-deploy.js && npx clearstack build og --url=https://tn42.com --out=dist",
+    "upload:r2": "node scripts/upload-r2.js",
     "convert": "node scripts/convert-legacy.js --clean",
+    "convert:insta": "node scripts/convert-insta.js --clean",
     "spec": "node scripts/spec.js",
     "release": "node scripts/release.js"
   },
@@ -25,9 +28,9 @@
   },
   "homepage": "https://github.com/techninja/tn42#readme",
   "devDependencies": {
+    "@open-wc/testing": "^4.0.0",
     "@techninja/clearstack": "^0.3.36",
     "@types/node": "^22.0.0",
-    "@open-wc/testing": "^4.0.0",
     "@web/test-runner": "^0.20.0",
     "@web/test-runner-playwright": "^0.11.0",
     "eslint": "^10.1.0",
@@ -39,7 +42,8 @@
     "prettier": "^3.8.1",
     "stylelint": "^17.6.0",
     "stylelint-config-standard": "^40.0.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "wrangler": "^4.97.0"
   },
   "type": "module",
   "imports": {

@@ -32,6 +32,8 @@ const ICON_MAP = {
   image: 'image',
   rocket: 'rocket',
   search: 'search',
+  'layout-grid': 'grid',
+  'grid-3x3': 'grid3',
 };
 
 /**

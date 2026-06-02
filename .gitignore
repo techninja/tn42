@@ -3,3 +3,14 @@ src/vendor/
 src/icons.json
 data/db.json
 .env.local
+.wrangler/
+dist/
+
+# Heavy media assets — served from R2 (data.tn42.com)
+src/assets-media/
+src/images/
+
+# Source imports — not needed in repo
+_legacy-import/
+_insta_source/
+_converted/

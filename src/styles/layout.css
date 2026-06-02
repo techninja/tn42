@@ -16,7 +16,9 @@ gallery-post-view > main,
 tag-view > main,
 tag-index-view > main,
 user-view > main,
-not-found-view > main {
+not-found-view > main,
+media-grid-view > main,
+media-detail-view > main {
   animation: page-enter 0.3s ease-out both;
 }
 
@@ -34,7 +36,9 @@ not-found-view > main {
   tag-view > main,
   tag-index-view > main,
   user-view > main,
-  not-found-view > main {
+  not-found-view > main,
+  media-grid-view > main,
+  media-detail-view > main {
     animation: none;
   }
 }
