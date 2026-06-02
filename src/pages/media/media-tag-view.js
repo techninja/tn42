@@ -35,6 +35,7 @@ export default define({
         </div>
         <nav class="site-nav">
           <a href="/">home</a>
+            <a href="/b">blog</a>
           <a href="/media">media</a>
           <a href="/users/techninja">who is tn?</a>
           <theme-toggle></theme-toggle>
