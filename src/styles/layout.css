@@ -351,7 +351,7 @@ portfolio-detail-view > main {
 
 .tag-heading {
   font-size: var(--text-xl);
-  margin: 0 0 var(--space-lg);
+  margin: 0 0 0 var(--space-md);
   color: var(--color-text-muted);
 }
 
