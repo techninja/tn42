@@ -1,5 +1,6 @@
 name = "tn42"
 send_metrics = false
+pages_build_output_dir = "dist"
 
 [[r2_buckets]]
 binding = "DATA"
