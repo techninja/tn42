@@ -8,7 +8,7 @@ dist/
 
 # Heavy media assets — served from R2 (data.tn42.com)
 src/assets-media/
-src/images/
+src/images/*
 !src/images/default.svg
 
 # Source imports — not needed in repo
