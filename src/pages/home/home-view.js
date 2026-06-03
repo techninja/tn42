@@ -14,6 +14,7 @@ import '#atoms/app-icon/app-icon.js';
 import '#organisms/site-header/site-header.js';
 import { asset } from '#config/cdn.js';
 import { setPageTitle } from '#utils/pageTitle.js';
+import '#organisms/site-footer/site-footer.js';
 
 /**
  *
@@ -118,12 +119,7 @@ export default define({
             : html`<p>Loading…</p>`}
         </main>
 
-        <footer class="site-footer">
-          <p>
-            © 1998–${new Date().getFullYear()} TechNinja. Built with
-            <a href="https://github.com/techninja/clearstack">Clearstack</a>.
-          </p>
-        </footer>
+        <site-footer></site-footer>
       `;
     },
     shadow: false,

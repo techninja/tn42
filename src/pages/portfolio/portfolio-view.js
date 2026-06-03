@@ -10,6 +10,7 @@ import '#molecules/breadcrumb/breadcrumb.js';
 import '#atoms/app-icon/app-icon.js';
 import PortfolioDetailView from '#pages/portfolio/portfolio-detail-view.js';
 import { setPageTitle } from '#utils/pageTitle.js';
+import '#organisms/site-footer/site-footer.js';
 
 const STATUS_COLORS = {
   active: 'var(--color-success)',
@@ -89,12 +90,7 @@ export default define({
             : html`<p>Loading…</p>`}
         </main>
 
-        <footer class="site-footer">
-          <p>
-            © 1998–${new Date().getFullYear()} TechNinja. Built with
-            <a href="https://github.com/techninja/clearstack">Clearstack</a>.
-          </p>
-        </footer>
+        <site-footer></site-footer>
       `;
     },
     shadow: false,

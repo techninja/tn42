@@ -13,6 +13,7 @@ import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
 import { setPageTitle } from '#utils/pageTitle.js';
 import { CDN } from '#config/cdn.js';
+import '#organisms/site-footer/site-footer.js';
 
 /** @param {string} slug */
 async function loadPost(slug) {
@@ -76,12 +77,7 @@ export default define({
               `}
       </main>
 
-      <footer class="site-footer">
-        <p>
-          © 1998–${new Date().getFullYear()} TechNinja. Built with
-          <a href="https://github.com/techninja/clearstack">Clearstack</a>.
-        </p>
-      </footer>
+      <site-footer></site-footer>
     `,
     shadow: false,
   },
