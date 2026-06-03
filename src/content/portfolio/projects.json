@@ -71,6 +71,60 @@
       "videoLinks": [],
       "primaryUri": null,
       "repo": "https://github.com/techninja/thinclock"
+    },
+    {
+      "id": "nearedit",
+      "name": "NearEdit",
+      "description": "Browser-based non-linear video editor with automated clip identification and LLM-integrated automated editing based on prompts.",
+      "background": "What if you could describe the edit you want and have an AI assemble the timeline? NearEdit explores LLM-driven video editing entirely in the browser.",
+      "status": "pending",
+      "statusText": "Early prototype, not yet public",
+      "statusDate": "2026-06-01",
+      "started": "2026-05-15",
+      "logo": {
+        "mark": "/content/portfolio/logos/nearedit-mark.svg",
+        "wordmark": "/content/portfolio/logos/nearedit-wordmark.svg"
+      },
+      "previewImages": [],
+      "videoLinks": [],
+      "primaryUri": null,
+      "repo": "https://github.com/techninja/nearedit"
+    },
+    {
+      "id": "hersheytextjs",
+      "name": "Hershey Text JS",
+      "description": "A port of the Hershey engraving fonts to JSON for JavaScript and SVG rendering. Includes a Node.js module for accessing original Hershey data plus all included SVG fonts.",
+      "background": "Single-stroke fonts are essential for plotters and engravers. This library makes them accessible to the web — used by CNC Server and drawing robot projects worldwide.",
+      "status": "legacy",
+      "statusText": "Stable, maintenance mode",
+      "statusDate": "2026-05-18",
+      "started": "2014-01-01",
+      "logo": {
+        "mark": null,
+        "wordmark": null
+      },
+      "previewImages": [],
+      "videoLinks": [],
+      "primaryUri": "https://techninja.github.io/hersheytextjs/",
+      "repo": "https://github.com/techninja/hersheytextjs"
+    },
+    {
+      "id": "cncserver",
+      "name": "CNC Server",
+      "description": "A Node.js RESTful API to serial interface control for plotters. Originally created for the WaterColorBot, aimed at EBB controller based plotters like AxiDraw and EggBot.",
+      "background": "Abstracts the nitty-gritty of controlling a drawing robot into a simple HTTP API. Used by US President Obama on an iPad, runs on Raspberry Pi, and powers drawing bots worldwide.",
+      "status": "legacy",
+      "statusText": "Stable v3, seeking maintainer",
+      "statusDate": "2025-11-18",
+      "started": "2013-06-01",
+      "logo": {
+        "mark": null,
+        "wordmark": null
+      },
+      "previewImages": [],
+      "videoLinks": ["https://youtu.be/2HfgGDOZPCQ?t=1928"],
+      "primaryUri": null,
+      "repo": "https://github.com/techninja/cncserver"
     }
   ]
 }
