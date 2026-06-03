@@ -10,6 +10,16 @@
   min-height: 100vh;
 }
 
+.app-router > * {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-router > * > main {
+  flex: 1;
+}
+
 home-view > main,
 blog-list-view > main,
 blog-post-view > main,

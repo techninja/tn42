@@ -9,18 +9,25 @@
 const INFO_URL = '/users/sylvia';
 
 /**
- * Replace text only outside of HTML tags (not inside attributes).
+ * Replace text only outside of HTML tags and outside of nc__tip tooltips.
  * @param {string} html
  * @param {RegExp} pattern
  * @param {string|function} replacement
  * @returns {string}
  */
 function replaceTextOnly(html, pattern, replacement) {
-  const parts = html.split(/(<[^>]+>)/);
-  return parts.map((part) => {
-    if (part.startsWith('<')) return part;
-    pattern.lastIndex = 0;
-    return part.replace(pattern, replacement);
+  // Split out tooltip spans entirely — never touch their content
+  const parts = html.split(/(<span class="nc__tip">.*?<\/span>)/g);
+  return parts.map((chunk) => {
+    // Skip tooltip content
+    if (chunk.startsWith('<span class="nc__tip">')) return chunk;
+    // For remaining chunks, only replace in text nodes (not inside tags)
+    const segments = chunk.split(/(<[^>]+>)/);
+    return segments.map((seg) => {
+      if (seg.startsWith('<')) return seg;
+      pattern.lastIndex = 0;
+      return seg.replace(pattern, replacement);
+    }).join('');
   }).join('');
 }
 
@@ -99,7 +106,7 @@ export function applyNameCorrection(html, meta) {
   // First: plain-text corrections inside alt attributes
   result = replaceInAlts(result);
 
-  // Then: rich corrections in text nodes
+  // Then: rich corrections in text nodes (skips tooltips)
   for (const { pattern, replacement } of CORRECTIONS) {
     result = replaceTextOnly(result, pattern, replacement);
   }
