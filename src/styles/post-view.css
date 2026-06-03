@@ -1,0 +1,133 @@
+/* --- Post View --- */
+
+.post-header {
+  margin-bottom: var(--space-xl);
+}
+
+.post-header h1 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  margin: 0 0 var(--space-sm);
+  line-height: 1.2;
+}
+
+.post-hero {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.post-author {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.post-author:hover {
+  color: var(--color-primary);
+}
+
+.post-author__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px var(--space-sm);
+  font-size: var(--text-sm);
+  background: var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.tag:hover {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.tag-heading {
+  font-size: var(--text-xl);
+  margin: 0 0 0 var(--space-md);
+  color: var(--color-text-muted);
+}
+
+.tag-nav {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+/* --- Tag Index / Cloud --- */
+
+.tag-index h1 {
+  margin-bottom: var(--space-xl);
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.tag-cloud__item {
+  font-size: calc(var(--text-sm) + min(var(--count), 10) * 0.5px);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.tag-count {
+  opacity: 0.6;
+  font-size: 0.8em;
+  margin-left: 2px;
+}
+
+/* --- Post Body (rendered markdown) --- */
+
+.post-body {
+  line-height: 1.7;
+}
+
+.post-body p {
+  margin: 0 0 var(--space-md);
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin: var(--space-md) 0;
+}
+
+.post-body a {
+  color: var(--color-primary);
+}
+
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+  margin: var(--space-xl) 0 var(--space-sm);
+}

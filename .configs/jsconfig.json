@@ -17,9 +17,10 @@
       "#molecules/*": ["../src/components/molecules/*"],
       "#organisms/*": ["../src/components/organisms/*"],
       "#templates/*": ["../src/components/templates/*"],
-      "#pages/*": ["../src/pages/*"]
+      "#pages/*": ["../src/pages/*"],
+      "#config/*": ["../src/config/*"]
     }
   },
   "include": ["../src/**/*.js", "../scripts/**/*.js"],
-  "exclude": ["../node_modules", "../src/vendor", "../**/*.test.js"]
+  "exclude": ["../node_modules", "../src/vendor", "../src/space", "../**/*.test.js"]
 }

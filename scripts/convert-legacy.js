@@ -68,8 +68,8 @@ function parseDate(str) {
   // "Wed, 06/15/2011 - 8:51pm"
   const m = str.match(/(\d{2})\/(\d{2})\/(\d{4}) - (\d+):(\d+)(am|pm)/);
   if (!m) return null;
-  let [, month, day, year, hour, min, ampm] = m;
-  hour = parseInt(hour);
+  const [, month, day, year, hourStr, min, ampm] = m;
+  let hour = parseInt(hourStr);
   if (ampm === 'pm' && hour !== 12) hour += 12;
   if (ampm === 'am' && hour === 12) hour = 0;
   return `${year}-${month}-${day}T${String(hour).padStart(2, '0')}:${min}:00`;

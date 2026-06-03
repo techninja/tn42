@@ -61,7 +61,7 @@ export default define({
                       <a href="${router.url(BlogPostView, { slug: p.slug })}">
                         <img
                           class="post-card__img"
-                          src=\"${p.image ? asset(p.image) : '/images/default.svg'}\"
+                          src="${p.image ? asset(p.image) : '/images/default.svg'}"
                           alt="${p.title}"
                           loading="lazy"
                         />

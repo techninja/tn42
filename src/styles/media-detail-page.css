@@ -1,0 +1,124 @@
+/* --- Detail Page --- */
+
+.media-detail-page {
+  flex: 1;
+  padding: var(--space-lg);
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.media-detail__viewer {
+  position: relative;
+}
+
+.media-nav__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  text-decoration: none;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.media-nav__arrow:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.media-nav__arrows {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-sm) 0;
+}
+
+/* --- Detail shimmer --- */
+
+.media-detail {
+  margin: 0;
+  width: 100%;
+  min-height: 300px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    110deg,
+    var(--color-surface) 30%,
+    color-mix(in srgb, var(--color-primary) 8%, var(--color-surface)) 50%,
+    var(--color-surface) 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.media-detail:has(.media-detail__media) {
+  background: none;
+  animation: none;
+  min-height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-grid__item,
+  .media-tag-card,
+  .media-detail {
+    animation: none;
+    background-size: 100% 100%;
+  }
+}
+
+.media-detail__media {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgb(0 0 0 / 30%);
+  animation: media-slide-in 0.25s ease-out;
+}
+
+@keyframes media-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+.media-detail__info {
+  padding: var(--space-lg) 0;
+}
+
+.media-detail__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.media-detail__grid-link {
+  color: var(--color-text-muted);
+  transition: color 0.15s;
+}
+
+.media-detail__grid-link:hover {
+  color: var(--color-primary);
+}
+
+.media-detail__caption {
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  margin: 0 0 var(--space-sm);
+}
+
+.media-detail__date {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.media-detail__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}

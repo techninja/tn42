@@ -1,0 +1,103 @@
+/* Media — instagram-style grid and detail views. */
+
+/* --- Grid Page --- */
+
+.media-grid-page {
+  flex: 1;
+  padding: var(--space-lg);
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.media-grid-page h1 {
+  margin-bottom: var(--space-lg);
+}
+
+.media-count {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-weight: normal;
+}
+
+.media-grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.media-grid-header h1 {
+  margin: 0;
+}
+
+.media-subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin: 0 0 var(--space-lg);
+  line-height: 1.5;
+}
+
+.pagination--top {
+  margin-bottom: var(--space-md);
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* --- Breadcrumb --- */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.breadcrumb a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-primary-hover);
+}
+
+.breadcrumb__sep {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+  height: 1em;
+}
+
+.breadcrumb__sep:nth-of-type(2) {
+  opacity: 0.8;
+}
+
+.breadcrumb__sep app-icon,
+.breadcrumb__sep .icon {
+  width: 12px;
+  height: 12px;
+  vertical-align: unset;
+  margin-top: 1px;
+}
+
+.breadcrumb__current {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* --- Responsive --- */
+
+@media (width <= 480px) {
+  .media-grid-page {
+    padding: var(--space-sm);
+  }
+}

@@ -42,7 +42,7 @@ export default define({
   },
   render: {
     value: ({ data }) => {
-      const ready = data != null;
+      const ready = data !== undefined && data !== null;
 
       return html`
         <site-header active="home"></site-header>
@@ -102,7 +102,7 @@ export default define({
                           <a href="/b/${p.slug}">
                             <img
                               class="post-card__img"
-                              src=\"${p.image ? asset(p.image) : '/images/default.svg'}\"
+                              src="${p.image ? asset(p.image) : '/images/default.svg'}"
                               alt="${p.title}"
                               loading="lazy"
                             />

@@ -1,5 +1,4 @@
 /* Portfolio — project cards and detail views. */
-
 .portfolio-page,
 .portfolio-detail-page {
   flex: 1;
@@ -18,8 +17,6 @@
   font-size: var(--text-sm);
   margin: 0 0 var(--space-xl);
 }
-
-/* --- Card Grid --- */
 
 .portfolio-grid {
   display: grid;
@@ -86,7 +83,6 @@
 }
 
 /* --- Detail Page --- */
-
 .portfolio-detail__header {
   display: flex;
   align-items: center;

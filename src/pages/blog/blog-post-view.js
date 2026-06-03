@@ -37,7 +37,7 @@ export default define({
       if (host.slug)
         loadPost(host.slug).then((p) => {
           host.post = p || false;
-          if (p) setPageTitle(p.meta.title);
+          if (p) setPageTitle(/** @type {string} */ (p.meta.title));
         });
     },
   },
@@ -68,7 +68,7 @@ export default define({
                   <header class="post-header">
                     <img
                       class="post-hero"
-                      src=\"${post.meta.image ? asset(post.meta.image) : '/images/default.svg'}\"
+                      src="${post.meta.image ? asset(post.meta.image) : '/images/default.svg'}"
                       alt="${post.meta.title}"
                     />
                     <h1 innerHTML="${correctTitle(post.meta.title, post.meta)}"></h1>

@@ -33,7 +33,7 @@ export default define({
       if (host.slug)
         loadProfile(host.slug).then((p) => {
           host.profile = p || false;
-          if (p) setPageTitle(p.meta.title);
+          if (p) setPageTitle(/** @type {string} */ (p.meta.title));
         });
     },
   },

@@ -49,9 +49,7 @@ if (existsSync(mediaManifest)) {
 }
 
 // Create _redirects for Cloudflare Pages to proxy assets from R2
-const redirects = [
-  `/* /index.html 200`,
-].join('\n');
+const redirects = [`/* /index.html 200`].join('\n');
 
 writeFileSync(resolve(DIST, '_redirects'), redirects);
 

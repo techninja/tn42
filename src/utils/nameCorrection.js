@@ -1,34 +1,27 @@
 /**
- * Name correction transform — replaces deadname references in rendered HTML
- * with corrected name styled with trans flag colors + hover tooltip.
- * Also corrects alt attributes with plain text for screen readers.
- * Frontend-only: does not modify source markdown files.
+ * Name correction transform — applies corrections to rendered HTML.
  * @module utils/nameCorrection
  */
 
-const INFO_URL = '/users/sylvia';
+import { CORRECTIONS, corrected } from '#utils/nameCorrectionConfig.js';
 
 /**
- * Replace text only outside of HTML tags and outside of nc__tip tooltips.
  * @param {string} html
  * @param {RegExp} pattern
- * @param {string|function} replacement
+ * @param {string | Function} replacement
  * @returns {string}
  */
 function replaceTextOnly(html, pattern, replacement) {
-  // Split out tooltip spans entirely — never touch their content
   const parts = html.split(/(<span class="nc__tip">.*?<\/span>)/g);
   return parts
     .map((chunk) => {
-      // Skip tooltip content
       if (chunk.startsWith('<span class="nc__tip">')) return chunk;
-      // For remaining chunks, only replace in text nodes (not inside tags)
       const segments = chunk.split(/(<[^>]+>)/);
       return segments
         .map((seg) => {
           if (seg.startsWith('<')) return seg;
           pattern.lastIndex = 0;
-          return seg.replace(pattern, replacement);
+          return seg.replace(pattern, /** @type {any} */ (replacement));
         })
         .join('');
     })
@@ -36,7 +29,7 @@ function replaceTextOnly(html, pattern, replacement) {
 }
 
 /**
- * Replace names inside alt attributes with plain text (screen-reader friendly).
+ * Replace names inside alt attributes with plain text.
  * @param {string} html
  * @returns {string}
  */
@@ -54,72 +47,32 @@ function replaceInAlts(html) {
   });
 }
 
-/** Wrap corrected name in the tooltip component markup. */
-function corrected(newText) {
-  return `<span class="nc" tabindex="0"><span class="nc__name">${newText}</span><span class="nc__tip">Sylvia transitioned to Zeph (he/him) in 2016 <a href="${INFO_URL}">Learn more</a></span></span>`;
+/** Check if content is relevant for correction. */
+function isRelevant(html, meta) {
+  return (
+    meta?.author === 'sylvia' ||
+    meta?.tags?.some((t) => t.toLowerCase().includes('sylvia')) ||
+    html.includes('Sylvia')
+  );
 }
-
-/** @type {Array<{ pattern: RegExp, replacement: string|function }>} */
-const CORRECTIONS = [
-  {
-    pattern: /\bSylvia's\b/g,
-    replacement: () => corrected("Zeph's"),
-  },
-  {
-    pattern: /\bSylvia\b/g,
-    replacement: () => corrected('Zeph'),
-  },
-  {
-    pattern: /\b([Mm]y) daughter\b/g,
-    replacement: (_, my) => corrected(`${my} kid`),
-  },
-  {
-    pattern: /\bher\b/g,
-    replacement: () => corrected('his'),
-  },
-  {
-    pattern: /\bHer\b/g,
-    replacement: () => corrected('His'),
-  },
-  {
-    pattern: /\bshe\b/g,
-    replacement: () => corrected('he'),
-  },
-  {
-    pattern: /\bShe\b/g,
-    replacement: () => corrected('He'),
-  },
-];
 
 /**
  * Apply name/pronoun corrections to rendered HTML.
- * @param {string} html - Rendered HTML string
- * @param {object} meta - Post frontmatter metadata
- * @returns {string} Corrected HTML
+ * @param {string} html
+ * @param {object} meta
+ * @returns {string}
  */
 export function applyNameCorrection(html, meta) {
-  const isRelevant =
-    meta?.author === 'sylvia' ||
-    meta?.tags?.some((t) => t.toLowerCase().includes('sylvia')) ||
-    html.includes('Sylvia');
-
-  if (!isRelevant) return html;
-
-  let result = html;
-
-  // First: plain-text corrections inside alt attributes
-  result = replaceInAlts(result);
-
-  // Then: rich corrections in text nodes (skips tooltips)
+  if (!isRelevant(html, meta)) return html;
+  let result = replaceInAlts(html);
   for (const { pattern, replacement } of CORRECTIONS) {
     result = replaceTextOnly(result, pattern, replacement);
   }
-
   return result;
 }
 
 /**
- * Correct a plain text string (for titles, tags, etc). No HTML output.
+ * Correct a plain text string (titles, tags). No HTML.
  * @param {string} text
  * @returns {string}
  */
@@ -135,26 +88,20 @@ export function correctPlainText(text) {
 }
 
 /**
- * Correct a title with the tooltip markup.
+ * Correct a title with tooltip markup.
  * @param {string} title
  * @param {object} meta
- * @returns {string} HTML string with corrections or plain title
+ * @returns {string}
  */
 export function correctTitle(title, meta) {
-  const isRelevant =
-    meta?.author === 'sylvia' ||
-    meta?.tags?.some((t) => t.toLowerCase().includes('sylvia')) ||
-    title.includes('Sylvia');
-
-  if (!isRelevant) return title;
-
+  if (!isRelevant(title, meta)) return title;
   return title
     .replace(/\bSylvia's\b/g, corrected("Zeph's"))
     .replace(/\bSylvia\b/g, corrected('Zeph'));
 }
 
 /**
- * Correct a tag name — returns plain text for display.
+ * Correct a tag name — plain text.
  * @param {string} tag
  * @returns {string}
  */

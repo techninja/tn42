@@ -1,0 +1,58 @@
+/* --- Carousel --- */
+
+.media-carousel {
+  position: relative;
+}
+
+.media-carousel__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+}
+
+.media-carousel__nav button {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-lg);
+  cursor: pointer;
+}
+
+.media-carousel__nav button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.media-carousel__nav span {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* --- Media Nav (prev/next) --- */
+
+.media-nav {
+  display: none;
+}
+
+/* --- Related Media --- */
+
+.media-related {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.media-related h3 {
+  margin-bottom: var(--space-md);
+  color: var(--color-text-muted);
+}
+
+.media-grid--small {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}

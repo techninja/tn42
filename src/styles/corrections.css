@@ -19,7 +19,6 @@
     #f5a9b8 100%
   );
   background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
   border-bottom: 1.5px dotted #f5a9b8;
 }
@@ -49,7 +48,6 @@
 
   /* Reset text fill for tooltip content */
   -webkit-text-fill-color: initial;
-  background-clip: initial;
   background-clip: initial;
 }
 

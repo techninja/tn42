@@ -35,7 +35,7 @@ export default define({
       if (host.slug)
         loadPost(host.slug).then((p) => {
           host.post = p || false;
-          if (p) setPageTitle(p.meta.title);
+          if (p) setPageTitle(/** @type {string} */ (p.meta.title));
         });
     },
   },

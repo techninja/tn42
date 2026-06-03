@@ -9,8 +9,9 @@
  */
 export function parseFrontmatter(raw) {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
-  if (!match) return { meta: {}, content: raw };
+  if (!match) return { meta: /** @type {Record<string, unknown>} */ ({}), content: raw };
 
+  /** @type {Record<string, unknown>} */
   const meta = {};
   let currentKey = null;
   let arrayValues = null;

@@ -9,6 +9,7 @@ import NotFoundView from '#pages/not-found/not-found-view.js';
 
 export default define({
   tag: 'app-router',
+  // @ts-ignore — dialog is a valid router option
   stack: router(HomeView, { url: '/', dialog: NotFoundView }),
   render: {
     value: ({ stack }) => html`<div class="app-router">${stack}</div>`,

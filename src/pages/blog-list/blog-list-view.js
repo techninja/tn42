@@ -3,7 +3,6 @@
  * Route: /b
  * @module pages/blog-list/blog-list-view
  */
-
 import { html, define, router } from 'hybrids';
 import { formatDate } from '#utils/formatDate.js';
 import BlogPostView from '#pages/blog/blog-post-view.js';
@@ -14,9 +13,7 @@ import '#organisms/site-header/site-header.js';
 import { asset } from '#config/cdn.js';
 import '#molecules/breadcrumb/breadcrumb.js';
 import { setPageTitle } from '#utils/pageTitle.js';
-
 const PER_PAGE = 10;
-
 /**
  *
  */
@@ -25,7 +22,6 @@ async function loadManifest() {
   const { posts } = await res.json();
   return posts;
 }
-
 /**
  *
  */
@@ -39,7 +35,6 @@ function collectTags(posts) {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 20);
 }
-
 export default define({
   tag: 'blog-list-view',
   [router.connect]: { url: '/b', stack: [BlogPostView, GalleryPostView, TagView, TagIndexView] },
@@ -59,10 +54,8 @@ export default define({
       const total = ready ? Math.ceil(posts.length / PER_PAGE) : 0;
       const visible = ready ? posts.slice((page - 1) * PER_PAGE, page * PER_PAGE) : [];
       const tags = ready ? collectTags(posts) : [];
-
       return html`
         <site-header active="blog"></site-header>
-
         <main class="home-view">
           <section class="post-list">
             <app-breadcrumb
@@ -76,7 +69,7 @@ export default define({
                       <a href="${router.url(BlogPostView, { slug: p.slug })}">
                         <img
                           class="post-card__img"
-                          src=\"${p.image ? asset(p.image) : '/images/default.svg'}\"
+                          src="${p.image ? asset(p.image) : '/images/default.svg'}"
                           alt="${p.title}"
                           loading="lazy"
                         />
@@ -122,7 +115,6 @@ export default define({
                 `
               : html``}
           </section>
-
           ${tags.length
             ? html`
                 <aside class="site-sidebar">
@@ -140,7 +132,6 @@ export default define({
               `
             : html``}
         </main>
-
         <footer class="site-footer">
           <p>
             © 1998–${new Date().getFullYear()} TechNinja. Built with
