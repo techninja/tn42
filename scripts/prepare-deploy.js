@@ -36,7 +36,7 @@ cpSync(resolve(ROOT, 'src'), DIST, {
   },
 });
 
-// Keep default.svg
+// Keep default.svg for posts without images
 mkdirSync(resolve(DIST, 'images'), { recursive: true });
 cpSync(resolve(ROOT, 'src/images/default.svg'), resolve(DIST, 'images/default.svg'));
 
