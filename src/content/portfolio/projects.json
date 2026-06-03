@@ -112,7 +112,7 @@
       "id": "cncserver",
       "name": "CNC Server",
       "description": "A Node.js RESTful API to serial interface control for plotters. Originally created for the WaterColorBot, aimed at EBB controller based plotters like AxiDraw and EggBot.",
-      "background": "Abstracts the nitty-gritty of controlling a drawing robot into a simple HTTP API. Used by US President Obama on an iPad, runs on Raspberry Pi, and powers drawing bots worldwide.",
+      "background": "Abstracts the nitty-gritty of controlling a drawing robot into a simple HTTP API. Used by US President Obama on an iPad, runs on Raspberry Pi, and powers drawing bots worldwide. I'm willing to rejoin and make this project active again if anyone can get me a drawing robot — I gave mine to the other attempted maintainer.",
       "status": "legacy",
       "statusText": "Stable v3, seeking maintainer",
       "statusDate": "2025-11-18",
