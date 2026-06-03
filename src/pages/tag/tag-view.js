@@ -6,8 +6,9 @@
 
 import { html, define, router } from 'hybrids';
 import { formatDate } from '#utils/formatDate.js';
-import '#atoms/theme-toggle/theme-toggle.js';
 import BlogPostView from '#pages/blog/blog-post-view.js';
+import '#organisms/site-header/site-header.js';
+import '#molecules/breadcrumb/breadcrumb.js';
 
 async function loadByTag(tag) {
   const decoded = decodeURIComponent(tag);
@@ -29,21 +30,11 @@ export default define({
   },
   render: {
     value: ({ tagName, posts }) => html`
-      <header class="site-header">
-        <div>
-          <h1><a href="/">tn42.com</a></h1>
-          <p class="site-slogan">tech ninja 42 — Enhancing your webernet since 1998</p>
-        </div>
-        <nav class="site-nav">
-          <a href="/">home</a>
-            <a href="/b">blog</a>
-          <a href="/users/techninja">who is tn?</a>
-          <theme-toggle></theme-toggle>
-        </nav>
-      </header>
+      <site-header active="blog"></site-header>
 
       <main class="home-view">
         <section class="post-list">
+          <app-breadcrumb items='${JSON.stringify([{"label":"Home","href":"/"},{"label":"Blog","href":"/b"},{"label":"Tags","href":"/t"},{"label":decodeURIComponent(tagName)}])}'></app-breadcrumb>
           <h2 class="tag-heading">Posts tagged "${decodeURIComponent(tagName)}"</h2>
           ${Array.isArray(posts)
             ? posts.length

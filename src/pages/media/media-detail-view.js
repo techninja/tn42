@@ -6,8 +6,9 @@
 
 import { html, define, router } from 'hybrids';
 import { formatDate } from '#utils/formatDate.js';
-import '#atoms/theme-toggle/theme-toggle.js';
 import '#atoms/app-icon/app-icon.js';
+import '#organisms/site-header/site-header.js';
+import '#molecules/breadcrumb/breadcrumb.js';
 
 let allPosts = null;
 
@@ -75,21 +76,10 @@ export default define({
       const related = data?.related || [];
 
       return html`
-        <header class="site-header">
-          <div>
-            <h1><a href="/">tn42.com</a></h1>
-            <p class="site-slogan">tech ninja 42 — Enhancing your webernet since 1998</p>
-          </div>
-          <nav class="site-nav">
-            <a href="/">home</a>
-            <a href="/b">blog</a>
-            <a href="/media">media</a>
-            <a href="/users/techninja">who is tn?</a>
-            <theme-toggle></theme-toggle>
-          </nav>
-        </header>
+        <site-header active="media"></site-header>
 
         <main class="media-detail-page">
+          <app-breadcrumb items='${JSON.stringify([{"label":"Home","href":"/"},{"label":"Media","href":"/media"},{"label":(post?.caption||"Detail").slice(0,30)+(post?.caption?.length>30?"…":"")}])}'></app-breadcrumb>
           ${post === undefined
             ? html`<p>Loading…</p>`
             : post === false

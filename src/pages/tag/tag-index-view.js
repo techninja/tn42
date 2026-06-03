@@ -6,9 +6,10 @@
  */
 
 import { html, define, router } from 'hybrids';
-import '#atoms/theme-toggle/theme-toggle.js';
 import BlogPostView from '#pages/blog/blog-post-view.js';
 import TagView from '#pages/tag/tag-view.js';
+import '#organisms/site-header/site-header.js';
+import '#molecules/breadcrumb/breadcrumb.js';
 
 async function loadTags() {
   const res = await fetch('/content/b/manifest.json');
@@ -37,21 +38,11 @@ export default define({
   },
   render: {
     value: ({ tags }) => html`
-      <header class="site-header">
-        <div>
-          <h1><a href="/">tn42.com</a></h1>
-          <p class="site-slogan">tech ninja 42 — Enhancing your webernet since 1998</p>
-        </div>
-        <nav class="site-nav">
-          <a href="/">home</a>
-            <a href="/b">blog</a>
-          <a href="/users/techninja">who is tn?</a>
-          <theme-toggle></theme-toggle>
-        </nav>
-      </header>
+      <site-header active="blog"></site-header>
 
       <main class="post-view">
         <section class="tag-index">
+          <app-breadcrumb items='${JSON.stringify([{"label":"Home","href":"/"},{"label":"Blog","href":"/b"},{"label":"Tags"}])}'></app-breadcrumb>
           <h1>All Tags</h1>
           ${Array.isArray(tags)
             ? html`

@@ -10,7 +10,8 @@ import BlogPostView from '#pages/blog/blog-post-view.js';
 import GalleryPostView from '#pages/blog/gallery-post-view.js';
 import TagView from '#pages/tag/tag-view.js';
 import TagIndexView from '#pages/tag/tag-index-view.js';
-import '#atoms/theme-toggle/theme-toggle.js';
+import '#organisms/site-header/site-header.js';
+import '#molecules/breadcrumb/breadcrumb.js';
 
 const PER_PAGE = 10;
 
@@ -49,22 +50,11 @@ export default define({
       const tags = ready ? collectTags(posts) : [];
 
       return html`
-        <header class="site-header">
-          <div>
-            <h1><a href="/">tn42.com</a></h1>
-            <p class="site-slogan">tech ninja 42 — Enhancing your webernet since 1998</p>
-          </div>
-          <nav class="site-nav">
-            <a href="/">home</a>
-            <a href="/b" class="active">blog</a>
-            <a href="/media">media</a>
-            <a href="/users/techninja">who is tn?</a>
-            <theme-toggle></theme-toggle>
-          </nav>
-        </header>
+        <site-header active="blog"></site-header>
 
         <main class="home-view">
           <section class="post-list">
+            <app-breadcrumb items='${JSON.stringify([{"label":"Home","href":"/"},{"label":"Blog"}])}'></app-breadcrumb>
             <h1>Blog <span class="media-count">${ready ? posts.length : ''} posts</span></h1>
             ${ready
               ? visible.map(

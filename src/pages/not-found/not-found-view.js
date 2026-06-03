@@ -4,25 +4,14 @@
  */
 
 import { html, define, router } from 'hybrids';
-import '#atoms/theme-toggle/theme-toggle.js';
+import '#organisms/site-header/site-header.js';
 
 export default define({
   tag: 'not-found-view',
   [router.connect]: { url: '/404' },
   render: {
     value: () => html`
-      <header class="site-header">
-        <div>
-          <h1><a href="/">tn42.com</a></h1>
-          <p class="site-slogan">tech ninja 42 — Enhancing your webernet since 1998</p>
-        </div>
-        <nav class="site-nav">
-          <a href="/">home</a>
-            <a href="/b">blog</a>
-          <a href="/users/techninja">who is tn?</a>
-          <theme-toggle></theme-toggle>
-        </nav>
-      </header>
+      <site-header></site-header>
 
       <main class="post-view not-found">
         <div class="not-found__content">

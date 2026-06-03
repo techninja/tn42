@@ -5,8 +5,9 @@
  */
 
 import { html, define, router } from 'hybrids';
-import '#atoms/theme-toggle/theme-toggle.js';
 import MediaDetailView from '#pages/media/media-detail-view.js';
+import '#organisms/site-header/site-header.js';
+import '#molecules/breadcrumb/breadcrumb.js';
 
 async function loadByTag(tag) {
   const decoded = decodeURIComponent(tag);
@@ -28,24 +29,10 @@ export default define({
   },
   render: {
     value: ({ tagName, posts }) => html`
-      <header class="site-header">
-        <div>
-          <h1><a href="/">tn42.com</a></h1>
-          <p class="site-slogan">tech ninja 42 — Enhancing your webernet since 1998</p>
-        </div>
-        <nav class="site-nav">
-          <a href="/">home</a>
-            <a href="/b">blog</a>
-          <a href="/media">media</a>
-          <a href="/users/techninja">who is tn?</a>
-          <theme-toggle></theme-toggle>
-        </nav>
-      </header>
+      <site-header active="media"></site-header>
 
       <main class="media-grid-page">
-        <nav class="media-breadcrumb">
-          <a href="/media">Media</a> / <a href="/media/tags">Tags</a> / <span>#${decodeURIComponent(tagName)}</span>
-        </nav>
+        <app-breadcrumb items='${JSON.stringify([{"label":"Home","href":"/"},{"label":"Media","href":"/media"},{"label":"Tags","href":"/media/tags"},{"label":"#"+decodeURIComponent(tagName)}])}'></app-breadcrumb>
         <h1>#${decodeURIComponent(tagName)}</h1>
         ${Array.isArray(posts)
           ? posts.length

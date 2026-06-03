@@ -9,8 +9,8 @@ import { formatDate } from '#utils/formatDate.js';
 import BlogListView from '#pages/blog-list/blog-list-view.js';
 import MediaGridView from '#pages/media/media-grid-view.js';
 import UserView from '#pages/user/user-view.js';
-import '#atoms/theme-toggle/theme-toggle.js';
 import '#atoms/app-icon/app-icon.js';
+import '#organisms/site-header/site-header.js';
 
 async function loadLatest() {
   const [blogRes, mediaRes] = await Promise.all([
@@ -36,19 +36,7 @@ export default define({
       const ready = data != null;
 
       return html`
-        <header class="site-header">
-          <div>
-            <h1><a href="/">tn42.com</a></h1>
-            <p class="site-slogan">tech ninja 42 — Enhancing your webernet since 1998</p>
-          </div>
-          <nav class="site-nav">
-            <a href="/" class="active">home</a>
-            <a href="/b">blog</a>
-            <a href="/media">media</a>
-            <a href="/users/techninja">who is tn?</a>
-            <theme-toggle></theme-toggle>
-          </nav>
-        </header>
+        <site-header active="home"></site-header>
 
         <main class="landing">
           <section class="landing__hero">

@@ -478,7 +478,7 @@ media-detail-view > main {
   shape-margin: var(--space-md);
 }
 
-.user-profile .post-body img {
+.user-profile .post-body img:first-of-type {
   width: 140px;
   aspect-ratio: 1;
   object-fit: cover;
@@ -489,6 +489,20 @@ media-detail-view > main {
   box-shadow: 0 0 20px color-mix(in srgb, var(--color-primary) 30%, transparent);
   shape-outside: circle(50% at 50% 50%);
   shape-margin: var(--space-md);
+}
+
+.user-profile .post-body img:not(:first-of-type) {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  border-radius: var(--radius-lg);
+  float: none;
+  clear: both;
+  margin: var(--space-lg) 0;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  shape-outside: none;
 }
 
 .site-footer {

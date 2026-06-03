@@ -34,6 +34,8 @@ const ICON_MAP = {
   search: 'search',
   'layout-grid': 'grid',
   'grid-3x3': 'grid3',
+  'circle-dot': 'dot',
+  'circle-chevron-right': 'nav-right',
 };
 
 /**
