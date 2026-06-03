@@ -20,6 +20,7 @@ export default define({
           <a href="/" class="${active === 'home' ? 'active' : ''}">home</a>
           <a href="/b" class="${active === 'blog' ? 'active' : ''}">blog</a>
           <a href="/media" class="${active === 'media' ? 'active' : ''}">media</a>
+          <a href="/portfolio" class="${active === 'portfolio' ? 'active' : ''}">portfolio</a>
           <a href="/users/techninja" class="${active === 'about' ? 'active' : ''}">who is tn?</a>
           <theme-toggle></theme-toggle>
         </nav>

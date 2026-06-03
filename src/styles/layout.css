@@ -19,7 +19,9 @@ tag-index-view > main,
 user-view > main,
 not-found-view > main,
 media-grid-view > main,
-media-detail-view > main {
+media-detail-view > main,
+portfolio-view > main,
+portfolio-detail-view > main {
   animation: page-enter 0.3s ease-out both;
 }
 
@@ -40,7 +42,9 @@ media-detail-view > main {
   user-view > main,
   not-found-view > main,
   media-grid-view > main,
-  media-detail-view > main {
+  media-detail-view > main,
+  portfolio-view > main,
+  portfolio-detail-view > main {
     animation: none;
   }
 }

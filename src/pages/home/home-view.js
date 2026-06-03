@@ -8,6 +8,7 @@ import { html, define, router } from 'hybrids';
 import { formatDate } from '#utils/formatDate.js';
 import BlogListView from '#pages/blog-list/blog-list-view.js';
 import MediaGridView from '#pages/media/media-grid-view.js';
+import PortfolioView from '#pages/portfolio/portfolio-view.js';
 import UserView from '#pages/user/user-view.js';
 import '#atoms/app-icon/app-icon.js';
 import '#organisms/site-header/site-header.js';
@@ -24,7 +25,7 @@ async function loadLatest() {
 
 export default define({
   tag: 'home-view',
-  [router.connect]: { stack: [BlogListView, MediaGridView, UserView] },
+  [router.connect]: { stack: [BlogListView, MediaGridView, PortfolioView, UserView] },
   data: {
     value: undefined,
     connect(host) {

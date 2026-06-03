@@ -1,0 +1,76 @@
+{
+  "projects": [
+    {
+      "id": "clearstack",
+      "name": "Clearstack",
+      "description": "A no-build web component framework specification — and its working proof — built entirely through LLM-human collaboration. ES modules served directly to the browser, ≤150 lines per file, JSDoc over TypeScript, and a spec checker that enforces its own rules.",
+      "background": "Born from frustration with modern frontend tooling that optimizes for machines over humans. If every file is small, explicit, and runs as authored — both humans and LLMs can reason about it with zero friction.",
+      "status": "active",
+      "statusText": "Actively maintained, v0.3.x",
+      "statusDate": "2026-06-01",
+      "started": "2026-03-30",
+      "logo": {
+        "mark": null,
+        "wordmark": "https://raw.githubusercontent.com/techninja/clearstack/main/docs/clearstack_logo.svg"
+      },
+      "previewImages": [],
+      "videoLinks": [],
+      "primaryUri": "https://clearstacks.org",
+      "repo": "https://github.com/techninja/clearstack"
+    },
+    {
+      "id": "staticart",
+      "name": "StatiCart",
+      "description": "A full-featured e-commerce platform built 99% on static hosting. Stripe-powered checkout, DynamoDB single-table backend, Lambda API, GitHub Actions stock-triggered rebuilds — all scaffolded via Clearstack.",
+      "background": "What if an entire storefront could live on a CDN with no server runtime costs? StatiCart proves it's possible with modern JAMstack patterns and a minimal serverless backend.",
+      "status": "active",
+      "statusText": "In development, private beta",
+      "statusDate": "2026-05-01",
+      "started": "2026-02-28",
+      "logo": {
+        "mark": null,
+        "wordmark": "https://raw.githubusercontent.com/techninja/staticart/main/src/assets/staticart_logo.svg"
+      },
+      "previewImages": [],
+      "videoLinks": [],
+      "primaryUri": "https://staticart.org",
+      "repo": "https://github.com/techninja/staticart"
+    },
+    {
+      "id": "asili",
+      "name": "Asili",
+      "description": "Privacy-first polygenic risk score analysis. Upload your DNA, get trait scores — all processing happens on your device via DuckDB WASM. No accounts, no servers, no data leaves your browser.",
+      "background": "Genomic data is intensely personal. Asili proves you can deliver meaningful health insights without ever touching a user's data — validated across 3 individuals × 647 traits.",
+      "status": "active",
+      "statusText": "Public, 647 traits scored",
+      "statusDate": "2026-04-01",
+      "started": "2025-11-01",
+      "logo": {
+        "mark": null,
+        "wordmark": "https://raw.githubusercontent.com/techninja/asili/main/assets/logo.svg"
+      },
+      "previewImages": [],
+      "videoLinks": [],
+      "primaryUri": "https://asili.dev",
+      "repo": "https://github.com/techninja/asili"
+    },
+    {
+      "id": "thinclock",
+      "name": "ThinClock",
+      "description": "Custom firmware for the Ulanzi TC001 LED matrix. The device is intentionally dumb (fetches JSON, renders pixels) while a composable Node.js server handles all the logic — weather, Home Assistant, alerts, particles, and animations.",
+      "background": "A smart display that's actually dumb by design. All intelligence lives server-side, making the firmware trivial to update and the display infinitely configurable.",
+      "status": "fiddling",
+      "statusText": "Personal use, occasional updates",
+      "statusDate": "2026-05-02",
+      "started": "2026-05-02",
+      "logo": {
+        "mark": null,
+        "wordmark": null
+      },
+      "previewImages": [],
+      "videoLinks": [],
+      "primaryUri": null,
+      "repo": "https://github.com/techninja/thinclock"
+    }
+  ]
+}
