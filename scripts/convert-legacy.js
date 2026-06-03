@@ -8,7 +8,7 @@
  */
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
-import { resolve, basename } from 'node:path';
+import { resolve } from 'node:path';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const LEGACY = resolve(ROOT, '_legacy-import');
@@ -38,7 +38,9 @@ function decodeEntities(str) {
 
 /** Strip HTML tags, collapse whitespace. */
 function stripTags(html) {
-  return decodeEntities(html.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
+  return decodeEntities(html.replace(/<[^>]+>/g, ''))
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 /** Extract title from h2title div or h2.title. */
@@ -76,7 +78,7 @@ function parseDate(str) {
 /** Extract primary image — first lightbox/imagecache image in the post. */
 function extractImage(html) {
   // Try teaser thumb first (that's what showed on homepage)
-  let m = html.match(/imagecache[^>]*><img src="([^"]+)"/)
+  let m = html.match(/imagecache[^>]*><img src="([^"]+)"/);
   if (m) return normalizeImagePath(m[1]);
   // Try first lightbox image
   m = html.match(/rel="lightbox\[field_image\][^"]*"[^>]*><img src="([^"]+)"/);
@@ -98,7 +100,9 @@ function extractTags(html) {
 /** Extract main content div and convert to markdown. */
 function extractContent(html) {
   // Primary: grab content div up to the links-readmore footer
-  const m = html.match(/<div class="content">(.*?)<\/div>\s*<\/div>\s*<div class="links-readmore"/s);
+  const m = html.match(
+    /<div class="content">(.*?)<\/div>\s*<\/div>\s*<div class="links-readmore"/s,
+  );
   if (m) return htmlToMarkdown(m[1]);
 
   // Fallback: content div closed by node wrapper
@@ -215,6 +219,9 @@ function frontmatter(data) {
 
 // --- Convert blog posts (b/) ---
 
+/**
+ *
+ */
 function convertBlogPosts() {
   const blogDir = resolve(LEGACY, 'b');
   if (!existsSync(blogDir)) return;
@@ -231,7 +238,10 @@ function convertBlogPosts() {
 
   for (const slug of slugs) {
     const htmlPath = resolve(blogDir, slug, 'index.html');
-    if (!existsSync(htmlPath)) { skipped++; continue; }
+    if (!existsSync(htmlPath)) {
+      skipped++;
+      continue;
+    }
 
     const html = readFileSync(htmlPath, 'utf-8');
     const title = extractTitle(html) || slug;
@@ -240,7 +250,10 @@ function convertBlogPosts() {
     const image = extractImage(html);
     const content = extractContent(html);
 
-    if (!content && !title) { skipped++; continue; }
+    if (!content && !title) {
+      skipped++;
+      continue;
+    }
 
     const fm = frontmatter({ title, date, author, slug, type: 'blog', tags, image });
     const md = `${fm}\n\n${content}\n`;
@@ -254,6 +267,9 @@ function convertBlogPosts() {
 
 // --- Convert gallery posts (g/) ---
 
+/**
+ *
+ */
 function convertGalleryPosts() {
   const galDir = resolve(LEGACY, 'g');
   if (!existsSync(galDir)) return;
@@ -290,6 +306,9 @@ function convertGalleryPosts() {
 
 // --- Convert user profiles (users/) ---
 
+/**
+ *
+ */
 function convertUserProfiles() {
   const usersDir = resolve(LEGACY, 'users');
   if (!existsSync(usersDir)) return;
@@ -323,6 +342,9 @@ function convertUserProfiles() {
 
 // --- Generate URI map ---
 
+/**
+ *
+ */
 function generateUriMap() {
   // Map old URIs to new content paths for routing validation
   const map = {};
@@ -375,7 +397,9 @@ function generateUriMap() {
   };
 
   writeFileSync(resolve(OUT, 'uri-map.json'), JSON.stringify(output, null, 2));
-  console.log(`  URI map: ${output.stats.contentPages} routes, ${output.stats.skippedProgrammatic} programmatic skipped`);
+  console.log(
+    `  URI map: ${output.stats.contentPages} routes, ${output.stats.skippedProgrammatic} programmatic skipped`,
+  );
 }
 
 // --- Main ---

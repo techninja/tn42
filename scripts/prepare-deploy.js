@@ -43,15 +43,13 @@ cpSync(resolve(ROOT, 'src/images/default.svg'), resolve(DIST, 'images/default.sv
 // Rewrite media manifest
 const mediaManifest = resolve(DIST, 'content/media/manifest.json');
 if (existsSync(mediaManifest)) {
-  let json = readFileSync(mediaManifest, 'utf-8');
+  const json = readFileSync(mediaManifest, 'utf-8');
   // No path rewrite needed in JSON — views reference /assets-media/ which we'll handle via redirect
   writeFileSync(mediaManifest, json);
 }
 
 // Create _redirects for Cloudflare Pages to proxy assets from R2
 const redirects = [
-  `/assets-media/* ${DATA_URL}/assets-media/:splat 200`,
-  `/images/* ${DATA_URL}/images/:splat 200`,
   `/* /index.html 200`,
 ].join('\n');
 

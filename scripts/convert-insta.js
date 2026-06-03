@@ -7,7 +7,7 @@
  * Usage: node scripts/convert-insta.js [--clean]
  */
 
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync, copyFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync, copyFileSync } from 'node:fs';
 import { resolve, basename, extname } from 'node:path';
 import { createHash } from 'node:crypto';
 
@@ -30,9 +30,7 @@ mkdirSync(OUT_IMAGES, { recursive: true });
 function decodeInstaText(str) {
   if (!str) return '';
   try {
-    return new TextDecoder().decode(
-      new Uint8Array(str.split('').map((c) => c.charCodeAt(0))),
-    );
+    return new TextDecoder().decode(new Uint8Array(str.split('').map((c) => c.charCodeAt(0))));
   } catch {
     return str;
   }
@@ -46,6 +44,9 @@ function extractTags(text) {
 
 /** Copy a media file, return the output filename. Track hashes to dedup. */
 const seenHashes = new Map();
+/**
+ *
+ */
 function copyMedia(uri) {
   const srcPath = resolve(SOURCE, uri);
   if (!existsSync(srcPath)) return null;
@@ -96,12 +97,18 @@ let skipped = 0;
 for (const post of posts) {
   const labels = post.label_values || [];
   const mediaLabel = labels.find((l) => l.label === 'Media');
-  if (!mediaLabel?.media?.length) { skipped++; continue; }
+  if (!mediaLabel?.media?.length) {
+    skipped++;
+    continue;
+  }
 
   const media = mediaLabel.media[0];
   const uri = media.uri;
   const filename = copyMedia(uri);
-  if (!filename) { skipped++; continue; }
+  if (!filename) {
+    skipped++;
+    continue;
+  }
 
   const slug = basename(uri, extname(uri));
   const ext = extname(filename);
