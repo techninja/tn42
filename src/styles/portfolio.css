@@ -1,0 +1,151 @@
+/* Portfolio — project cards and detail views. */
+
+.portfolio-page,
+.portfolio-detail-page {
+  flex: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+  width: 100%;
+}
+
+.portfolio-page h1 {
+  margin: 0 0 var(--space-xs);
+}
+
+.portfolio-subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin: 0 0 var(--space-xl);
+}
+
+/* --- Card Grid --- */
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.portfolio-card {
+  display: block;
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.portfolio-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--color-primary) 15%, transparent);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.portfolio-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+  gap: var(--space-sm);
+}
+
+.portfolio-card__logo {
+  height: 28px;
+  width: auto;
+}
+
+.portfolio-card__name {
+  font-size: var(--text-lg);
+  margin: 0;
+}
+
+.portfolio-card__status {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--status-color) 15%, transparent);
+  color: var(--status-color);
+  white-space: nowrap;
+}
+
+.portfolio-card__desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* --- Detail Page --- */
+
+.portfolio-detail__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.portfolio-detail__logo {
+  height: 48px;
+  width: auto;
+}
+
+.portfolio-detail__desc {
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  margin: 0 0 var(--space-md);
+}
+
+.portfolio-detail__bg {
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0 0 var(--space-xl);
+  padding-left: var(--space-md);
+  border-left: 2px solid var(--color-accent);
+}
+
+.portfolio-detail__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-xs) var(--space-lg);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.portfolio-detail__meta dt {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.portfolio-detail__meta dd {
+  margin: 0;
+}
+
+.portfolio-detail__meta a {
+  color: var(--color-primary);
+}
+
+.portfolio-detail__previews {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.portfolio-detail__previews img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 640px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}

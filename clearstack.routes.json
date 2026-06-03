@@ -1,0 +1,56 @@
+{
+  "/": {
+    "title": "tn42.com — tech ninja 42",
+    "description": "Dad of 6, nerd, maker, and general hacker of things. Personal site of TechNinja."
+  },
+  "/b": {
+    "title": "Blog | tn42.com",
+    "description": "Legacy blog posts from 2006–2012. Maker faire, robots, electronics, and kid projects."
+  },
+  "/b/:slug": {
+    "title": "{slug.title} | tn42.com",
+    "description": "{slug.description}",
+    "image": "{slug.image}",
+    "data": "src/content/b/manifest.json:posts"
+  },
+  "/g/:slug": {
+    "title": "{slug.title} | tn42.com",
+    "description": "{slug.title}",
+    "image": "{slug.image}",
+    "data": "src/content/g/manifest.json:posts"
+  },
+  "/media": {
+    "title": "Media | tn42.com",
+    "description": "Photos and videos — mostly shot on phones with minimal editing."
+  },
+  "/media/detail/:slug": {
+    "title": "{slug.caption} | tn42.com",
+    "description": "{slug.caption}",
+    "data": "src/content/media/manifest.json:posts"
+  },
+  "/media/tags": {
+    "title": "Media Tags | tn42.com",
+    "description": "Browse media by tag."
+  },
+  "/portfolio": {
+    "title": "Portfolio | tn42.com",
+    "description": "Open source projects by TechNinja — Clearstack, StatiCart, Asili, and more."
+  },
+  "/portfolio/:id": {
+    "title": "{id.name} | tn42.com",
+    "description": "{id.description}",
+    "data": "src/content/portfolio/projects.json:projects"
+  },
+  "/users/techninja": {
+    "title": "About TechNinja | tn42.com",
+    "description": "James (he/him) — programmer, maker, dad of 6, open source contributor since 2004."
+  },
+  "/users/sylvia": {
+    "title": "About Zeph | tn42.com",
+    "description": "Zeph (he/him) — artist, maker, co-creator of Super Awesome Maker Show."
+  },
+  "/t": {
+    "title": "All Tags | tn42.com",
+    "description": "Browse blog posts by tag."
+  }
+}

@@ -1,0 +1,118 @@
+/* Name correction — trans flag styled names with hover/tap tooltip. */
+
+.nc {
+  position: relative;
+  display: inline;
+  cursor: pointer;
+}
+
+/* Trans flag gradient text: light blue → white → pink */
+.nc__name {
+  font-weight: 600;
+  background: linear-gradient(
+    135deg,
+    #5bcefa 0%,
+    #5bcefa 25%,
+    #ffffff 40%,
+    #ffffff 60%,
+    #f5a9b8 75%,
+    #f5a9b8 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: 1.5px dotted #f5a9b8;
+}
+
+/* Tooltip — hidden by default */
+.nc__tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-sm);
+  font-weight: normal;
+  color: var(--color-text);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  z-index: 100;
+  pointer-events: none;
+
+  /* Reset text fill for tooltip content */
+  -webkit-text-fill-color: initial;
+  background-clip: initial;
+  -webkit-background-clip: initial;
+}
+
+/* Invisible bridge between name and tooltip for diagonal mouse movement */
+.nc::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
+  pointer-events: none;
+}
+
+.nc:hover::after,
+.nc:focus-within::after {
+  pointer-events: auto;
+}
+
+.nc__tip a {
+  color: var(--color-primary);
+  margin-left: var(--space-xs);
+  pointer-events: auto;
+}
+
+/* Arrow */
+.nc__tip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--color-border);
+}
+
+/* Show on hover/focus/tap */
+.nc:hover .nc__tip,
+.nc:focus .nc__tip,
+.nc:focus-within .nc__tip {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Mobile: allow tap to toggle */
+@media (hover: none) {
+  .nc:active .nc__tip {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+/* Ensure tooltip doesn't overflow viewport */
+@media (max-width: 640px) {
+  .nc__tip {
+    white-space: normal;
+    width: max-content;
+    max-width: 250px;
+    left: 0;
+    transform: none;
+  }
+
+  .nc__tip::after {
+    left: 20px;
+  }
+}

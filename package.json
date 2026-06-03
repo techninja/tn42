@@ -1,0 +1,64 @@
+{
+  "name": "tn42",
+  "version": "1.0.0",
+  "description": "Personal site of TechNinja — legacy blog content with a modern Clearstack wrapper.",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "node scripts/test.js",
+    "start": "node src/server.js",
+    "dev": "node --watch --env-file=.env --env-file=.env.local src/server.js",
+    "postinstall": "node scripts/setup.js",
+    "build": "npx clearstack build og --url=https://tn42.com",
+    "build:deploy": "node scripts/prepare-deploy.js && npx clearstack build og --url=https://tn42.com --out=dist",
+    "upload:r2": "node scripts/upload-r2.js",
+    "convert": "node scripts/convert-legacy.js --clean",
+    "convert:insta": "node scripts/convert-insta.js --clean",
+    "spec": "node scripts/spec.js",
+    "release": "node scripts/release.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techninja/tn42.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/techninja/tn42/issues"
+  },
+  "homepage": "https://github.com/techninja/tn42#readme",
+  "devDependencies": {
+    "@open-wc/testing": "^4.0.0",
+    "@techninja/clearstack": "^0.3.36",
+    "@types/node": "^22.0.0",
+    "@web/test-runner": "^0.20.0",
+    "@web/test-runner-playwright": "^0.11.0",
+    "eslint": "^10.1.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsdoc": "^62.8.1",
+    "eslint-plugin-unused-imports": "^4.0.0",
+    "markdownlint-cli2": "^0.22.0",
+    "playwright": "^1.50.0",
+    "prettier": "^3.8.1",
+    "stylelint": "^17.6.0",
+    "stylelint-config-standard": "^40.0.0",
+    "typescript": "^6.0.2",
+    "wrangler": "^4.97.0"
+  },
+  "type": "module",
+  "imports": {
+    "#store/*": "./src/store/*",
+    "#utils/*": "./src/utils/*",
+    "#atoms/*": "./src/components/atoms/*",
+    "#molecules/*": "./src/components/molecules/*",
+    "#organisms/*": "./src/components/organisms/*",
+    "#templates/*": "./src/components/templates/*",
+    "#pages/*": "./src/pages/*",
+    "#config/*": "./src/config/*"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "hybrids": "^9.1.22",
+    "lucide-static": "^1.7.0"
+  }
+}
