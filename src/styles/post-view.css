@@ -15,7 +15,18 @@
   max-height: 400px;
   object-fit: cover;
   border-radius: var(--radius-lg);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-xs);
+}
+
+.post-hero-figure {
+  margin: 0 0 var(--space-lg);
+}
+
+.post-hero__caption {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-top: var(--space-xs);
 }
 
 .post-meta {

@@ -24,8 +24,20 @@ async function loadPost(slug) {
   const { meta, content } = parseFrontmatter(raw);
   const rendered = applyNameCorrection(renderMarkdown(content), meta);
   // Prefix image paths with CDN in rendered HTML
-  const html = CDN ? rendered.replace(/src="\/images\//g, `src="${CDN}/images/`) : rendered;
-  return { meta, html };
+  let html = CDN ? rendered.replace(/src="\/images\//g, `src="${CDN}/images/`) : rendered;
+  // Remove first image from body if it matches hero (avoid duplicate)
+  let heroAlt = '';
+  if (meta.image) {
+    html = html.replace(/<img[^>]*src="[^"]*"[^>]*\/?>/, (m) => {
+      if (m.includes(meta.image.split('/').pop())) {
+        const altMatch = m.match(/alt="([^"]*)"/);
+        if (altMatch) heroAlt = altMatch[1];
+        return '';
+      }
+      return m;
+    });
+  }
+  return { meta, html, heroAlt };
 }
 
 export default define({
@@ -67,11 +79,14 @@ export default define({
             : html`
                 <article>
                   <header class="post-header">
-                    <img
-                      class="post-hero"
-                      src="${post.meta.image ? asset(post.meta.image) : '/images/default.svg'}"
-                      alt="${post.meta.title}"
-                    />
+                    <figure class="post-hero-figure">
+                      <img
+                        class="post-hero"
+                        src="${post.meta.image ? asset(post.meta.image) : '/images/default.svg'}"
+                        alt="${post.heroAlt || post.meta.title}"
+                      />
+                      ${post.heroAlt ? html`<figcaption class="post-hero__caption">${post.heroAlt}</figcaption>` : html``}
+                    </figure>
                     <h1 innerHTML="${correctTitle(post.meta.title, post.meta)}"></h1>
                     <div class="post-meta">
                       ${authors[post.meta.author]

@@ -17,6 +17,12 @@ export function renderMarkdown(md) {
   // Ensure iframes are their own block
   md = md.replace(/(<iframe[\s\S]*?<\/iframe>)/g, '\n\n$1\n\n');
 
+  // YouTube embeds: ![youtube](VIDEO_ID) or ![youtube](full_url)
+  md = md.replace(
+    /!\[youtube\]\((?:https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/))?([\w-]+)\)/g,
+    '\n\n<iframe src="https://www.youtube.com/embed/$1" width="100%" height="400" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none; border-radius:8px;"></iframe>\n\n',
+  );
+
   const html = md
     // Headings
     .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
