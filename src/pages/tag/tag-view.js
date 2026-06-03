@@ -9,6 +9,7 @@ import { formatDate } from '#utils/formatDate.js';
 import BlogPostView from '#pages/blog/blog-post-view.js';
 import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 async function loadByTag(tag) {
   const decoded = decodeURIComponent(tag);
@@ -25,7 +26,10 @@ export default define({
     value: undefined,
     connect(host) {
       const tag = host.tagName;
-      if (tag) loadByTag(tag).then((p) => { host.posts = p; });
+      if (tag) {
+        loadByTag(tag).then((p) => { host.posts = p; });
+        setPageTitle('Posts tagged "' + decodeURIComponent(tag) + '"');
+      }
     },
   },
   render: {

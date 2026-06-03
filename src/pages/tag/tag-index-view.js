@@ -10,6 +10,7 @@ import BlogPostView from '#pages/blog/blog-post-view.js';
 import TagView from '#pages/tag/tag-view.js';
 import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 async function loadTags() {
   const res = await fetch('/content/b/manifest.json');
@@ -34,6 +35,7 @@ export default define({
     value: undefined,
     connect(host) {
       loadTags().then((t) => { host.tags = t; });
+      setPageTitle('All Tags');
     },
   },
   render: {

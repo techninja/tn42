@@ -9,6 +9,7 @@ import { formatDate } from '#utils/formatDate.js';
 import '#atoms/app-icon/app-icon.js';
 import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 let allPosts = null;
 
@@ -42,7 +43,10 @@ export default define({
       if (val) {
         host.data = undefined;
         host.carouselIdx = 0;
-        loadPost(val).then((d) => { host.data = d; });
+        loadPost(val).then((d) => {
+          host.data = d;
+          if (d?.post) setPageTitle(d.post.caption || 'Media');
+        });
       }
     },
   },

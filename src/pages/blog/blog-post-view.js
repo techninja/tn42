@@ -12,6 +12,7 @@ import authors from '#config/authors.js';
 import { applyNameCorrection, correctTitle, correctTag } from '#utils/nameCorrection.js';
 import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 /** @param {string} slug */
 async function loadPost(slug) {
@@ -30,7 +31,8 @@ export default define({
   post: {
     value: undefined,
     connect(host) {
-      if (host.slug) loadPost(host.slug).then((p) => { host.post = p || false; });
+      if (host.slug) loadPost(host.slug).then((p) => { host.post = p || false;
+        if (p) setPageTitle(p.meta.title); });
     },
   },
   render: {

@@ -9,6 +9,7 @@ import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
 import '#atoms/app-icon/app-icon.js';
 import PortfolioDetailView from '#pages/portfolio/portfolio-detail-view.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 const STATUS_COLORS = {
   active: 'var(--color-success)',
@@ -30,6 +31,7 @@ export default define({
     value: undefined,
     connect(host) {
       loadProjects().then((p) => { host.projects = p; });
+      setPageTitle('Portfolio');
     },
   },
   render: {

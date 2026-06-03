@@ -9,6 +9,7 @@ import MediaDetailView from '#pages/media/media-detail-view.js';
 import MediaTagView from '#pages/media/media-tag-view.js';
 import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 async function loadTags() {
   const res = await fetch('/content/media/manifest.json');
@@ -30,6 +31,7 @@ export default define({
     value: undefined,
     connect(host) {
       loadTags().then((t) => { host.tags = t; });
+      setPageTitle('Media Tags');
     },
   },
   render: {

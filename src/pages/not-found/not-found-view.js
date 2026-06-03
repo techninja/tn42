@@ -5,6 +5,7 @@
 
 import { html, define, router } from 'hybrids';
 import '#organisms/site-header/site-header.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 export default define({
   tag: 'not-found-view',

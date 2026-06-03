@@ -12,6 +12,7 @@ import PortfolioView from '#pages/portfolio/portfolio-view.js';
 import UserView from '#pages/user/user-view.js';
 import '#atoms/app-icon/app-icon.js';
 import '#organisms/site-header/site-header.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 async function loadLatest() {
   const [blogRes, mediaRes] = await Promise.all([
@@ -30,6 +31,7 @@ export default define({
     value: undefined,
     connect(host) {
       loadLatest().then((d) => { host.data = d; });
+      setPageTitle();
     },
   },
   render: {

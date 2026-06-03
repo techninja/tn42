@@ -12,6 +12,7 @@ import TagView from '#pages/tag/tag-view.js';
 import TagIndexView from '#pages/tag/tag-index-view.js';
 import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 const PER_PAGE = 10;
 
@@ -39,6 +40,7 @@ export default define({
     value: undefined,
     connect(host) {
       loadManifest().then((p) => { host.posts = p; });
+      setPageTitle('Blog');
     },
   },
   page: 1,

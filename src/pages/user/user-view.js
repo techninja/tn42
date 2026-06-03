@@ -9,6 +9,7 @@ import { parseFrontmatter } from '#utils/parseFrontmatter.js';
 import { renderMarkdown } from '#utils/renderMarkdown.js';
 import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 /** @param {string} slug */
 async function loadProfile(slug) {
@@ -26,7 +27,8 @@ export default define({
   profile: {
     value: undefined,
     connect(host) {
-      if (host.slug) loadProfile(host.slug).then((p) => { host.profile = p || false; });
+      if (host.slug) loadProfile(host.slug).then((p) => { host.profile = p || false;
+        if (p) setPageTitle(p.meta.title); });
     },
   },
   render: {

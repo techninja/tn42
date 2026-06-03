@@ -8,6 +8,7 @@ import { html, define, router } from 'hybrids';
 import MediaDetailView from '#pages/media/media-detail-view.js';
 import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 async function loadByTag(tag) {
   const decoded = decodeURIComponent(tag);
@@ -24,7 +25,10 @@ export default define({
     value: undefined,
     connect(host) {
       const tag = host.tagName;
-      if (tag) loadByTag(tag).then((p) => { host.posts = p; });
+      if (tag) {
+        loadByTag(tag).then((p) => { host.posts = p; });
+        setPageTitle('#' + decodeURIComponent(tag));
+      }
     },
   },
   render: {

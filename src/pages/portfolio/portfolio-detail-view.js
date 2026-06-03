@@ -9,6 +9,7 @@ import { formatDate } from '#utils/formatDate.js';
 import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
 import '#atoms/app-icon/app-icon.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 const STATUS_COLORS = {
   active: 'var(--color-success)',
@@ -31,7 +32,10 @@ export default define({
     observe(host, val) {
       if (val) {
         host.project = undefined;
-        loadProject(val).then((p) => { host.project = p; });
+        loadProject(val).then((p) => {
+          host.project = p;
+          if (p) setPageTitle(p.name);
+        });
       }
     },
   },

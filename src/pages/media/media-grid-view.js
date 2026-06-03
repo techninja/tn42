@@ -10,6 +10,7 @@ import MediaDetailView from '#pages/media/media-detail-view.js';
 import MediaTagsView from '#pages/media/media-tags-view.js';
 import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
+import { setPageTitle } from '#utils/pageTitle.js';
 
 const PER_PAGE = 24;
 
@@ -26,6 +27,7 @@ export default define({
     value: undefined,
     connect(host) {
       loadManifest().then((p) => { host.posts = p; });
+      setPageTitle('Media');
     },
   },
   page: {
