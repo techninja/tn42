@@ -30,6 +30,8 @@ cpSync(resolve(ROOT, 'src'), DIST, {
     // Skip heavy asset folders — these go to R2
     if (src.includes('/assets-media')) return false;
     if (src.includes('/images/') && !src.endsWith('/images/default.svg')) return false;
+    // Skip server (not needed for static deploy)
+    if (src.endsWith('/server.js')) return false;
     return true;
   },
 });
@@ -55,12 +57,8 @@ const redirects = [
 
 writeFileSync(resolve(DIST, '_redirects'), redirects);
 
-// Copy other root-level deploy files
-const copyIfExists = (name) => {
-  const src = resolve(ROOT, name);
-  if (existsSync(src)) cpSync(src, resolve(DIST, name));
-};
-copyIfExists('_legacy-import/CNAME');
+// Copy CNAME for custom domain
+writeFileSync(resolve(DIST, 'CNAME'), 'tn42.com');
 
 console.log(`  Output: ${DIST}`);
 console.log(`  _redirects configured for R2 proxy`);
