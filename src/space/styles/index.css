@@ -25,12 +25,29 @@ div.debug {
   top: 0;
 }
 
-.layer0 { z-index: 1; }
-.layer1 { z-index: 2; }
-.layer2 { z-index: 3; }
-.layer3 { z-index: 4; }
-.layer4 { z-index: 5; }
-.layer5 { z-index: 6; }
+.layer0 {
+  z-index: 1;
+}
+
+.layer1 {
+  z-index: 2;
+}
+
+.layer2 {
+  z-index: 3;
+}
+
+.layer3 {
+  z-index: 4;
+}
+
+.layer4 {
+  z-index: 5;
+}
+
+.layer5 {
+  z-index: 6;
+}
 
 /* SHIPS */
 ship {
@@ -46,41 +63,86 @@ boom {
   background-image: url('../explosion_wide/index.png');
 }
 
-ship.ship_a { background-image: url('../ship_a/index.png'); }
-ship.ship_b { background-image: url('../ship_b/index.png'); }
-ship.ship_c { background-image: url('../ship_c/index.png'); }
+ship.ship_a {
+  background-image: url('../ship_a/index.png');
+}
+
+ship.ship_b {
+  background-image: url('../ship_b/index.png');
+}
+
+ship.ship_c {
+  background-image: url('../ship_c/index.png');
+}
 
 /* Forward thrust */
-ship.thrusting:before, ship.thrusting:after {
-  content: url("../flame_down/index.gif");
+ship.thrusting::before,
+ship.thrusting::after {
+  content: url('../flame_down/index.gif');
   position: relative;
   top: 60px;
 }
 
-ship.ship_a.thrusting:before { left: 12px; }
-ship.ship_a.thrusting:after { left: 2px; }
+ship.ship_a.thrusting::before {
+  left: 12px;
+}
 
-ship.ship_b.thrusting:before { left: 3px; }
-ship.ship_b.thrusting:after { left: 9px; }
+ship.ship_a.thrusting::after {
+  left: 2px;
+}
 
-ship.ship_c.thrusting:before { left: 9px; top: 59px; }
-ship.ship_c.thrusting:after { left: 4px; top: 59px; }
+ship.ship_b.thrusting::before {
+  left: 3px;
+}
+
+ship.ship_b.thrusting::after {
+  left: 9px;
+}
+
+ship.ship_c.thrusting::before {
+  left: 9px;
+  top: 59px;
+}
+
+ship.ship_c.thrusting::after {
+  left: 4px;
+  top: 59px;
+}
 
 /* Backward thrust */
-ship.thrusting_back:before, ship.thrusting_back:after {
-  content: url("../flame_up/index.gif");
+ship.thrusting_back::before,
+ship.thrusting_back::after {
+  content: url('../flame_up/index.gif');
   position: relative;
 }
 
-ship.ship_a.thrusting_back:before { left: -4px; top: -6px; }
-ship.ship_a.thrusting_back:after { left: 19px; top: -6px; }
+ship.ship_a.thrusting_back::before {
+  left: -4px;
+  top: -6px;
+}
 
-ship.ship_b.thrusting_back:before { left: 3px; }
-ship.ship_b.thrusting_back:after { left: 8px; }
+ship.ship_a.thrusting_back::after {
+  left: 19px;
+  top: -6px;
+}
 
-ship.ship_c.thrusting_back:before { left: -4px; top: 17px; }
-ship.ship_c.thrusting_back:after { left: 13px; top: 17px; }
+ship.ship_b.thrusting_back::before {
+  left: 3px;
+}
 
+ship.ship_b.thrusting_back::after {
+  left: 8px;
+}
+
+ship.ship_c.thrusting_back::before {
+  left: -4px;
+  top: 17px;
+}
+
+ship.ship_c.thrusting_back::after {
+  left: 13px;
+  top: 17px;
+}
 
 /* Projectiles! */
 
@@ -93,14 +155,14 @@ projectile.laser {
   height: 70px;
   width: 5px;
   border-radius: 5px;
-  background-color:#FFF;
+  background-color: #fff;
 }
 
 projectile.energy {
   height: 20px;
   width: 20px;
   border-radius: 20px;
-  background-color:#FFF;
+  background-color: #fff;
 }
 
 projectile.blue {

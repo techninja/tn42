@@ -18,6 +18,9 @@ const STATUS_COLORS = {
   pending: 'var(--color-info)',
 };
 
+/**
+ *
+ */
 async function loadProject(id) {
   const res = await fetch('/content/portfolio/projects.json');
   const { projects } = await res.json();
@@ -45,7 +48,13 @@ export default define({
       <site-header active="portfolio"></site-header>
 
       <main class="portfolio-detail-page">
-        <app-breadcrumb items='${JSON.stringify([{"label":"Home","href":"/"},{"label":"Portfolio","href":"/portfolio"},{"label":project?.name||"Project"}])}'></app-breadcrumb>
+        <app-breadcrumb
+          items="${JSON.stringify([
+            { label: 'Home', href: '/' },
+            { label: 'Portfolio', href: '/portfolio' },
+            { label: project?.name || 'Project' },
+          ])}"
+        ></app-breadcrumb>
 
         ${project === undefined
           ? html`<p>Loading…</p>`
@@ -61,9 +70,16 @@ export default define({
                 <article class="portfolio-detail">
                   <header class="portfolio-detail__header">
                     ${project.logo.wordmark
-                      ? html`<img src="${project.logo.wordmark}" alt="${project.name}" class="portfolio-detail__logo" />`
+                      ? html`<img
+                          src="${project.logo.wordmark}"
+                          alt="${project.name}"
+                          class="portfolio-detail__logo"
+                        />`
                       : html`<h1>${project.name}</h1>`}
-                    <span class="portfolio-card__status" style="--status-color: ${STATUS_COLORS[project.status]}">
+                    <span
+                      class="portfolio-card__status"
+                      style="--status-color: ${STATUS_COLORS[project.status]}"
+                    >
                       ${project.status}
                     </span>
                   </header>
@@ -80,26 +96,35 @@ export default define({
                     <dt>Started</dt>
                     <dd>${formatDate(project.started)}</dd>
                     ${project.primaryUri
-                      ? html`<dt>Site</dt><dd><a href="${project.primaryUri}">${project.primaryUri.replace('https://', '')}</a></dd>`
+                      ? html`<dt>Site</dt>
+                          <dd>
+                            <a href="${project.primaryUri}"
+                              >${project.primaryUri.replace('https://', '')}</a
+                            >
+                          </dd>`
                       : html``}
                     ${project.repo
-                      ? html`<dt>Source</dt><dd><a href="${project.repo}">GitHub</a></dd>`
+                      ? html`<dt>Source</dt>
+                          <dd><a href="${project.repo}">GitHub</a></dd>`
                       : html``}
                   </dl>
 
                   ${project.previewImages.length
                     ? html`
                         <section class="portfolio-detail__previews">
-                          ${project.previewImages.map((img) => html`<img src="${img}" loading="lazy" />`)}
+                          ${project.previewImages.map(
+                            (img) => html`<img src="${img}" loading="lazy" />`,
+                          )}
                         </section>
                       `
                     : html``}
-
                   ${project.videoLinks.length
                     ? html`
                         <section class="portfolio-detail__videos">
                           <h3>Videos</h3>
-                          ${project.videoLinks.map((v) => html`<a href="${v}" class="btn btn-ghost">Watch →</a>`)}
+                          ${project.videoLinks.map(
+                            (v) => html`<a href="${v}" class="btn btn-ghost">Watch →</a>`,
+                          )}
                         </section>
                       `
                     : html``}
@@ -110,7 +135,10 @@ export default define({
       </main>
 
       <footer class="site-footer">
-        <p>© 1998–${new Date().getFullYear()} TechNinja. Built with <a href="https://github.com/techninja/clearstack">Clearstack</a>.</p>
+        <p>
+          © 1998–${new Date().getFullYear()} TechNinja. Built with
+          <a href="https://github.com/techninja/clearstack">Clearstack</a>.
+        </p>
       </footer>
     `,
     shadow: false,

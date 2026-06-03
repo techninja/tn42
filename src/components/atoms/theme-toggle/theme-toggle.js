@@ -24,8 +24,14 @@ export default define({
         document.documentElement.setAttribute('data-theme', state.theme);
       }
       return html`
-        <button class="btn btn-ghost theme-toggle-btn" onclick="${toggle}" aria-label="Toggle theme">
-          <app-icon name="${store.ready(state) && state.theme === 'light' ? 'moon' : 'sun'}"></app-icon>
+        <button
+          class="btn btn-ghost theme-toggle-btn"
+          onclick="${toggle}"
+          aria-label="Toggle theme"
+        >
+          <app-icon
+            name="${store.ready(state) && state.theme === 'light' ? 'moon' : 'sun'}"
+          ></app-icon>
         </button>
       `;
     },

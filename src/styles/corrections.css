@@ -13,13 +13,13 @@
     135deg,
     #5bcefa 0%,
     #5bcefa 25%,
-    #ffffff 40%,
-    #ffffff 60%,
+    #fff 40%,
+    #fff 60%,
     #f5a9b8 75%,
     #f5a9b8 100%
   );
   background-clip: text;
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   border-bottom: 1.5px dotted #f5a9b8;
 }
@@ -41,14 +41,16 @@
   box-shadow: var(--shadow-md);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s, visibility 0.2s;
+  transition:
+    opacity 0.2s,
+    visibility 0.2s;
   z-index: 100;
   pointer-events: none;
 
   /* Reset text fill for tooltip content */
   -webkit-text-fill-color: initial;
   background-clip: initial;
-  -webkit-background-clip: initial;
+  background-clip: initial;
 }
 
 /* Invisible bridge between name and tooltip for diagonal mouse movement */
@@ -103,7 +105,7 @@
 }
 
 /* Ensure tooltip doesn't overflow viewport */
-@media (max-width: 640px) {
+@media (width <= 640px) {
   .nc__tip {
     white-space: normal;
     width: max-content;

@@ -8,9 +8,13 @@ import { html, define, router } from 'hybrids';
 import { formatDate } from '#utils/formatDate.js';
 import BlogPostView from '#pages/blog/blog-post-view.js';
 import '#organisms/site-header/site-header.js';
+import { asset } from '#config/cdn.js';
 import '#molecules/breadcrumb/breadcrumb.js';
 import { setPageTitle } from '#utils/pageTitle.js';
 
+/**
+ *
+ */
 async function loadByTag(tag) {
   const decoded = decodeURIComponent(tag);
   const res = await fetch('/content/b/manifest.json');
@@ -27,7 +31,9 @@ export default define({
     connect(host) {
       const tag = host.tagName;
       if (tag) {
-        loadByTag(tag).then((p) => { host.posts = p; });
+        loadByTag(tag).then((p) => {
+          host.posts = p;
+        });
         setPageTitle('Posts tagged "' + decodeURIComponent(tag) + '"');
       }
     },
@@ -38,7 +44,14 @@ export default define({
 
       <main class="home-view">
         <section class="post-list">
-          <app-breadcrumb items='${JSON.stringify([{"label":"Home","href":"/"},{"label":"Blog","href":"/b"},{"label":"Tags","href":"/t"},{"label":decodeURIComponent(tagName)}])}'></app-breadcrumb>
+          <app-breadcrumb
+            items="${JSON.stringify([
+              { label: 'Home', href: '/' },
+              { label: 'Blog', href: '/b' },
+              { label: 'Tags', href: '/t' },
+              { label: decodeURIComponent(tagName) },
+            ])}"
+          ></app-breadcrumb>
           <h2 class="tag-heading">Posts tagged "${decodeURIComponent(tagName)}"</h2>
           ${Array.isArray(posts)
             ? posts.length
@@ -48,7 +61,7 @@ export default define({
                       <a href="${router.url(BlogPostView, { slug: p.slug })}">
                         <img
                           class="post-card__img"
-                          src="${p.image || '/images/default.svg'}"
+                          src=\"${p.image ? asset(p.image) : '/images/default.svg'}\"
                           alt="${p.title}"
                           loading="lazy"
                         />
@@ -69,7 +82,10 @@ export default define({
       </main>
 
       <footer class="site-footer">
-        <p>© 1998–${new Date().getFullYear()} TechNinja. Built with <a href="https://github.com/techninja/clearstack">Clearstack</a>.</p>
+        <p>
+          © 1998–${new Date().getFullYear()} TechNinja. Built with
+          <a href="https://github.com/techninja/clearstack">Clearstack</a>.
+        </p>
       </footer>
     `,
     shadow: false,

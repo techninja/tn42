@@ -1,15 +1,15 @@
 ---
-title: "Space Test and Ninjaships JS library"
+title: 'Space Test and Ninjaships JS library'
 date: 2012-02-22T00:25:00
 author: techninja
 slug: space-test-and-ninjaships-js-library
 type: blog
 tags:
-  - "graphics"
-  - "JavaScript"
-  - "library"
-  - "spaceships"
-  - "neat"
+  - 'graphics'
+  - 'JavaScript'
+  - 'library'
+  - 'spaceships'
+  - 'neat'
 ---
 
 It's time for Ninja Spaceships — Click around! (WASD to fly, Shift to fire)

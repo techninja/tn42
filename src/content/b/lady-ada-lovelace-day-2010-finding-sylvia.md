@@ -1,18 +1,18 @@
 ---
-title: "Lady Ada Lovelace Day 2010 - Finding Sylvia"
+title: 'Lady Ada Lovelace Day 2010 - Finding Sylvia'
 date: 2010-03-24T23:24:00
 author: techninja
 slug: lady-ada-lovelace-day-2010-finding-sylvia
 type: blog
 image: /images/mythbusters/index.jpg
 tags:
-  - "Lady Ada"
-  - "learning"
-  - "maker faire"
-  - "robots"
-  - "sylvia"
-  - "thank you"
-  - "neat"
+  - 'Lady Ada'
+  - 'learning'
+  - 'maker faire'
+  - 'robots'
+  - 'sylvia'
+  - 'thank you'
+  - 'neat'
 ---
 
 Nearly a full 9 years ago, my darling sprout Sylvia embarked on a journey to find herself. 8 years and 7 months later, she's still looking, but just between you and me, I think she's got a good start. If not, at least I think she's pointed in the right direction.
@@ -21,7 +21,7 @@ I've always been a maker at heart. Even if I've always been lacking for tools, p
 
 ![Adam Savage and Jamie Hyneman - Kick ass makers, passable TV show hosts. Awesome people to the core.](/images/mythbusters/index.jpg)
 
-When Mythbusters came on the air in 2003, it was a huge spark to suddenly remind me what making was all about. Two guys who have the tools, money and know-how to use RF controls to move servos to do their dirty work, and they use... ropes? weights? LARD?! For my life I’d been thinking *entirely wrong* about needing complexity to gain full ability or knowledge to do something. Do something simple, and as long as it works, you’re more than half the way there, it’ll be cheaper to do, and it will probably fail a whole lot less than a more complicated solution. Sylvia and I were in love. The explosions are nice, *but we stay for the machines*.
+When Mythbusters came on the air in 2003, it was a huge spark to suddenly remind me what making was all about. Two guys who have the tools, money and know-how to use RF controls to move servos to do their dirty work, and they use... ropes? weights? LARD?! For my life I’d been thinking _entirely wrong_ about needing complexity to gain full ability or knowledge to do something. Do something simple, and as long as it works, you’re more than half the way there, it’ll be cheaper to do, and it will probably fail a whole lot less than a more complicated solution. Sylvia and I were in love. The explosions are nice, _but we stay for the machines_.
 
 ![Sylvia (blond hair, left foreground) watches Robo Giraffe do it's thing at Maker Faire 2006](/images/DSC01185/index.jpg)
 
@@ -29,15 +29,15 @@ In 2006, 5 year old Sylvia joined her family and her 1 year old sister for the v
 
 ![Sylvia flies to the moon at Maker Faire 2009 (Yes, it's really that cool)](/images/IMG_1485/index.jpg)
 
-About 1 year ago, I trekked across San Mateo’s Maker Faire 2009 with her in tow, to find, meet, and photograph the influential makers whom she's adored through video and blog on the web, and just about any really amazing person we could find that would stand for a photo and sign her book. The results we got were amazing, getting almost everyone she'd seen or heard about, and quite a few more new and amazing faces. She posted a personal thank you to her favorites (all available [here](../../t/maker-faire/)),  and has had a personal response from all, with the exception of Adam Savage and Bre Pettis *(too famous, obviously)*.
+About 1 year ago, I trekked across San Mateo’s Maker Faire 2009 with her in tow, to find, meet, and photograph the influential makers whom she's adored through video and blog on the web, and just about any really amazing person we could find that would stand for a photo and sign her book. The results we got were amazing, getting almost everyone she'd seen or heard about, and quite a few more new and amazing faces. She posted a personal thank you to her favorites (all available [here](../../t/maker-faire/)), and has had a personal response from all, with the exception of Adam Savage and Bre Pettis _(too famous, obviously)_.
 
 Sylvia turns 9 this year, and hopefully will make it along with her mom, myself and our new addition to Maker Faire 2010. I’ll have my camera along try and get some of the incredible makers I missed on our last trip, and maybe we’ll see some familiar faces along the way.
 
 ![Sylvia, and LadyAda herself at Maker Faire 2009](/images/ladyada_sylvia/index.jpg)
 
-One note in particular Sylvia is very proud to mention, is meeting the “amazing” Limor Fried at Maker Faire 2009 (Known well to the community as [LadyAda](http://www.ladyada.net/), Founder and engineer extraordinaire for [Adafruit Industries](http://adafruit.com/)).  Not a month previous, I quickly snatched up a [waveshield](http://www.adafruit.com/index.php?main_page=product_info&cPath=17_21&products_id=94) and [motorshield](http://www.adafruit.com/index.php?main_page=product_info&cPath=17_21&products_id=81) to begin to help prototype Sylvia’s speculative bots. Sylvia’s steady hand soldered more than half of the joints of one, and 90% of the other. Immediately we began to play and create, and the idea that she could one day do the same on her own, maybe live up to her very own LadyAda, I think gives her a solid grounding, from a stellar role model.
+One note in particular Sylvia is very proud to mention, is meeting the “amazing” Limor Fried at Maker Faire 2009 (Known well to the community as [LadyAda](http://www.ladyada.net/), Founder and engineer extraordinaire for [Adafruit Industries](http://adafruit.com/)). Not a month previous, I quickly snatched up a [waveshield](http://www.adafruit.com/index.php?main_page=product_info&cPath=17_21&products_id=94) and [motorshield](http://www.adafruit.com/index.php?main_page=product_info&cPath=17_21&products_id=81) to begin to help prototype Sylvia’s speculative bots. Sylvia’s steady hand soldered more than half of the joints of one, and 90% of the other. Immediately we began to play and create, and the idea that she could one day do the same on her own, maybe live up to her very own LadyAda, I think gives her a solid grounding, from a stellar role model.
 
-*Thank you*, LadyAda.
+_Thank you_, LadyAda.
 
 ![Augusta Ada King, Countess of Lovelace, via wikipedia.](/images/ada_crop/index.jpg)
 

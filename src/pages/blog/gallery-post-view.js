@@ -12,6 +12,7 @@ import { applyNameCorrection } from '#utils/nameCorrection.js';
 import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
 import { setPageTitle } from '#utils/pageTitle.js';
+import { CDN } from '#config/cdn.js';
 
 /** @param {string} slug */
 async function loadPost(slug) {
@@ -20,7 +21,8 @@ async function loadPost(slug) {
   const raw = await res.text();
   const { meta, content } = parseFrontmatter(raw);
   const rendered = applyNameCorrection(renderMarkdown(content), meta);
-  return { meta, html: rendered };
+  const html = CDN ? rendered.replace(/src="\/images\//g, `src="${CDN}/images/`) : rendered;
+  return { meta, html };
 }
 
 export default define({
@@ -30,8 +32,11 @@ export default define({
   post: {
     value: undefined,
     connect(host) {
-      if (host.slug) loadPost(host.slug).then((p) => { host.post = p || false;
-        if (p) setPageTitle(p.meta.title); });
+      if (host.slug)
+        loadPost(host.slug).then((p) => {
+          host.post = p || false;
+          if (p) setPageTitle(p.meta.title);
+        });
     },
   },
   render: {
@@ -39,7 +44,13 @@ export default define({
       <site-header active="blog"></site-header>
 
       <main class="post-view gallery-view">
-        <app-breadcrumb items='${JSON.stringify([{"label":"Home","href":"/"},{"label":"Blog","href":"/b"},{"label":post?.meta?.title||"Gallery"}])}'></app-breadcrumb>
+        <app-breadcrumb
+          items="${JSON.stringify([
+            { label: 'Home', href: '/' },
+            { label: 'Blog', href: '/b' },
+            { label: post?.meta?.title || 'Gallery' },
+          ])}"
+        ></app-breadcrumb>
         ${post === undefined
           ? html`<p>Loading…</p>`
           : post === false
@@ -51,22 +62,25 @@ export default define({
                 </div>
               `
             : html`
-              <article>
-                <header class="post-header">
-                  <h1>${post.meta.title}</h1>
-                  <div class="post-meta">
-                    <span class="post-author">${post.meta.author}</span>
-                    <time>${formatDate(post.meta.date)}</time>
-                  </div>
-                </header>
-                <div class="post-body" innerHTML="${post.html}"></div>
-                <a href="${router.backUrl() || '/'}" class="btn btn-ghost">← Back to posts</a>
-              </article>
-            `}
+                <article>
+                  <header class="post-header">
+                    <h1>${post.meta.title}</h1>
+                    <div class="post-meta">
+                      <span class="post-author">${post.meta.author}</span>
+                      <time>${formatDate(post.meta.date)}</time>
+                    </div>
+                  </header>
+                  <div class="post-body" innerHTML="${post.html}"></div>
+                  <a href="${router.backUrl() || '/'}" class="btn btn-ghost">← Back to posts</a>
+                </article>
+              `}
       </main>
 
       <footer class="site-footer">
-        <p>© 1998–${new Date().getFullYear()} TechNinja. Built with <a href="https://github.com/techninja/clearstack">Clearstack</a>.</p>
+        <p>
+          © 1998–${new Date().getFullYear()} TechNinja. Built with
+          <a href="https://github.com/techninja/clearstack">Clearstack</a>.
+        </p>
       </footer>
     `,
     shadow: false,

@@ -6,12 +6,12 @@ slug: sylvias-pda-doodles-no-chapstick-man
 type: blog
 image: /images/no_chapstick_man/index.gif
 tags:
-  - "chapstick"
-  - "doodle"
-  - "man"
-  - "pocket pc"
+  - 'chapstick'
+  - 'doodle'
+  - 'man'
+  - 'pocket pc'
   - "sylvia's stuff"
-  - "neat"
+  - 'neat'
 ---
 
 This is my No Chapstick Man. the thing in his hand is green chapstick, well it makes your lips chapped. He likes to have crazy hair, he doesn't have a neck :), also I thought he needed more because it was getting kinda boring...

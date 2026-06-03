@@ -8,11 +8,15 @@ import { html, define, router } from 'hybrids';
 import { formatDate } from '#utils/formatDate.js';
 import '#atoms/app-icon/app-icon.js';
 import '#organisms/site-header/site-header.js';
+import { asset } from '#config/cdn.js';
 import '#molecules/breadcrumb/breadcrumb.js';
 import { setPageTitle } from '#utils/pageTitle.js';
 
 let allPosts = null;
 
+/**
+ *
+ */
 async function loadAll() {
   if (allPosts) return allPosts;
   const res = await fetch('/content/media/manifest.json');
@@ -21,6 +25,9 @@ async function loadAll() {
   return posts;
 }
 
+/**
+ *
+ */
 async function loadPost(slug) {
   const posts = await loadAll();
   const idx = posts.findIndex((p) => p.slug === slug);
@@ -83,7 +90,17 @@ export default define({
         <site-header active="media"></site-header>
 
         <main class="media-detail-page">
-          <app-breadcrumb items='${JSON.stringify([{"label":"Home","href":"/"},{"label":"Media","href":"/media"},{"label":(post?.caption||"Detail").slice(0,30)+(post?.caption?.length>30?"…":"")}])}'></app-breadcrumb>
+          <app-breadcrumb
+            items="${JSON.stringify([
+              { label: 'Home', href: '/' },
+              { label: 'Media', href: '/media' },
+              {
+                label:
+                  (post?.caption || 'Detail').slice(0, 30) +
+                  (post?.caption?.length > 30 ? '…' : ''),
+              },
+            ])}"
+          ></app-breadcrumb>
           ${post === undefined
             ? html`<p>Loading…</p>`
             : post === false
@@ -98,35 +115,86 @@ export default define({
                   <div class="media-detail__viewer">
                     <figure class="media-detail">
                       ${post.type === 'video'
-                        ? html`<video src="/assets-media/${post.files[0]}" controls class="media-detail__media"></video>`
+                        ? html`<video
+                            src="${asset('/assets-media/' + post.files[0])}"
+                            controls
+                            class="media-detail__media"
+                          ></video>`
                         : post.files.length > 1
                           ? html`
                               <div class="media-carousel">
-                                <img src="/assets-media/${post.files[carouselIdx]}" class="media-detail__media" />
+                                <img
+                                  src="${asset('/assets-media/' + post.files[carouselIdx])}"
+                                  class="media-detail__media"
+                                />
                                 <div class="media-carousel__nav">
-                                  <button onclick="${(h) => { h.carouselIdx = Math.max(0, h.carouselIdx - 1); }}" disabled="${carouselIdx <= 0}">‹</button>
+                                  <button
+                                    onclick="${(h) => {
+                                      h.carouselIdx = Math.max(0, h.carouselIdx - 1);
+                                    }}"
+                                    disabled="${carouselIdx <= 0}"
+                                  >
+                                    ‹
+                                  </button>
                                   <span>${carouselIdx + 1} / ${post.files.length}</span>
-                                  <button onclick="${(h) => { h.carouselIdx = Math.min(post.files.length - 1, h.carouselIdx + 1); }}" disabled="${carouselIdx >= post.files.length - 1}">›</button>
+                                  <button
+                                    onclick="${(h) => {
+                                      h.carouselIdx = Math.min(
+                                        post.files.length - 1,
+                                        h.carouselIdx + 1,
+                                      );
+                                    }}"
+                                    disabled="${carouselIdx >= post.files.length - 1}"
+                                  >
+                                    ›
+                                  </button>
                                 </div>
                               </div>
                             `
-                          : html`<img src="/assets-media/${post.files[0]}" alt="${post.caption}" class="media-detail__media" />`}
+                          : html`<img
+                              src="${asset('/assets-media/' + post.files[0])}"
+                              alt="${post.caption}"
+                              class="media-detail__media"
+                            />`}
                     </figure>
 
                     <div class="media-nav__arrows">
-                      ${next ? html`<a href="/media/detail/${next.slug}" class="media-nav__arrow media-nav__arrow--left"><app-icon name="chevron-left"></app-icon></a>` : html`<span></span>`}
-                      ${prev ? html`<a href="/media/detail/${prev.slug}" class="media-nav__arrow media-nav__arrow--right"><app-icon name="chevron-right"></app-icon></a>` : html`<span></span>`}
+                      ${next
+                        ? html`<a
+                            href="/media/detail/${next.slug}"
+                            class="media-nav__arrow media-nav__arrow--left"
+                            ><app-icon name="chevron-left"></app-icon
+                          ></a>`
+                        : html`<span></span>`}
+                      ${prev
+                        ? html`<a
+                            href="/media/detail/${prev.slug}"
+                            class="media-nav__arrow media-nav__arrow--right"
+                            ><app-icon name="chevron-right"></app-icon
+                          ></a>`
+                        : html`<span></span>`}
                     </div>
                   </div>
 
                   <div class="media-detail__info">
-                    ${post.caption ? html`<p class="media-detail__caption">${post.caption}</p>` : html``}
+                    ${post.caption
+                      ? html`<p class="media-detail__caption">${post.caption}</p>`
+                      : html``}
                     <div class="media-detail__meta">
                       <time class="media-detail__date">${formatDate(post.date)}</time>
-                      <a href="/media" class="media-detail__grid-link" title="Back to grid (Esc)"><app-icon name="grid3"></app-icon></a>
+                      <a href="/media" class="media-detail__grid-link" title="Back to grid (Esc)"
+                        ><app-icon name="grid3"></app-icon
+                      ></a>
                     </div>
                     ${post.tags.length
-                      ? html`<div class="media-detail__tags">${post.tags.map((t) => html`<a href="/media/tags/${encodeURIComponent(t)}" class="tag">#${t}</a>`)}</div>`
+                      ? html`<div class="media-detail__tags">
+                          ${post.tags.map(
+                            (t) =>
+                              html`<a href="/media/tags/${encodeURIComponent(t)}" class="tag"
+                                >#${t}</a
+                              >`,
+                          )}
+                        </div>`
                       : html``}
                   </div>
 
@@ -135,13 +203,23 @@ export default define({
                         <section class="media-related">
                           <h3>Related</h3>
                           <div class="media-grid media-grid--small">
-                            ${related.map((r) => html`
-                              <a href="/media/detail/${r.slug}" class="media-grid__item">
-                                ${r.type === 'video'
-                                  ? html`<video src="/assets-media/${r.files[0]}" muted preload="metadata"></video>`
-                                  : html`<img src="/assets-media/${r.files[0]}" alt="${r.caption}" loading="lazy" />`}
-                              </a>
-                            `)}
+                            ${related.map(
+                              (r) => html`
+                                <a href="/media/detail/${r.slug}" class="media-grid__item">
+                                  ${r.type === 'video'
+                                    ? html`<video
+                                        src="${asset('/assets-media/' + r.files[0])}"
+                                        muted
+                                        preload="metadata"
+                                      ></video>`
+                                    : html`<img
+                                        src="${asset('/assets-media/' + r.files[0])}"
+                                        alt="${r.caption}"
+                                        loading="lazy"
+                                      />`}
+                                </a>
+                              `,
+                            )}
                           </div>
                         </section>
                       `
@@ -150,7 +228,10 @@ export default define({
         </main>
 
         <footer class="site-footer">
-          <p>© 1998–${new Date().getFullYear()} TechNinja. Built with <a href="https://github.com/techninja/clearstack">Clearstack</a>.</p>
+          <p>
+            © 1998–${new Date().getFullYear()} TechNinja. Built with
+            <a href="https://github.com/techninja/clearstack">Clearstack</a>.
+          </p>
         </footer>
       `;
     },

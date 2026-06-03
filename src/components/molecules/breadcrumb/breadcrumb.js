@@ -15,12 +15,20 @@ export default define({
       // Parse from attribute if string
       const attr = host.getAttribute('items');
       if (attr) {
-        try { host[key] = JSON.parse(attr); } catch { /* ignore */ }
+        try {
+          host[key] = JSON.parse(attr);
+        } catch {
+          /* ignore */
+        }
       }
     },
     observe(host, val) {
       if (typeof val === 'string') {
-        try { host.items = JSON.parse(val); } catch { /* ignore */ }
+        try {
+          host.items = JSON.parse(val);
+        } catch {
+          /* ignore */
+        }
       }
     },
   },
@@ -31,14 +39,18 @@ export default define({
 
       return html`
         <nav class="breadcrumb">
-          ${items.map((item, i) => html`
-            ${i > 0
-              ? html`<span class="breadcrumb__sep"><app-icon name="${icons[Math.min(i - 1, icons.length - 1)]}"></app-icon></span>`
-              : html``}
-            ${item.href
-              ? html`<a href="${item.href}">${item.label}</a>`
-              : html`<span class="breadcrumb__current">${item.label}</span>`}
-          `)}
+          ${items.map(
+            (item, i) => html`
+              ${i > 0
+                ? html`<span class="breadcrumb__sep"
+                    ><app-icon name="${icons[Math.min(i - 1, icons.length - 1)]}"></app-icon
+                  ></span>`
+                : html``}
+              ${item.href
+                ? html`<a href="${item.href}">${item.label}</a>`
+                : html`<span class="breadcrumb__current">${item.label}</span>`}
+            `,
+          )}
         </nav>
       `;
     },

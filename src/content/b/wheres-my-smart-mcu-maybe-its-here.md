@@ -6,21 +6,21 @@ slug: wheres-my-smart-mcu-maybe-its-here
 type: blog
 image: /images/OSMCUAI-Logo/index.png
 tags:
-  - "artificial intelligence"
-  - "hobby"
-  - "neural net"
-  - "robot"
-  - "µCAI"
-  - "neat"
+  - 'artificial intelligence'
+  - 'hobby'
+  - 'neural net'
+  - 'robot'
+  - 'µCAI'
+  - 'neat'
 ---
 
 Ok, so.. maybe I'm crazy but... ever since my initial foray into Micro-controllers, so little emphasis is kept on the actual building when it comes to "moving" bots. On the beloved [arduino](http://arduino.cc/), all it takes is a single [open source shield](http://www.ladyada.net/make/mshield/) (or less) to start making a chassis move, and right out of the box you can receive and measure various sensors and inputs.
 
 The real emphasis eventually becomes.. the "smart", the what you want it to do, the making sense of what the world is, and finding the action to make within it. I remember at this years Makerfaire, meeting an awesome maker by the name of Kris Magri who demoed the assembly of a very nice intro bot called ["Makey"](http://makezine.com/19/makey/). One of the audience members at the demo asked about the code for the robot, and she replied with something along the lines of.. you can spend a couple weeks building it to sense and move, but you can spend years on the code...
 
-As I nodded I felt the same lump of despair I've always had about making a wheeled autonomous bot. The idea that it would never become anything more than a wall rammer, a table lemming, or a thin veneer of intelligence based on trickery and careful timing. Remote controls become extensions of yourself, but a real bot out on it's own.. you've created your own "life". It's probably the dream we've always had when making bots, but when you get down to coding it, the learning curve is so steep as to stop you in your tracks.. unless it's your major at MIT. 
+As I nodded I felt the same lump of despair I've always had about making a wheeled autonomous bot. The idea that it would never become anything more than a wall rammer, a table lemming, or a thin veneer of intelligence based on trickery and careful timing. Remote controls become extensions of yourself, but a real bot out on it's own.. you've created your own "life". It's probably the dream we've always had when making bots, but when you get down to coding it, the learning curve is so steep as to stop you in your tracks.. unless it's your major at MIT.
 
-I intend to officially put forth an idea today. I call it, µCAI, or the Micro-controller Artificial Intelligence project. 
+I intend to officially put forth an idea today. I call it, µCAI, or the Micro-controller Artificial Intelligence project.
 
 ![I made up this cool logo in about 5 minutes.. just to make the idea concrete. Man that green is awful...](/images/OSMCUAI-Logo/index.png)
 

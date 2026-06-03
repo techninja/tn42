@@ -6,10 +6,10 @@ slug: sylvias-pda-doodles-dads-mouth
 type: blog
 image: /images/kc-7/index.gif
 tags:
-  - "drawing"
-  - "pocket pc"
+  - 'drawing'
+  - 'pocket pc'
   - "sylvia's stuff"
-  - "neat"
+  - 'neat'
 ---
 
 This is supposed to be my dad's mouth. He's got a mustache. Also look at the tongue spots.

@@ -6,11 +6,11 @@ slug: sylvias-pda-doodles-me
 type: blog
 image: /images/kc-11/index.gif
 tags:
-  - "drawing"
-  - "pocket pc"
-  - "sylvia"
+  - 'drawing'
+  - 'pocket pc'
+  - 'sylvia'
   - "sylvia's stuff"
-  - "neat"
+  - 'neat'
 ---
 
 This is a picture I made of me, out in the sun.

@@ -11,17 +11,24 @@ import GalleryPostView from '#pages/blog/gallery-post-view.js';
 import TagView from '#pages/tag/tag-view.js';
 import TagIndexView from '#pages/tag/tag-index-view.js';
 import '#organisms/site-header/site-header.js';
+import { asset } from '#config/cdn.js';
 import '#molecules/breadcrumb/breadcrumb.js';
 import { setPageTitle } from '#utils/pageTitle.js';
 
 const PER_PAGE = 10;
 
+/**
+ *
+ */
 async function loadManifest() {
   const res = await fetch('/content/b/manifest.json');
   const { posts } = await res.json();
   return posts;
 }
 
+/**
+ *
+ */
 function collectTags(posts) {
   const counts = {};
   for (const p of posts) {
@@ -39,7 +46,9 @@ export default define({
   posts: {
     value: undefined,
     connect(host) {
-      loadManifest().then((p) => { host.posts = p; });
+      loadManifest().then((p) => {
+        host.posts = p;
+      });
       setPageTitle('Blog');
     },
   },
@@ -56,7 +65,9 @@ export default define({
 
         <main class="home-view">
           <section class="post-list">
-            <app-breadcrumb items='${JSON.stringify([{"label":"Home","href":"/"},{"label":"Blog"}])}'></app-breadcrumb>
+            <app-breadcrumb
+              items="${JSON.stringify([{ label: 'Home', href: '/' }, { label: 'Blog' }])}"
+            ></app-breadcrumb>
             <h1>Blog <span class="media-count">${ready ? posts.length : ''} posts</span></h1>
             ${ready
               ? visible.map(
@@ -65,7 +76,7 @@ export default define({
                       <a href="${router.url(BlogPostView, { slug: p.slug })}">
                         <img
                           class="post-card__img"
-                          src="${p.image || '/images/default.svg'}"
+                          src=\"${p.image ? asset(p.image) : '/images/default.svg'}\"
                           alt="${p.title}"
                           loading="lazy"
                         />
@@ -76,18 +87,37 @@ export default define({
                   `,
                 )
               : html`<p>Loading…</p>`}
-
             ${total > 1
               ? html`
                   <nav class="pagination">
-                    <button onclick="${(h) => { h.page = Math.max(1, h.page - 1); }}" disabled="${page <= 1}">‹</button>
-                    ${Array.from({ length: total }, (_, i) => html`
-                      <span
-                        class="page-num ${page === i + 1 ? 'active' : ''}"
-                        onclick="${(h) => { h.page = i + 1; }}"
-                      >${i + 1}</span>
-                    `)}
-                    <button onclick="${(h) => { h.page = Math.min(total, h.page + 1); }}" disabled="${page >= total}">›</button>
+                    <button
+                      onclick="${(h) => {
+                        h.page = Math.max(1, h.page - 1);
+                      }}"
+                      disabled="${page <= 1}"
+                    >
+                      ‹
+                    </button>
+                    ${Array.from(
+                      { length: total },
+                      (_, i) => html`
+                        <span
+                          class="page-num ${page === i + 1 ? 'active' : ''}"
+                          onclick="${(h) => {
+                            h.page = i + 1;
+                          }}"
+                          >${i + 1}</span
+                        >
+                      `,
+                    )}
+                    <button
+                      onclick="${(h) => {
+                        h.page = Math.min(total, h.page + 1);
+                      }}"
+                      disabled="${page >= total}"
+                    >
+                      ›
+                    </button>
                   </nav>
                 `
               : html``}
@@ -98,7 +128,12 @@ export default define({
                 <aside class="site-sidebar">
                   <h3>Tags</h3>
                   <ul class="tag-list">
-                    ${tags.map(([t, count]) => html`<li><a href="/t/${encodeURIComponent(t)}" class="tag">${t} (${count})</a></li>`)}
+                    ${tags.map(
+                      ([t, count]) =>
+                        html`<li>
+                          <a href="/t/${encodeURIComponent(t)}" class="tag">${t} (${count})</a>
+                        </li>`,
+                    )}
                   </ul>
                   <a href="/t" class="sidebar-more">View all tags →</a>
                 </aside>
@@ -107,7 +142,10 @@ export default define({
         </main>
 
         <footer class="site-footer">
-          <p>© 1998–${new Date().getFullYear()} TechNinja. Built with <a href="https://github.com/techninja/clearstack">Clearstack</a>.</p>
+          <p>
+            © 1998–${new Date().getFullYear()} TechNinja. Built with
+            <a href="https://github.com/techninja/clearstack">Clearstack</a>.
+          </p>
         </footer>
       `;
     },

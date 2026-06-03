@@ -17,7 +17,7 @@ export function renderMarkdown(md) {
   // Ensure iframes are their own block
   md = md.replace(/(<iframe[\s\S]*?<\/iframe>)/g, '\n\n$1\n\n');
 
-  let html = md
+  const html = md
     // Headings
     .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')

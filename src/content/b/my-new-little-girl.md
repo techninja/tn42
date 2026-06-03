@@ -1,19 +1,19 @@
 ---
-title: "My new little girl..."
+title: 'My new little girl...'
 date: 2010-04-24T22:45:00
 author: techninja
 slug: my-new-little-girl
 type: blog
 image: /images/Mira/index.jpg
 tags:
-  - "announcement"
-  - "baby"
-  - "girl"
-  - "Mira"
-  - "neat"
+  - 'announcement'
+  - 'baby'
+  - 'girl'
+  - 'Mira'
+  - 'neat'
 ---
 
-Last Tuesday morning I was a bit busy.. having my third *(and final)* beautiful little girl!
+Last Tuesday morning I was a bit busy.. having my third _(and final)_ beautiful little girl!
 
 ![Little Mira looks away, in wonder](/images/Mira/index.jpg)
 

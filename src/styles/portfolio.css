@@ -35,7 +35,10 @@
   border-radius: var(--radius-lg);
   text-decoration: none;
   color: var(--color-text);
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 
 .portfolio-card:hover {
@@ -144,7 +147,7 @@
   box-shadow: var(--shadow-sm);
 }
 
-@media (max-width: 640px) {
+@media (width <= 640px) {
   .portfolio-grid {
     grid-template-columns: 1fr;
   }

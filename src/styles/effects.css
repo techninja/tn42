@@ -40,14 +40,22 @@ html::before {
 }
 
 @keyframes sideline-pulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.8; }
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
 }
 
 /* --- Glow on post cards on hover --- */
 
 .post-card {
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   border-radius: var(--radius-md);
   padding: var(--space-md);
 }
@@ -66,14 +74,18 @@ html::before {
 /* --- Header bottom glow line --- */
 
 .site-header {
-  box-shadow: 0 1px 0 var(--color-border),
-              0 4px 16px color-mix(in srgb, var(--color-primary) 10%, transparent);
+  box-shadow:
+    0 1px 0 var(--color-border),
+    0 4px 16px color-mix(in srgb, var(--color-primary) 10%, transparent);
 }
 
 /* --- Tag pills glow on hover --- */
 
 .tag {
-  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    box-shadow 0.15s;
 }
 
 .tag:hover {

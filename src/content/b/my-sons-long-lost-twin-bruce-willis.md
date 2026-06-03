@@ -6,12 +6,12 @@ slug: my-sons-long-lost-twin-bruce-willis
 type: blog
 image: /images/dorian_willis/index.jpg
 tags:
-  - "bruce willis"
-  - "dorian"
-  - "graphics"
-  - "photoshop"
-  - "pshop"
-  - "neat"
+  - 'bruce willis'
+  - 'dorian'
+  - 'graphics'
+  - 'photoshop'
+  - 'pshop'
+  - 'neat'
 ---
 
 Was browsing some family photos.. and suddenly noticed a picture of my son when he was 1 year old. Wow. Dead ringer.

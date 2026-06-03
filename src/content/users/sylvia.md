@@ -1,5 +1,5 @@
 ---
-title: "Zeph"
+title: 'Zeph'
 slug: sylvia
 type: user
 ---
@@ -8,7 +8,7 @@ type: user
 
 ### Who He Is
 
-*Formerly known as Sylvia on this blog (2009–2016).*
+_Formerly known as Sylvia on this blog (2009–2016)._
 
 Zeph (he/him) is a talented artist and maker who co-created [Super Awesome Maker Show](https://sylviashow.com/) with his dad starting at age 7. He's since grown up, come out as transgender, and moved on to new adventures.
 

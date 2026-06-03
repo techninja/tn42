@@ -18,17 +18,21 @@ const INFO_URL = '/users/sylvia';
 function replaceTextOnly(html, pattern, replacement) {
   // Split out tooltip spans entirely — never touch their content
   const parts = html.split(/(<span class="nc__tip">.*?<\/span>)/g);
-  return parts.map((chunk) => {
-    // Skip tooltip content
-    if (chunk.startsWith('<span class="nc__tip">')) return chunk;
-    // For remaining chunks, only replace in text nodes (not inside tags)
-    const segments = chunk.split(/(<[^>]+>)/);
-    return segments.map((seg) => {
-      if (seg.startsWith('<')) return seg;
-      pattern.lastIndex = 0;
-      return seg.replace(pattern, replacement);
-    }).join('');
-  }).join('');
+  return parts
+    .map((chunk) => {
+      // Skip tooltip content
+      if (chunk.startsWith('<span class="nc__tip">')) return chunk;
+      // For remaining chunks, only replace in text nodes (not inside tags)
+      const segments = chunk.split(/(<[^>]+>)/);
+      return segments
+        .map((seg) => {
+          if (seg.startsWith('<')) return seg;
+          pattern.lastIndex = 0;
+          return seg.replace(pattern, replacement);
+        })
+        .join('');
+    })
+    .join('');
 }
 
 /**

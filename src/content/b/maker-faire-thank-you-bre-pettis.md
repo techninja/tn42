@@ -1,16 +1,16 @@
 ---
-title: "Maker Faire Thank You for Bre Pettis"
+title: 'Maker Faire Thank You for Bre Pettis'
 date: 2009-06-29T18:33:00
 author: sylvia
 slug: maker-faire-thank-you-bre-pettis
 type: blog
 image: /images/bre-pettis1/index.jpg
 tags:
-  - "bre pettis"
-  - "maker faire"
-  - "makerbot"
+  - 'bre pettis'
+  - 'maker faire'
+  - 'makerbot'
   - "sylvia's stuff"
-  - "thank you"
+  - 'thank you'
 ---
 
 Dear Bre Pettis,

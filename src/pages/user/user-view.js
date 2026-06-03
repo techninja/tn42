@@ -10,6 +10,7 @@ import { renderMarkdown } from '#utils/renderMarkdown.js';
 import '#organisms/site-header/site-header.js';
 import '#molecules/breadcrumb/breadcrumb.js';
 import { setPageTitle } from '#utils/pageTitle.js';
+import { CDN } from '#config/cdn.js';
 
 /** @param {string} slug */
 async function loadProfile(slug) {
@@ -17,7 +18,9 @@ async function loadProfile(slug) {
   if (!res.ok) return null;
   const raw = await res.text();
   const { meta, content } = parseFrontmatter(raw);
-  return { meta, html: renderMarkdown(content) };
+  const rendered = renderMarkdown(content);
+  const html = CDN ? rendered.replace(/src="\/images\//g, `src="${CDN}/images/`) : rendered;
+  return { meta, html };
 }
 
 export default define({
@@ -27,8 +30,11 @@ export default define({
   profile: {
     value: undefined,
     connect(host) {
-      if (host.slug) loadProfile(host.slug).then((p) => { host.profile = p || false;
-        if (p) setPageTitle(p.meta.title); });
+      if (host.slug)
+        loadProfile(host.slug).then((p) => {
+          host.profile = p || false;
+          if (p) setPageTitle(p.meta.title);
+        });
     },
   },
   render: {
@@ -36,7 +42,12 @@ export default define({
       <site-header active="about"></site-header>
 
       <main class="post-view user-profile">
-        <app-breadcrumb items='${JSON.stringify([{"label":"Home","href":"/"},{"label":profile?.meta?.title||"Profile"}])}'></app-breadcrumb>
+        <app-breadcrumb
+          items="${JSON.stringify([
+            { label: 'Home', href: '/' },
+            { label: profile?.meta?.title || 'Profile' },
+          ])}"
+        ></app-breadcrumb>
         ${profile === undefined
           ? html`<p>Loading…</p>`
           : profile === false
@@ -48,16 +59,19 @@ export default define({
                 </div>
               `
             : html`
-              <article>
-                <h1>${profile.meta.title}</h1>
-                <div class="post-body" innerHTML="${profile.html}"></div>
-                <a href="${router.backUrl() || '/'}" class="btn btn-ghost">← Back</a>
-              </article>
-            `}
+                <article>
+                  <h1>${profile.meta.title}</h1>
+                  <div class="post-body" innerHTML="${profile.html}"></div>
+                  <a href="${router.backUrl() || '/'}" class="btn btn-ghost">← Back</a>
+                </article>
+              `}
       </main>
 
       <footer class="site-footer">
-        <p>© 1998–${new Date().getFullYear()} TechNinja. Built with <a href="https://github.com/techninja/clearstack">Clearstack</a>.</p>
+        <p>
+          © 1998–${new Date().getFullYear()} TechNinja. Built with
+          <a href="https://github.com/techninja/clearstack">Clearstack</a>.
+        </p>
       </footer>
     `,
     shadow: false,

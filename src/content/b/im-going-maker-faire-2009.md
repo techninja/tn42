@@ -6,7 +6,7 @@ slug: im-going-maker-faire-2009
 type: blog
 image: /images/makerfairelogo/index.gif
 tags:
-  - "neat"
+  - 'neat'
 ---
 
 ![Yep.. you know you want to go. It has an extra 'e' at the end of fair.. it MUST be good](/images/makerfairelogo/index.gif)

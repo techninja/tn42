@@ -6,15 +6,15 @@ slug: sylvias-pda-doodles-snowball-target
 type: blog
 image: /images/snowball_target/index.gif
 tags:
-  - "doodle"
-  - "pocket pc"
-  - "snow"
+  - 'doodle'
+  - 'pocket pc'
+  - 'snow'
   - "sylvia's stuff"
-  - "tree"
-  - "neat"
+  - 'tree'
+  - 'neat'
 ---
 
-If it ever snowed where I lived, I would *totally* do what Calvin does (if you don't know who Calvin is, he's my favorite comic ever!! My dad gave me all his books.. [here's a link!](http://www.gocomics.com/calvinandhobbes/) awful ads though).
+If it ever snowed where I lived, I would _totally_ do what Calvin does (if you don't know who Calvin is, he's my favorite comic ever!! My dad gave me all his books.. [here's a link!](http://www.gocomics.com/calvinandhobbes/) awful ads though).
 
 This is me, throwing snowballs at a target from under a tree, while my snowman is getting covered with snow off the tree. My dad's drawing inspired me..
 

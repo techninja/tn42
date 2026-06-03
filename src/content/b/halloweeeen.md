@@ -1,19 +1,19 @@
 ---
-title: "Halloweeeen!"
+title: 'Halloweeeen!'
 date: 2009-11-02T09:18:00
 author: sylvia
 slug: halloweeeen
 type: blog
 image: /images/vana_pumpkin/index.jpg
 tags:
-  - "Coraline"
-  - "costume"
-  - "goop"
-  - "halloween"
-  - "jack-o-lanterns"
-  - "pumpkins"
+  - 'Coraline'
+  - 'costume'
+  - 'goop'
+  - 'halloween'
+  - 'jack-o-lanterns'
+  - 'pumpkins'
   - "sylvia's stuff"
-  - "neat"
+  - 'neat'
 ---
 
 Hi everybody! It's been forever since I had a post, so my dad finally got me to make one. It's Halloween! I wanted to do a Halloween post because I felt like it needed a little bit of a changeup.

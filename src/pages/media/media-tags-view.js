@@ -8,16 +8,27 @@ import { html, define, router } from 'hybrids';
 import MediaDetailView from '#pages/media/media-detail-view.js';
 import MediaTagView from '#pages/media/media-tag-view.js';
 import '#organisms/site-header/site-header.js';
+import { asset } from '#config/cdn.js';
 import '#molecules/breadcrumb/breadcrumb.js';
 import { setPageTitle } from '#utils/pageTitle.js';
 
+/**
+ *
+ */
 async function loadTags() {
   const res = await fetch('/content/media/manifest.json');
   const { posts } = await res.json();
   const map = {};
   for (const p of posts) {
     for (const t of p.tags) {
-      if (!map[t]) map[t] = { tag: t, count: 0, preview: p.files[0], firstSlug: p.slug, isVideo: p.type === 'video' };
+      if (!map[t])
+        map[t] = {
+          tag: t,
+          count: 0,
+          preview: p.files[0],
+          firstSlug: p.slug,
+          isVideo: p.type === 'video',
+        };
       map[t].count++;
     }
   }
@@ -30,7 +41,9 @@ export default define({
   tags: {
     value: undefined,
     connect(host) {
-      loadTags().then((t) => { host.tags = t; });
+      loadTags().then((t) => {
+        host.tags = t;
+      });
       setPageTitle('Media Tags');
     },
   },
@@ -39,26 +52,50 @@ export default define({
       <site-header active="media"></site-header>
 
       <main class="media-grid-page">
-        <app-breadcrumb items='${JSON.stringify([{"label":"Home","href":"/"},{"label":"Media","href":"/media"},{"label":"Tags"}])}'></app-breadcrumb>
+        <app-breadcrumb
+          items="${JSON.stringify([
+            { label: 'Home', href: '/' },
+            { label: 'Media', href: '/media' },
+            { label: 'Tags' },
+          ])}"
+        ></app-breadcrumb>
         <h1>Media Tags</h1>
         ${Array.isArray(tags)
           ? html`
               <div class="media-tags-grid">
-                ${tags.map((t) => html`
-                  <a href="${t.count === 1 ? router.url(MediaDetailView, { slug: t.firstSlug }) : router.url(MediaTagView, { tagName: t.tag })}" class="media-tag-card">
-                    ${t.isVideo
-                      ? html`<video src="/assets-media/${t.preview}" muted preload="metadata"></video>`
-                      : html`<img src="/assets-media/${t.preview}" alt="#${t.tag}" loading="lazy" />`}
-                    <span class="media-tag-card__label">#${t.tag} <small>${t.count}</small></span>
-                  </a>
-                `)}
+                ${tags.map(
+                  (t) => html`
+                    <a
+                      href="${t.count === 1
+                        ? router.url(MediaDetailView, { slug: t.firstSlug })
+                        : router.url(MediaTagView, { tagName: t.tag })}"
+                      class="media-tag-card"
+                    >
+                      ${t.isVideo
+                        ? html`<video
+                            src="${asset('/assets-media/' + t.preview)}"
+                            muted
+                            preload="metadata"
+                          ></video>`
+                        : html`<img
+                            src="${asset('/assets-media/' + t.preview)}"
+                            alt="#${t.tag}"
+                            loading="lazy"
+                          />`}
+                      <span class="media-tag-card__label">#${t.tag} <small>${t.count}</small></span>
+                    </a>
+                  `,
+                )}
               </div>
             `
           : html`<p>Loading…</p>`}
       </main>
 
       <footer class="site-footer">
-        <p>© 1998–${new Date().getFullYear()} TechNinja. Built with <a href="https://github.com/techninja/clearstack">Clearstack</a>.</p>
+        <p>
+          © 1998–${new Date().getFullYear()} TechNinja. Built with
+          <a href="https://github.com/techninja/clearstack">Clearstack</a>.
+        </p>
       </footer>
     `,
     shadow: false,

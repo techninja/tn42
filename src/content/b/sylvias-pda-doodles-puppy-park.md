@@ -6,11 +6,11 @@ slug: sylvias-pda-doodles-puppy-park
 type: blog
 image: /images/kc-4/index.gif
 tags:
-  - "drawing"
-  - "pocket pc"
-  - "puppy"
+  - 'drawing'
+  - 'pocket pc'
+  - 'puppy'
   - "sylvia's stuff"
-  - "neat"
+  - 'neat'
 ---
 
 This is a cute puppy playing in the park, he has food and it's a nice day outside.

@@ -1,16 +1,16 @@
 ---
-title: "Maker Faire Thank You for John Park"
+title: 'Maker Faire Thank You for John Park'
 date: 2009-06-27T15:13:00
 author: sylvia
 slug: maker-faire-thank-you-john-park
 type: blog
 image: /images/john-park1/index.jpg
 tags:
-  - "john park"
-  - "maker faire"
+  - 'john park'
+  - 'maker faire'
   - "sylvia's stuff"
-  - "thank you"
-  - "tv"
+  - 'thank you'
+  - 'tv'
 ---
 
 Dear John Park,

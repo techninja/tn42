@@ -7,7 +7,7 @@
  * Usage: node scripts/upload-r2.js [--bucket=tn42-data]
  */
 
-import { execSync, exec } from 'node:child_process';
+import { exec } from 'node:child_process';
 import { readdirSync } from 'node:fs';
 import { resolve, join, relative } from 'node:path';
 

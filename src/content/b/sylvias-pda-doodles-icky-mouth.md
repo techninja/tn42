@@ -6,11 +6,11 @@ slug: sylvias-pda-doodles-icky-mouth
 type: blog
 image: /images/kc-8/index.gif
 tags:
-  - "drawing"
-  - "mouth"
-  - "pocket pc"
+  - 'drawing'
+  - 'mouth'
+  - 'pocket pc'
   - "sylvia's stuff"
-  - "neat"
+  - 'neat'
 ---
 
 My dad gave this a try, so I had to try it..

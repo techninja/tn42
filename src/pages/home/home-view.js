@@ -12,8 +12,12 @@ import PortfolioView from '#pages/portfolio/portfolio-view.js';
 import UserView from '#pages/user/user-view.js';
 import '#atoms/app-icon/app-icon.js';
 import '#organisms/site-header/site-header.js';
+import { asset } from '#config/cdn.js';
 import { setPageTitle } from '#utils/pageTitle.js';
 
+/**
+ *
+ */
 async function loadLatest() {
   const [blogRes, mediaRes] = await Promise.all([
     fetch('/content/b/manifest.json'),
@@ -30,7 +34,9 @@ export default define({
   data: {
     value: undefined,
     connect(host) {
-      loadLatest().then((d) => { host.data = d; });
+      loadLatest().then((d) => {
+        host.data = d;
+      });
       setPageTitle();
     },
   },
@@ -44,7 +50,10 @@ export default define({
         <main class="landing">
           <section class="landing__hero">
             <h2>Hey, I'm James.</h2>
-            <p>Dad of 6, nerd, maker, and general hacker of things. This is my corner of the web — a place for old blog posts, photos, videos, and whatever else I feel like putting here.</p>
+            <p>
+              Dad of 6, nerd, maker, and general hacker of things. This is my corner of the web — a
+              place for old blog posts, photos, videos, and whatever else I feel like putting here.
+            </p>
           </section>
 
           ${ready
@@ -55,14 +64,29 @@ export default define({
                     <a href="${router.url(MediaGridView)}">View all →</a>
                   </div>
                   <div class="media-grid media-grid--landing">
-                    ${data.media.map((p) => html`
-                      <a href="/media/detail/${p.slug}" class="media-grid__item">
-                        ${p.type === 'video'
-                          ? html`<video src="/assets-media/${p.files[0]}" muted preload="metadata"></video>`
-                          : html`<img src="/assets-media/${p.files[0]}" alt="${p.caption}" loading="lazy" onload="${(h, e) => { e.target.classList.add('loaded'); }}" />`}
-                        ${p.type === 'video' ? html`<span class="media-grid__video">▶</span>` : html``}
-                      </a>
-                    `)}
+                    ${data.media.map(
+                      (p) => html`
+                        <a href="/media/detail/${p.slug}" class="media-grid__item">
+                          ${p.type === 'video'
+                            ? html`<video
+                                src="${asset('/assets-media/' + p.files[0])}"
+                                muted
+                                preload="metadata"
+                              ></video>`
+                            : html`<img
+                                src="${asset('/assets-media/' + p.files[0])}"
+                                alt="${p.caption}"
+                                loading="lazy"
+                                onload="${(h, e) => {
+                                  e.target.classList.add('loaded');
+                                }}"
+                              />`}
+                          ${p.type === 'video'
+                            ? html`<span class="media-grid__video">▶</span>`
+                            : html``}
+                        </a>
+                      `,
+                    )}
                   </div>
                 </section>
 
@@ -72,20 +96,22 @@ export default define({
                     <a href="${router.url(BlogListView)}">View all →</a>
                   </div>
                   <div class="landing__blog-list">
-                    ${data.blog.map((p) => html`
-                      <article class="post-card">
-                        <a href="/b/${p.slug}">
-                          <img
-                            class="post-card__img"
-                            src="${p.image || '/images/default.svg'}"
-                            alt="${p.title}"
-                            loading="lazy"
-                          />
-                          <h2>${p.title}</h2>
-                        </a>
-                        <time>${formatDate(p.date)}</time>
-                      </article>
-                    `)}
+                    ${data.blog.map(
+                      (p) => html`
+                        <article class="post-card">
+                          <a href="/b/${p.slug}">
+                            <img
+                              class="post-card__img"
+                              src=\"${p.image ? asset(p.image) : '/images/default.svg'}\"
+                              alt="${p.title}"
+                              loading="lazy"
+                            />
+                            <h2>${p.title}</h2>
+                          </a>
+                          <time>${formatDate(p.date)}</time>
+                        </article>
+                      `,
+                    )}
                   </div>
                 </section>
               `
@@ -93,7 +119,10 @@ export default define({
         </main>
 
         <footer class="site-footer">
-          <p>© 1998–${new Date().getFullYear()} TechNinja. Built with <a href="https://github.com/techninja/clearstack">Clearstack</a>.</p>
+          <p>
+            © 1998–${new Date().getFullYear()} TechNinja. Built with
+            <a href="https://github.com/techninja/clearstack">Clearstack</a>.
+          </p>
         </footer>
       `;
     },

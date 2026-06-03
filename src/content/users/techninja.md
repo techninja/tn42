@@ -1,5 +1,5 @@
 ---
-title: "TechNinja"
+title: 'TechNinja'
 slug: techninja
 type: user
 ---

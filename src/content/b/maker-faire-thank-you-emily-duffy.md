@@ -1,16 +1,16 @@
 ---
-title: "Maker Faire Thank You for Emily Duffy"
+title: 'Maker Faire Thank You for Emily Duffy'
 date: 2009-06-29T19:14:00
 author: sylvia
 slug: maker-faire-thank-you-emily-duffy
 type: blog
 image: /images/emily-car-girl1/index.jpg
 tags:
-  - "artcar"
-  - "emily duffy"
-  - "maker faire"
+  - 'artcar'
+  - 'emily duffy'
+  - 'maker faire'
   - "sylvia's stuff"
-  - "thank you"
+  - 'thank you'
 ---
 
 Dear Emily Duffy,
@@ -23,6 +23,6 @@ Thank you also for the candy. It was very good and I also got a chance to see al
 
 ![Emily's autograph in my book](/images/emily-car-girl2/index.jpg)
 
-Thank you so much for being so nice, and for letting me get a picture and your autograph. I hope someday I'll see you again and then I can show you *my* art.
+Thank you so much for being so nice, and for letting me get a picture and your autograph. I hope someday I'll see you again and then I can show you _my_ art.
 
 love, Sylvia
