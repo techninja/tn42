@@ -10,7 +10,10 @@ export default define({
   render: {
     value: () => html`
       <footer class="site-footer">
-        <p>© 1998–${new Date().getFullYear()} TechNinja. Built with <a href="https://clearstacks.org">Clearstack</a>.</p>
+        <p>
+          © 1998–${new Date().getFullYear()} TechNinja. Built with
+          <a href="https://clearstacks.org">Clearstack</a>.
+        </p>
       </footer>
     `,
     shadow: false,
