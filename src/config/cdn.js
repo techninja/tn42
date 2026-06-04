@@ -9,5 +9,6 @@ export const CDN = isProduction ? 'https://data.tn42.com' : '';
 
 /** Prefix an asset path with the CDN base. */
 export function asset(path) {
+  if (!path || path.startsWith('http')) return path;
   return `${CDN}${path}`;
 }
