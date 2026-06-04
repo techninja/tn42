@@ -48,7 +48,10 @@ export default define({
       setPageTitle('Blog');
     },
   },
-  page: 1,
+  page: {
+    value: 1,
+    observe() { window.scrollTo({ top: 0, behavior: 'smooth' }); },
+  },
   render: {
     value: ({ posts, page }) => {
       const ready = Array.isArray(posts);
