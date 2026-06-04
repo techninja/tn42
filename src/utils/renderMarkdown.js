@@ -39,15 +39,15 @@ export function renderMarkdown(md) {
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
     // Inline code
     .replace(/`([^`]+)`/g, '<code>$1</code>')
-    // Unordered lists
+    // Unordered lists — wrap consecutive items
     .replace(/^- (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n?)+/g, (m) => `<ul>${m.trim()}</ul>`)
     // Paragraphs: split on double newlines
     .split(/\n{2,}/)
     .map((block) => {
       block = block.trim();
       if (!block) return '';
       if (/^<(h[1-6]|li|img|iframe|div|ul|ol)/.test(block)) return block;
-      if (block.includes('<li>')) return `<ul>${block}</ul>`;
       return `<p>${block.replace(/\n/g, '<br>')}</p>`;
     })
     .join('\n');

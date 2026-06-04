@@ -35,3 +35,8 @@ Not long after I was introduced to LLM assisted development and after initially 
 It's far from perfect, is already having growing pains, and really is a collection of ideas I'm still struggling to define well enough that they play well no matter how you build. In now having built out 10+ applications with it, I've worked hard to backport and extend where it makes sense, but it's the hope that this idea actually has proven itself enough to be worthy to build on confidently. Right now it's just me proving that, but I've got high hopes that this magic mix of spec and spec checking can make for a modular, complexity-constrained development that lets you choose when to tidy up the tech debt.
 
 I'll be making a bunch more fill-in posts to document the random projects and events I've done and failed to log over the years as I find the time. Here's hoping I can figure that out before another decade or so!
+
+In the meantime, check out the other new sections:
+
+- [Portfolio](/portfolio) — my current open source projects including Clearstack, Asili, StatiCart, and more
+- [Media](/media) — 500+ photos and videos from the last 7 years, imported from my now-abandoned Instagram

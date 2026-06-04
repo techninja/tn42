@@ -120,7 +120,13 @@ export default define({
                         `
                       : html``}
                   </header>
-                  <div class="post-body" innerHTML="${post.html}"></div>
+                  <div class="post-body" innerHTML="${post.html}" onclick="${(h, e) => {
+                    const a = e.composedPath().find((el) => el.tagName === 'A');
+                    if (a?.href && a.origin === location.origin) {
+                      e.preventDefault();
+                      window.location.href = a.href;
+                    }
+                  }}"></div>
                   <a href="${router.backUrl() || '/'}" class="btn btn-ghost">← Back to posts</a>
                 </article>
               `}
