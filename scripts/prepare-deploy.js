@@ -40,11 +40,21 @@ cpSync(resolve(ROOT, 'src'), DIST, {
 mkdirSync(resolve(DIST, 'images'), { recursive: true });
 cpSync(resolve(ROOT, 'src/images/default.svg'), resolve(DIST, 'images/default.svg'));
 
+// Rewrite blog manifest image paths to absolute CDN URLs for OG build
+const blogManifest = resolve(DIST, 'content/b/manifest.json');
+const srcBlogManifest = resolve(ROOT, 'src/content/b/manifest.json');
+if (existsSync(blogManifest)) {
+  let json = readFileSync(blogManifest, 'utf-8');
+  json = json.replace(/"image": "\/images\//g, `"image": "${DATA_URL}/images/`);
+  writeFileSync(blogManifest, json);
+  // Also rewrite src/ manifest so OG build picks up absolute URLs
+  writeFileSync(srcBlogManifest, json);
+}
+
 // Rewrite media manifest
 const mediaManifest = resolve(DIST, 'content/media/manifest.json');
 if (existsSync(mediaManifest)) {
   const json = readFileSync(mediaManifest, 'utf-8');
-  // No path rewrite needed in JSON — views reference /assets-media/ which we'll handle via redirect
   writeFileSync(mediaManifest, json);
 }
 
