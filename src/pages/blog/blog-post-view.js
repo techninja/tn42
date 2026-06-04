@@ -29,7 +29,7 @@ async function loadPost(slug) {
   let heroAlt = '';
   if (meta.image) {
     html = html.replace(/<img[^>]*src="[^"]*"[^>]*\/?>/, (m) => {
-      if (m.includes(meta.image.split('/').pop())) {
+      if (m.includes(/** @type {string} */ (meta.image).split('/').pop())) {
         const altMatch = m.match(/alt="([^"]*)"/);
         if (altMatch) heroAlt = altMatch[1];
         return '';
@@ -85,7 +85,9 @@ export default define({
                         src="${post.meta.image ? asset(post.meta.image) : '/images/default.svg'}"
                         alt="${post.heroAlt || post.meta.title}"
                       />
-                      ${post.heroAlt ? html`<figcaption class="post-hero__caption">${post.heroAlt}</figcaption>` : html``}
+                      ${post.heroAlt
+                        ? html`<figcaption class="post-hero__caption">${post.heroAlt}</figcaption>`
+                        : html``}
                     </figure>
                     <h1 innerHTML="${correctTitle(post.meta.title, post.meta)}"></h1>
                     <div class="post-meta">
@@ -120,13 +122,17 @@ export default define({
                         `
                       : html``}
                   </header>
-                  <div class="post-body" innerHTML="${post.html}" onclick="${(h, e) => {
-                    const a = e.composedPath().find((el) => el.tagName === 'A');
-                    if (a?.href && a.origin === location.origin) {
-                      e.preventDefault();
-                      window.location.href = a.href;
-                    }
-                  }}"></div>
+                  <div
+                    class="post-body"
+                    innerHTML="${post.html}"
+                    onclick="${(h, e) => {
+                      const a = e.composedPath().find((el) => el.tagName === 'A');
+                      if (a?.href && a.origin === location.origin) {
+                        e.preventDefault();
+                        window.location.href = a.href;
+                      }
+                    }}"
+                  ></div>
                   <a href="${router.backUrl() || '/'}" class="btn btn-ghost">← Back to posts</a>
                 </article>
               `}

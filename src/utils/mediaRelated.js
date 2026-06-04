@@ -28,7 +28,9 @@ export function renderRelated(related) {
                     src="${asset('/assets-media/' + r.files[0])}"
                     alt="${r.caption}"
                     loading="lazy"
-                    onload="${(h, e) => { e.target.classList.add('loaded'); }}"
+                    onload="${(h, e) => {
+                      e.target.classList.add('loaded');
+                    }}"
                   />`}
             </a>
           `,

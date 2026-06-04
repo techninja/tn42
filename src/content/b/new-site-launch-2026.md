@@ -1,22 +1,22 @@
 ---
-title: "New Site, Who Dis?"
+title: 'New Site, Who Dis?'
 date: 2026-06-03T12:00:00
 author: techninja
 slug: new-site-launch-2026
 type: blog
 image: /images/blog/new-site-launch-2026/james_with_frankie_the_pug_puppy.jpg
 tags:
-  - "clearstack"
-  - "meta"
-  - "web-development"
-  - "open-source"
+  - 'clearstack'
+  - 'meta'
+  - 'web-development'
+  - 'open-source'
 ---
 
 ![James with Frankie the pug puppy](/images/blog/new-site-launch-2026/james_with_frankie_the_pug_puppy.jpg)
 
 Welcome to the new tn42! I whipped this up upon realizing I'd spent at least 15 years ignoring this when I could be using it to own my own content space instead of using someone else's computers to sell ads next to my content that benefit them. I originally built this site as [a Drupal 6 site](/b/implications-long-term-reliability-handmade-data-driven-websites) with high hopes that running something larger than we need, we make up for that with open source support. In truth, keeping up to date with security releases for a personal project just so I could have programmable field shapes and an in-browser editor? An absurd suggestion. In 2 years it was vulnerable, and in 8 years I gave up thinking I could transition out cleanly and flattened it to an HTML archive hosted in github pages to avoid paying to host what was essentially static content.
 
-It wasn't long before I couldn't recommend anyone build on Drupal for the long term unless they could get someone to patch their modules and manage inevitable breaking schema updates for a feature you may not even be using (or users aren't using it correctly). And at Four Kitchens I found myself in the depths looking to migrate and manage big rushing security updates when PHP flaws are found in contributed modules. The security surface area was *huge* for a payoff that we essentially chased constantly to boil down to the most flat/static caching for anon-users as possible so that it could be fast (even if you had 50+ joins for your homepage content views on every fresh pull!).
+It wasn't long before I couldn't recommend anyone build on Drupal for the long term unless they could get someone to patch their modules and manage inevitable breaking schema updates for a feature you may not even be using (or users aren't using it correctly). And at Four Kitchens I found myself in the depths looking to migrate and manage big rushing security updates when PHP flaws are found in contributed modules. The security surface area was _huge_ for a payoff that we essentially chased constantly to boil down to the most flat/static caching for anon-users as possible so that it could be fast (even if you had 50+ joins for your homepage content views on every fresh pull!).
 
 I moved then to Gatsby, an idea about the frontend owning the query structure a bit that BUILT to essentially frontend dynamic, but static assets using React and GraphQL. I was pretty well sold in 2019 thanks to a few talks I saw in person, but it seemed the community and the drive was sucked out by 2020 as Gatsby was sold and ignored.
 
