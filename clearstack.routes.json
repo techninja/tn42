@@ -26,6 +26,7 @@
   "/media/detail/:slug": {
     "title": "{slug.caption} | tn42.com",
     "description": "{slug.caption}",
+    "image": "{slug.image}",
     "data": "src/content/media/manifest.json:posts"
   },
   "/media/tags": {

@@ -51,11 +51,18 @@ if (existsSync(blogManifest)) {
   writeFileSync(srcBlogManifest, json);
 }
 
-// Rewrite media manifest
+// Rewrite media manifest — add absolute image URLs for OG
 const mediaManifest = resolve(DIST, 'content/media/manifest.json');
+const srcMediaManifest = resolve(ROOT, 'src/content/media/manifest.json');
 if (existsSync(mediaManifest)) {
-  const json = readFileSync(mediaManifest, 'utf-8');
+  const data = JSON.parse(readFileSync(mediaManifest, 'utf-8'));
+  data.posts = data.posts.map((p) => ({
+    ...p,
+    image: p.type !== 'video' ? `${DATA_URL}/assets-media/${p.files[0]}` : null,
+  }));
+  const json = JSON.stringify(data, null, 2);
   writeFileSync(mediaManifest, json);
+  writeFileSync(srcMediaManifest, json);
 }
 
 // Create _redirects for Cloudflare Pages to proxy assets from R2
