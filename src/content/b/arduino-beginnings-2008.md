@@ -1,5 +1,5 @@
 ---
-title: "Arduino Beginnings"
+title: 'Arduino Beginnings'
 date: 2008-06-01T12:00:00
 created: 2026-06-15
 author: techninja
@@ -7,16 +7,16 @@ slug: arduino-beginnings-2008
 type: blog
 image: /images/blog/arduino-beginnings-2008/IMG_5944.jpg
 tags:
-  - "arduino"
-  - "electronics"
-  - "hardware"
+  - 'arduino'
+  - 'electronics'
+  - 'hardware'
 ---
 
 ![Upgrading the extruder board firmware with serial passthrough](/images/blog/arduino-beginnings-2008/IMG_5944.jpg)
 
 I finally got my hands on an Arduino. $30 for a little blue Diecimila, and suddenly I can make software that touches the physical world!
 
-I've been coding for over a decade, but this is different. This isn't pixels on a screen. This is a servo that *moves* when I tell it to. I start where everyone starts: blinking an LED. Then I blink a lot of LEDs.
+I've been coding for over a decade, but this is different. This isn't pixels on a screen. This is a servo that _moves_ when I tell it to. I start where everyone starts: blinking an LED. Then I blink a lot of LEDs.
 
 ## Wiimote Hacking
 

@@ -52,7 +52,9 @@ export default define({
   authorFilter: 'techninja',
   page: {
     value: 1,
-    observe() { window.scrollTo({ top: 0, behavior: 'smooth' }); },
+    observe() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
   },
   render: {
     value: ({ posts, page, search, authorFilter }) => {
@@ -62,9 +64,11 @@ export default define({
             if (authorFilter && p.author !== authorFilter) return false;
             if (!search) return true;
             const q = search.toLowerCase();
-            return p.title.toLowerCase().includes(q)
-              || (p.tags || []).some((t) => t.toLowerCase().includes(q))
-              || (p.description || '').toLowerCase().includes(q);
+            return (
+              p.title.toLowerCase().includes(q) ||
+              (p.tags || []).some((t) => t.toLowerCase().includes(q)) ||
+              (p.description || '').toLowerCase().includes(q)
+            );
           })
         : posts;
       const total = ready ? Math.ceil(filtered.length / PER_PAGE) : 0;
@@ -81,23 +85,41 @@ export default define({
             <div class="blog-author-filter">
               <button
                 class="${{ 'blog-author-btn': true, active: authorFilter === 'techninja' }}"
-                onclick="${(host) => { host.authorFilter = 'techninja'; host.page = 1; }}"
-              >TechNinja</button>
+                onclick="${(host) => {
+                  host.authorFilter = 'techninja';
+                  host.page = 1;
+                }}"
+              >
+                TechNinja
+              </button>
               <button
                 class="${{ 'blog-author-btn': true, active: authorFilter === 'sylvia' }}"
-                onclick="${(host) => { host.authorFilter = 'sylvia'; host.page = 1; }}"
-              >Zeph (Legacy)</button>
+                onclick="${(host) => {
+                  host.authorFilter = 'sylvia';
+                  host.page = 1;
+                }}"
+              >
+                Zeph (Legacy)
+              </button>
               <button
                 class="${{ 'blog-author-btn': true, active: !authorFilter }}"
-                onclick="${(host) => { host.authorFilter = ''; host.page = 1; }}"
-              >All</button>
+                onclick="${(host) => {
+                  host.authorFilter = '';
+                  host.page = 1;
+                }}"
+              >
+                All
+              </button>
             </div>
             <input
               type="search"
               class="blog-search"
               placeholder="Search posts…"
               value="${search}"
-              oninput="${(host, e) => { host.search = e.target.value; host.page = 1; }}"
+              oninput="${(host, e) => {
+                host.search = e.target.value;
+                host.page = 1;
+              }}"
             />
             ${ready
               ? visible.map(

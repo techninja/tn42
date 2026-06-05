@@ -1,5 +1,5 @@
 ---
-title: "RobotsConf Keynote & WaterColorBot"
+title: 'RobotsConf Keynote & WaterColorBot'
 date: 2013-11-01T12:00:00
 created: 2026-06-15
 author: techninja
@@ -7,11 +7,11 @@ slug: robotsconf-watercolorbot-2013
 type: blog
 image: /images/blog/robotsconf-watercolorbot-2013/IMG_20130410_231346.jpg
 tags:
-  - "cncserver"
-  - "watercolorbot"
-  - "conference"
-  - "robots"
-  - "speaking"
+  - 'cncserver'
+  - 'watercolorbot'
+  - 'conference'
+  - 'robots'
+  - 'speaking'
 ---
 
 ![The very first image painted on the very first WaterColorBot prototype](/images/blog/robotsconf-watercolorbot-2013/IMG_20130410_231346.jpg)

@@ -69,7 +69,9 @@
 
 .btn-publish {
   min-width: 5.5rem;
-  transition: background 0.3s, transform 0.2s;
+  transition:
+    background 0.3s,
+    transform 0.2s;
 }
 
 .btn-publish.publishing {
@@ -84,8 +86,13 @@
 }
 
 @keyframes pulse {
-  from { opacity: 0.5; }
-  to { opacity: 1; }
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .row-published {
@@ -138,7 +145,7 @@
   gap: 2rem;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .draft-editor__layout {
     grid-template-columns: 1fr;
   }
@@ -218,7 +225,7 @@
   position: absolute;
   top: 2px;
   right: 2px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgb(0 0 0 / 70%);
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -264,12 +271,14 @@
   text-align: center;
   color: var(--color-text-muted, #888);
   margin-bottom: 1rem;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 
 .draft-editor__dropzone.drag-over {
   border-color: var(--color-accent, #3498db);
-  background: rgba(52, 152, 219, 0.08);
+  background: rgb(52 152 219 / 8%);
 }
 
 .draft-editor__dropzone p {
@@ -299,7 +308,7 @@
   padding-left: 2rem;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .draft-editor__preview {
     border-left: none;
     padding-left: 0;

@@ -28,9 +28,7 @@ export async function processDraftAssets(draftsDir, slug) {
   if (!existsSync(srcDir)) return { processed: [], errors: [] };
   if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
 
-  const files = readdirSync(srcDir).filter(
-    (f) => IMAGE_EXT.test(f) || VIDEO_EXT.test(f)
-  );
+  const files = readdirSync(srcDir).filter((f) => IMAGE_EXT.test(f) || VIDEO_EXT.test(f));
 
   const processed = [];
   const errors = [];
@@ -53,13 +51,20 @@ export async function processDraftAssets(draftsDir, slug) {
         const dest = join(outDir, outFile);
         if (!existsSync(dest)) {
           await exec('ffmpeg', [
-            '-i', src,
-            '-c:v', 'libx264',
-            '-preset', 'fast',
-            '-crf', '23',
-            '-c:a', 'aac',
-            '-movflags', '+faststart',
-            '-y', dest,
+            '-i',
+            src,
+            '-c:v',
+            'libx264',
+            '-preset',
+            'fast',
+            '-crf',
+            '23',
+            '-c:a',
+            'aac',
+            '-movflags',
+            '+faststart',
+            '-y',
+            dest,
           ]);
         }
         processed.push(outFile);

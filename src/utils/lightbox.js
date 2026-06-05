@@ -35,6 +35,9 @@ export function attachLightbox(container) {
   const prevBtn = overlay.querySelector('.lightbox-prev');
   const nextBtn = overlay.querySelector('.lightbox-next');
 
+  /**
+   *
+   */
   function getMedia(fig) {
     const img = fig.querySelector('img');
     const video = fig.querySelector('video');
@@ -44,6 +47,9 @@ export function attachLightbox(container) {
     return null;
   }
 
+  /**
+   *
+   */
   function show(idx) {
     if (idx < 0 || idx >= figures.length) return;
     currentIdx = idx;
@@ -62,21 +68,40 @@ export function attachLightbox(container) {
     overlay.classList.add('active');
   }
 
+  /**
+   *
+   */
   function close() {
     overlay.classList.remove('active');
     content.innerHTML = '';
     currentIdx = -1;
   }
 
-  function next() { if (currentIdx < figures.length - 1) show(currentIdx + 1); }
-  function prev() { if (currentIdx > 0) show(currentIdx - 1); }
+  /**
+   *
+   */
+  function next() {
+    if (currentIdx < figures.length - 1) show(currentIdx + 1);
+  }
+  /**
+   *
+   */
+  function prev() {
+    if (currentIdx > 0) show(currentIdx - 1);
+  }
 
   // Click handlers
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) close();
   });
-  prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
-  nextBtn.addEventListener('click', (e) => { e.stopPropagation(); next(); });
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    prev();
+  });
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    next();
+  });
 
   // Keyboard
   document.addEventListener('keydown', (e) => {
@@ -87,46 +112,58 @@ export function attachLightbox(container) {
   });
 
   // Touch: swipe and pinch-zoom
-  overlay.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 1) {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-    } else if (e.touches.length === 2) {
-      lastDist = Math.hypot(
-        e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
-      );
-    }
-  }, { passive: true });
-
-  overlay.addEventListener('touchmove', (e) => {
-    if (e.touches.length === 2) {
-      const dist = Math.hypot(
-        e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
-      );
-      scale = Math.max(1, Math.min(4, scale * (dist / lastDist)));
-      lastDist = dist;
-      const el = content.querySelector('img, video');
-      if (el) el.style.transform = `scale(${scale})`;
-    }
-  }, { passive: true });
-
-  overlay.addEventListener('touchend', (e) => {
-    if (e.changedTouches.length === 1 && scale <= 1.1) {
-      const dx = e.changedTouches[0].clientX - startX;
-      const dy = e.changedTouches[0].clientY - startY;
-      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
-        if (dx < 0) next();
-        else prev();
+  overlay.addEventListener(
+    'touchstart',
+    (e) => {
+      if (e.touches.length === 1) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+      } else if (e.touches.length === 2) {
+        lastDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY,
+        );
       }
-    }
-    if (e.touches.length === 0 && scale <= 1.1) {
-      scale = 1;
-      const el = content.querySelector('img, video');
-      if (el) el.style.transform = '';
-    }
-  }, { passive: true });
+    },
+    { passive: true },
+  );
+
+  overlay.addEventListener(
+    'touchmove',
+    (e) => {
+      if (e.touches.length === 2) {
+        const dist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY,
+        );
+        scale = Math.max(1, Math.min(4, scale * (dist / lastDist)));
+        lastDist = dist;
+        const el = content.querySelector('img, video');
+        if (el) el.style.transform = `scale(${scale})`;
+      }
+    },
+    { passive: true },
+  );
+
+  overlay.addEventListener(
+    'touchend',
+    (e) => {
+      if (e.changedTouches.length === 1 && scale <= 1.1) {
+        const dx = e.changedTouches[0].clientX - startX;
+        const dy = e.changedTouches[0].clientY - startY;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+          if (dx < 0) next();
+          else prev();
+        }
+      }
+      if (e.touches.length === 0 && scale <= 1.1) {
+        scale = 1;
+        const el = content.querySelector('img, video');
+        if (el) el.style.transform = '';
+      }
+    },
+    { passive: true },
+  );
 
   // Attach click to figures
   container.addEventListener('click', (e) => {

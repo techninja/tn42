@@ -1,5 +1,5 @@
 ---
-title: "Portal Turret Project"
+title: 'Portal Turret Project'
 date: 2011-09-01T12:00:00
 created: 2026-06-15
 author: techninja
@@ -7,11 +7,11 @@ slug: portal-turret-project-2011
 type: blog
 image: /images/blog/portal-turret-project-2011/IMG_3633.jpg
 tags:
-  - "electronics"
-  - "cosplay"
-  - "arduino"
-  - "gaming"
-  - "collaboration"
+  - 'electronics'
+  - 'cosplay'
+  - 'arduino'
+  - 'gaming'
+  - 'collaboration'
 ---
 
 !["Hello! Would you like iced tea? Pizza rolls? Some hot fresh bullets?"](/images/blog/portal-turret-project-2011/IMG_3633.jpg)

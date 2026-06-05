@@ -1,5 +1,5 @@
 ---
-title: "The Beans Have Arrived"
+title: 'The Beans Have Arrived'
 date: 2021-06-01T12:00:00
 created: 2026-06-15
 author: techninja
@@ -7,9 +7,9 @@ slug: the-beans-have-arrived
 type: blog
 image: /images/blog/the-beans-have-arrived/D75_5111.jpg
 tags:
-  - "family"
-  - "milestone"
-  - "data"
+  - 'family'
+  - 'milestone'
+  - 'data'
 ---
 
 ![Willow and Finley as taken by Mom Lisa, a professional infant photographer! Sorry you had to bring your work home mom.](/images/blog/the-beans-have-arrived/D75_5111.jpg)

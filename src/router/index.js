@@ -6,7 +6,6 @@
 import { html, define, router } from 'hybrids';
 import HomeView from '#pages/home/home-view.js';
 import NotFoundView from '#pages/not-found/not-found-view.js';
-import DraftsView from '#pages/drafts/drafts-view.js';
 
 export default define({
   tag: 'app-router',

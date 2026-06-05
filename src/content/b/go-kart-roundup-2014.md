@@ -1,5 +1,5 @@
 ---
-title: "Go Kart Roundup"
+title: 'Go Kart Roundup'
 date: 2014-07-01T12:00:00
 created: 2026-06-15
 author: techninja
@@ -7,9 +7,9 @@ slug: go-kart-roundup-2014
 type: blog
 image: /images/blog/go-kart-roundup-2014/20140615_200150.jpg
 tags:
-  - "electronics"
-  - "ev"
-  - "builds"
+  - 'electronics'
+  - 'ev'
+  - 'builds'
 ---
 
 ![Sylvia tries her hand at welding some better motor supports](/images/blog/go-kart-roundup-2014/20140615_200150.jpg)

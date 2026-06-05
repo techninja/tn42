@@ -1,5 +1,5 @@
 ---
-title: "DML 2012, on stage and demo tech"
+title: 'DML 2012, on stage and demo tech'
 date: 2012-05-01T12:00:00
 created: 2026-06-15
 author: techninja
@@ -7,10 +7,10 @@ slug: ted-talk-dml-2012
 type: blog
 image: /images/blog/ted-talk-dml-2012/lights.jpg
 tags:
-  - "speaking"
-  - "conference"
-  - "education"
-  - "arduino"
+  - 'speaking'
+  - 'conference'
+  - 'education'
+  - 'arduino'
 ---
 
 ![Lights streak outside the hotel, another fun location here in San Francisco for DML 2012](/images/blog/ted-talk-dml-2012/lights.jpg)

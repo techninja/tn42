@@ -5,8 +5,16 @@
  */
 
 import { Router } from 'express';
-import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync, copyFileSync, renameSync } from 'fs';
-import { join, resolve, parse } from 'path';
+import {
+  readFileSync,
+  writeFileSync,
+  existsSync,
+  readdirSync,
+  mkdirSync,
+  copyFileSync,
+  renameSync,
+} from 'fs';
+import { join, resolve } from 'path';
 import { processDraftAssets } from './server-drafts-process.js';
 
 const DRAFTS_DIR = resolve('_drafts');
@@ -121,7 +129,7 @@ draftsRouter.post('/:slug/rename', (req, res) => {
     post = post.replace(/^slug:.*$/m, `slug: ${newSlug}`);
     post = post.replace(
       new RegExp(`/images/blog/${req.params.slug}/`, 'g'),
-      `/images/blog/${newSlug}/`
+      `/images/blog/${newSlug}/`,
     );
     writeFileSync(postPath, post);
   }
@@ -165,20 +173,14 @@ draftsRouter.post('/:slug/publish', async (req, res) => {
   // 3. Read post, rewrite image paths to final locations
   let post = readFileSync(postPath, 'utf-8');
   // Rewrite video extensions in markdown to .mp4
-  post = post.replace(
-    /(!\[[^\]]*\]\([^)]*)\.(?:AVI|MOV|avi|mov)(\))/g,
-    '$1.mp4$2'
-  );
+  post = post.replace(/(!\[[^\]]*\]\([^)]*)\.(?:AVI|MOV|avi|mov)(\))/g, '$1.mp4$2');
   // Rewrite image extensions to lowercase .jpg (sharp outputs lowercase)
   post = post.replace(
     /(!\[[^\]]*\]\([^)]*)\.(?:JPG|JPEG|PNG|GIF|WEBP)(\))/g,
-    (m, pre, post) => `${pre}.jpg${post}`
+    (m, pre, post) => `${pre}.jpg${post}`,
   );
   // Also fix frontmatter image: field
-  post = post.replace(
-    /(image:\s*\/[^\n]*)\.(?:JPG|JPEG|PNG|GIF|WEBP)/g,
-    '$1.jpg'
-  );
+  post = post.replace(/(image:\s*\/[^\n]*)\.(?:JPG|JPEG|PNG|GIF|WEBP)/g, '$1.jpg');
   // Resolve hero.jpg placeholder to actual first image in post body
   const heroPlaceholder = post.match(/image:\s*\/[^\n]*hero\.jpg/);
   if (heroPlaceholder) {
@@ -229,13 +231,24 @@ function parseFrontmatterServer(raw) {
   let arrayValues = null;
   for (const line of match[1].split('\n')) {
     const arrItem = line.match(/^\s+-\s+"?(.+?)"?\s*$/);
-    if (arrItem && currentKey) { arrayValues.push(arrItem[1]); continue; }
-    if (currentKey && arrayValues) { meta[currentKey] = arrayValues; arrayValues = null; }
+    if (arrItem && currentKey) {
+      arrayValues.push(arrItem[1]);
+      continue;
+    }
+    if (currentKey && arrayValues) {
+      meta[currentKey] = arrayValues;
+      arrayValues = null;
+    }
     const kv = line.match(/^(\w+):\s*(.*)$/);
     if (!kv) continue;
     const [, key, val] = kv;
-    if (!val) { currentKey = key; arrayValues = []; }
-    else { currentKey = null; meta[key] = val.replace(/^"(.*)"$/, '$1'); }
+    if (!val) {
+      currentKey = key;
+      arrayValues = [];
+    } else {
+      currentKey = null;
+      meta[key] = val.replace(/^"(.*)"$/, '$1');
+    }
   }
   if (currentKey && arrayValues) meta[currentKey] = arrayValues;
   return meta;
