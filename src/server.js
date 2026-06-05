@@ -4,10 +4,13 @@
  */
 
 import express from 'express';
+import draftsRouter from './server-drafts.js';
 
 /** @type {any} */
 const app = express();
 
+app.use(express.json());
+app.use('/_api/drafts', draftsRouter);
 app.use(express.static('src'));
 
 app.use((req, res, next) => {

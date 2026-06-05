@@ -3,6 +3,19 @@
  * @module utils/statusColors
  */
 
+/** @type {string[]} */
+export const STATUS_OPTIONS = ['draft', 'needs-images', 'review', 're-review', 'ready', 'complete'];
+
+/** @type {Record<string, string>} */
+const DRAFT_COLORS = {
+  draft: '#888',
+  'needs-images': '#e67e22',
+  review: '#3498db',
+  're-review': '#e74c3c',
+  ready: '#9b59b6',
+  complete: '#27ae60',
+};
+
 /** @type {Record<string, 'info'|'success'|'warning'|'danger'>} */
 const STATUS_COLORS = {
   active: 'success',
@@ -39,7 +52,7 @@ const PRIORITY_TITLES = {
  * @param {string} status
  * @returns {'info'|'success'|'warning'|'danger'}
  */
-export const statusColor = (status) => STATUS_COLORS[status] || 'info';
+export const statusColor = (status) => DRAFT_COLORS[status] || STATUS_COLORS[status] || 'info';
 
 /**
  * @param {string} status

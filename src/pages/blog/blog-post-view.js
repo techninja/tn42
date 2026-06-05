@@ -12,6 +12,7 @@ import authors from '#config/authors.js';
 import { applyNameCorrection, correctTitle, correctTag } from '#utils/nameCorrection.js';
 import '#organisms/site-header/site-header.js';
 import { asset, CDN } from '#config/cdn.js';
+import { attachLightbox } from '#utils/lightbox.js';
 import '#molecules/breadcrumb/breadcrumb.js';
 import { setPageTitle } from '#utils/pageTitle.js';
 import '#organisms/site-footer/site-footer.js';
@@ -25,17 +26,20 @@ async function loadPost(slug) {
   const rendered = applyNameCorrection(renderMarkdown(content), meta);
   // Prefix image paths with CDN in rendered HTML
   let html = CDN ? rendered.replace(/src="\/images\//g, `src="${CDN}/images/`) : rendered;
-  // Remove first image from body if it matches hero (avoid duplicate)
+  // Remove first image/figure from body if it matches hero (avoid duplicate)
   let heroAlt = '';
   if (meta.image) {
-    html = html.replace(/<img[^>]*src="[^"]*"[^>]*\/?>/, (m) => {
-      if (m.includes(/** @type {string} */ (meta.image).split('/').pop())) {
-        const altMatch = m.match(/alt="([^"]*)"/);
-        if (altMatch) heroAlt = altMatch[1];
-        return '';
-      }
-      return m;
-    });
+    const heroFile = /** @type {string} */ (meta.image).split('/').pop();
+    // Match figure wrapping the hero image anywhere in the content
+    const figureRe = new RegExp(
+      `<figure[^>]*>[\\s\\S]*?${heroFile.replace(/\./g, '\\.')}[\\s\\S]*?</figure>`,
+    );
+    const figMatch = html.match(figureRe);
+    if (figMatch) {
+      const capMatch = figMatch[0].match(/<figcaption>([^<]*)<\/figcaption>/);
+      if (capMatch) heroAlt = capMatch[1];
+      html = html.replace(figMatch[0], '');
+    }
   }
   return { meta, html, heroAlt };
 }
@@ -50,7 +54,10 @@ export default define({
       if (host.slug)
         loadPost(host.slug).then((p) => {
           host.post = p || false;
-          if (p) setPageTitle(/** @type {string} */ (p.meta.title));
+          if (p) {
+            setPageTitle(/** @type {string} */ (p.meta.title));
+            requestAnimationFrame(() => attachLightbox(host));
+          }
         });
     },
   },

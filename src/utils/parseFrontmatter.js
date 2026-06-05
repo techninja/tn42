@@ -17,9 +17,9 @@ export function parseFrontmatter(raw) {
   let arrayValues = null;
 
   for (const line of match[1].split('\n')) {
-    const arrItem = line.match(/^\s+-\s+"?(.+?)"?\s*$/);
+    const arrItem = line.match(/^\s+-\s+["']?(.+?)["']?\s*$/);
     if (arrItem && currentKey) {
-      arrayValues.push(arrItem[1]);
+      arrayValues.push(arrItem[1].replace(/^'+|'+$/g, ''));
       continue;
     }
     if (currentKey && arrayValues) {
@@ -34,7 +34,7 @@ export function parseFrontmatter(raw) {
       arrayValues = [];
     } else {
       currentKey = null;
-      meta[key] = val.replace(/^"(.*)"$/, '$1');
+      meta[key] = val.replace(/^["']+|["']+$/g, '');
     }
   }
   if (currentKey && arrayValues) meta[currentKey] = arrayValues;

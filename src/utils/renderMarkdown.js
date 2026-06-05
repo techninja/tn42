@@ -30,13 +30,25 @@ export function renderMarkdown(md) {
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^# (.+)$/gm, '<h1>$1</h1>')
     // Images
-    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />')
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, src) => {
+      if (/\.(mp4|webm|mov|avi)$/i.test(src)) {
+        const webSrc = src.replace(/\.[^.]+$/, '.mp4');
+        return `<figure class="post-media-figure"><video src="${webSrc}" controls preload="metadata"></video>${alt ? `<figcaption>${alt}</figcaption>` : ''}</figure>`;
+      }
+      if (alt) {
+        return `<figure class="post-media-figure"><img src="${src}" alt="${alt}" loading="lazy" /><figcaption>${alt}</figcaption></figure>`;
+      }
+      return `<img src="${src}" alt="" loading="lazy" />`;
+    })
     // Links
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
     // Bold + italic
     .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+    .replace(/___(.+?)___/g, '<strong><em>$1</em></strong>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/__(.+?)__/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/(?<![\w])_(.+?)_(?![\w])/g, '<em>$1</em>')
     // Inline code
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     // Unordered lists — wrap consecutive items
@@ -47,7 +59,7 @@ export function renderMarkdown(md) {
     .map((block) => {
       block = block.trim();
       if (!block) return '';
-      if (/^<(h[1-6]|li|img|iframe|div|ul|ol)/.test(block)) return block;
+      if (/^<(h[1-6]|li|img|iframe|div|ul|ol|figure)/.test(block)) return block;
       return `<p>${block.replace(/\n/g, '<br>')}</p>`;
     })
     .join('\n');

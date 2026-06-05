@@ -48,15 +48,27 @@ export default define({
       setPageTitle('Blog');
     },
   },
+  search: '',
+  authorFilter: 'techninja',
   page: {
     value: 1,
     observe() { window.scrollTo({ top: 0, behavior: 'smooth' }); },
   },
   render: {
-    value: ({ posts, page }) => {
+    value: ({ posts, page, search, authorFilter }) => {
       const ready = Array.isArray(posts);
-      const total = ready ? Math.ceil(posts.length / PER_PAGE) : 0;
-      const visible = ready ? posts.slice((page - 1) * PER_PAGE, page * PER_PAGE) : [];
+      const filtered = ready
+        ? posts.filter((p) => {
+            if (authorFilter && p.author !== authorFilter) return false;
+            if (!search) return true;
+            const q = search.toLowerCase();
+            return p.title.toLowerCase().includes(q)
+              || (p.tags || []).some((t) => t.toLowerCase().includes(q))
+              || (p.description || '').toLowerCase().includes(q);
+          })
+        : posts;
+      const total = ready ? Math.ceil(filtered.length / PER_PAGE) : 0;
+      const visible = ready ? filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE) : [];
       const tags = ready ? collectTags(posts) : [];
       return html`
         <site-header active="blog"></site-header>
@@ -65,7 +77,28 @@ export default define({
             <app-breadcrumb
               items="${JSON.stringify([{ label: 'Home', href: '/' }, { label: 'Blog' }])}"
             ></app-breadcrumb>
-            <h1>Blog <span class="media-count">${ready ? posts.length : ''} posts</span></h1>
+            <h1>Blog <span class="media-count">${ready ? filtered.length : ''} posts</span></h1>
+            <div class="blog-author-filter">
+              <button
+                class="${{ 'blog-author-btn': true, active: authorFilter === 'techninja' }}"
+                onclick="${(host) => { host.authorFilter = 'techninja'; host.page = 1; }}"
+              >TechNinja</button>
+              <button
+                class="${{ 'blog-author-btn': true, active: authorFilter === 'sylvia' }}"
+                onclick="${(host) => { host.authorFilter = 'sylvia'; host.page = 1; }}"
+              >Zeph (Legacy)</button>
+              <button
+                class="${{ 'blog-author-btn': true, active: !authorFilter }}"
+                onclick="${(host) => { host.authorFilter = ''; host.page = 1; }}"
+              >All</button>
+            </div>
+            <input
+              type="search"
+              class="blog-search"
+              placeholder="Search posts…"
+              value="${search}"
+              oninput="${(host, e) => { host.search = e.target.value; host.page = 1; }}"
+            />
             ${ready
               ? visible.map(
                   (p) => html`

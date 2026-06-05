@@ -59,6 +59,7 @@
   "dependencies": {
     "express": "^5.2.1",
     "hybrids": "^9.1.22",
-    "lucide-static": "^1.7.0"
+    "lucide-static": "^1.7.0",
+    "sharp": "^0.34.5"
   }
 }

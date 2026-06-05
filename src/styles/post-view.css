@@ -142,3 +142,20 @@
 .post-body h4 {
   margin: var(--space-xl) 0 var(--space-sm);
 }
+
+.post-media-figure {
+  margin: 1.5rem 0;
+}
+
+.post-media-figure img,
+.post-media-figure video {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.post-media-figure figcaption {
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #888);
+  margin-top: 0.4rem;
+  text-align: center;
+}

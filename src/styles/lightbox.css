@@ -1,0 +1,103 @@
+/* Lightbox — full-screen image/video modal with nav */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  cursor: zoom-out;
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-content {
+  max-width: 85vw;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content img,
+.lightbox-content video {
+  max-width: 85vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 4px;
+  transition: transform 0.1s ease;
+  touch-action: none;
+}
+
+.lightbox-caption {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ccc;
+  font-size: 0.9rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.2s;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.lightbox-prev { left: 1rem; }
+.lightbox-next { right: 1rem; }
+
+.lightbox-prev svg,
+.lightbox-next svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 768px) {
+  .lightbox-prev,
+  .lightbox-next {
+    display: none;
+  }
+
+  .lightbox-content img,
+  .lightbox-content video {
+    max-width: 95vw;
+    max-height: 75vh;
+  }
+}
+
+/* Indicate images are clickable */
+.post-media-figure img,
+.post-media-figure video,
+.post-hero-figure img {
+  cursor: zoom-in;
+}
