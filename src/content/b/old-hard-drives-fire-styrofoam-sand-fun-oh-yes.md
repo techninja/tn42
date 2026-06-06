@@ -39,5 +39,5 @@ Then with 100 grit sandpaper and a Dremel I rounded the edges and smoothed the r
 ![Our second attempt of the day, that soup can didn't fare too well](/images/IMG_9188/index.jpg)  
 ![The D's first sand covered monstrosity is pulled from the scalding sand! It's... a D! You can still see the spillage attached](/images/IMG_9177/index.jpg)  
 ![The D is pleased! our first cast is a complete success.. next, the knife...](/images/IMG_9183/index.jpg)  
- [![[Post wire brush] Mostly a failure. The metal never got to the tip of the knife, and the can bit was a real bitch to remove.](/images/IMG_9186/index.jpg)](../../sites/default/files/content_images/IMG_9186/index.jpg)  
+ ![Post wire brush - Mostly a failure. The metal never got to the tip of the knife, and the can bit was a real bitch to remove.](/images/IMG_9186/index.jpg)  
 ![The final results. Needed lots of work with a wire brush to get it to shine, and the knife needed lots of grinding)](/images/alsyl/index.jpg)
