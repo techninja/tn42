@@ -69,6 +69,7 @@ export default define({
         <site-header></site-header>
         <main class="drafts-page">
           <h1>📝 Draft Manager</h1>
+          <p><a href="/media-drafts">📷 Media Drafts →</a></p>
 
           ${drafts === undefined
             ? html`<p>Loading…</p>`
