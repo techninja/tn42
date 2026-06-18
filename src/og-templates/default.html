@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1200px; height: 630px; overflow: hidden;
+  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(135deg, #020617 0%, #0c1a2e 50%, #020617 100%);
+  color: #f1f5f9; position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+canvas { position: absolute; inset: 0; }
+.card {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 28px; text-align: center; position: relative; z-index: 1;
+}
+.mark {
+  font-size: 160px; font-weight: 900; line-height: 1;
+  color: #ef4444; text-shadow: 0 0 60px rgba(239,68,68,0.4);
+}
+.name { font-size: 32px; font-weight: 700; color: #38bdf8; letter-spacing: 4px; text-transform: uppercase; }
+.tagline { font-size: 26px; color: #94a3b8; max-width: 700px; line-height: 1.4; }
+</style></head>
+<body>
+<canvas id="c" width="1200" height="630"></canvas>
+<div class="card">
+  <div class="mark">42</div>
+  <div class="name">TechNinja</div>
+  <div class="tagline">{description}</div>
+</div>
+<script>
+const c=document.getElementById('c'),ctx=c.getContext('2d');
+const W=1200,H=630,N=80,D=130;
+const p=Array.from({length:N},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.5+.5}));
+for(let f=0;f<60;f++) for(const q of p){q.x+=q.vx;q.y+=q.vy;if(q.x<0||q.x>W)q.vx*=-1;if(q.y<0||q.y>H)q.vy*=-1;}
+for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){const dx=p[i].x-p[j].x,dy=p[i].y-p[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<D){ctx.beginPath();ctx.moveTo(p[i].x,p[i].y);ctx.lineTo(p[j].x,p[j].y);ctx.strokeStyle=`rgba(56,189,248,${.15*(1-d/D)})`;ctx.lineWidth=1;ctx.stroke();}}
+for(const q of p){ctx.beginPath();ctx.arc(q.x,q.y,q.r,0,Math.PI*2);ctx.fillStyle='rgba(56,189,248,0.5)';ctx.fill();}
+</script>
+</body></html>

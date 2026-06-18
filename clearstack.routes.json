@@ -1,33 +1,42 @@
 {
   "/": {
     "title": "tn42.com — tech ninja 42",
-    "description": "Dad of 6, nerd, maker, and general hacker of things. Personal site of TechNinja."
+    "description": "Dad of 6, nerd, maker, and general hacker of things. Personal site of TechNinja.",
+    "ogImage": "https://tn42.com/og-image.png"
   },
   "/b": {
     "title": "Blog | tn42.com",
-    "description": "Legacy blog posts from 2006–2012. Maker faire, robots, electronics, and kid projects."
+    "description": "Legacy blog posts from 2006–2012. Maker faire, robots, electronics, and kid projects.",
+    "ogImage": "https://tn42.com/b.png"
   },
   "/b/:slug": {
     "title": "{slug.title} | tn42.com",
     "description": "{slug.description}",
     "image": "{slug.image}",
-    "data": "src/content/b/manifest.json:posts"
+    "ogImage": "https://tn42.com/b/{slug.slug}.png",
+    "data": "src/content/b/manifest.json:posts",
+    "ogTemplate": "post"
   },
   "/g/:slug": {
     "title": "{slug.title} | tn42.com",
     "description": "{slug.title}",
     "image": "{slug.image}",
-    "data": "src/content/g/manifest.json:posts"
+    "ogImage": "https://tn42.com/g/{slug.slug}.png",
+    "data": "src/content/g/manifest.json:posts",
+    "ogTemplate": "post"
   },
   "/media": {
     "title": "Media | tn42.com",
-    "description": "Photos and videos — mostly shot on phones with minimal editing."
+    "description": "Photos and videos — mostly shot on phones with minimal editing.",
+    "ogImage": "https://tn42.com/media.png"
   },
   "/media/detail/:slug": {
     "title": "{slug.caption} | tn42.com",
     "description": "{slug.caption}",
     "image": "{slug.image}",
-    "data": "src/content/media/manifest.json:posts"
+    "ogImage": "https://tn42.com/media/detail/{slug.slug}.png",
+    "data": "src/content/media/manifest.json:posts",
+    "ogTemplate": "media"
   },
   "/media/tags": {
     "title": "Media Tags | tn42.com",
@@ -35,12 +44,15 @@
   },
   "/portfolio": {
     "title": "Portfolio | tn42.com",
-    "description": "Open source projects by TechNinja — Clearstack, StatiCart, Asili, and more."
+    "description": "Open source projects by TechNinja — Clearstack, StatiCart, Asili, and more.",
+    "ogImage": "https://tn42.com/portfolio.png"
   },
   "/portfolio/:id": {
     "title": "{id.name} | tn42.com",
     "description": "{id.description}",
-    "data": "src/content/portfolio/projects.json:projects"
+    "ogImage": "https://tn42.com/portfolio/{id.id}.png",
+    "data": "src/content/portfolio/projects.json:projects",
+    "ogTemplate": "portfolio"
   },
   "/users/techninja": {
     "title": "About TechNinja | tn42.com",

@@ -1,24 +1,38 @@
 #!/usr/bin/env node
 
 /**
- * Upload media assets to Cloudflare R2 bucket.
+ * Upload media assets to Cloudflare R2 bucket — skips previously uploaded files.
+ * Tracks uploads in .r2-uploaded.json (key → size).
  * Requires: wrangler CLI authenticated.
  *
- * Usage: node scripts/upload-r2.js [--bucket=tn42-data]
+ * Usage: node scripts/upload-r2.js [--bucket=tn42-data] [--force]
  */
 
 import { exec } from 'node:child_process';
-import { readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { resolve, join, relative } from 'node:path';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const BUCKET = process.argv.find((a) => a.startsWith('--bucket='))?.split('=')[1] || 'tn42-data';
+const FORCE = process.argv.includes('--force');
 const CONCURRENCY = 10;
+const TRACKER = resolve(ROOT, '.r2-uploaded.json');
 
 const folders = [
   { local: 'src/assets-media', remote: 'assets-media' },
   { local: 'src/images', remote: 'images' },
 ];
+
+/** Load upload tracker. */
+function loadTracker() {
+  if (FORCE || !existsSync(TRACKER)) return {};
+  try { return JSON.parse(readFileSync(TRACKER, 'utf-8')); } catch { return {}; }
+}
+
+/** Save upload tracker. */
+function saveTracker(data) {
+  writeFileSync(TRACKER, JSON.stringify(data, null, 2) + '\n');
+}
 
 /** Recursively collect all files in a directory. */
 function walkFiles(dir) {
@@ -31,7 +45,7 @@ function walkFiles(dir) {
   return results;
 }
 
-/** Upload a single file, returns a promise. */
+/** Upload a single file. */
 function uploadFile(key, filePath) {
   return new Promise((res) => {
     exec(
@@ -45,7 +59,7 @@ function uploadFile(key, filePath) {
   });
 }
 
-/** Process array in batches of N concurrency. */
+/** Process array in batches. */
 async function batch(items, fn, n) {
   let done = 0;
   for (let i = 0; i < items.length; i += n) {
@@ -55,23 +69,40 @@ async function batch(items, fn, n) {
   }
 }
 
-console.log(`\n☁️  Uploading to R2 bucket: ${BUCKET}\n`);
+console.log(`\n☁️  Uploading to R2 bucket: ${BUCKET}${FORCE ? ' (--force)' : ''}\n`);
 
-let total = 0;
+const tracker = loadTracker();
+let uploaded = 0;
+let skipped = 0;
 
 for (const { local, remote } of folders) {
   const src = resolve(ROOT, local);
   const files = walkFiles(src);
-  console.log(`  ${local}/ → ${remote}/ (${files.length} files, ${CONCURRENCY} concurrent)`);
 
-  const uploads = files.map((filePath) => {
+  const toUpload = [];
+  for (const filePath of files) {
     const key = `${remote}/${relative(src, filePath)}`;
-    return { key, filePath };
-  });
+    const size = statSync(filePath).size;
+    if (!FORCE && tracker[key] === size) {
+      skipped++;
+    } else {
+      toUpload.push({ key, filePath, size });
+    }
+  }
 
-  await batch(uploads, ({ key, filePath }) => uploadFile(key, filePath), CONCURRENCY);
-  total += files.length;
+  console.log(`  ${local}/ → ${remote}/ (${toUpload.length} new, ${files.length - toUpload.length} skipped)`);
+
+  if (toUpload.length) {
+    await batch(toUpload, async ({ key, filePath, size }) => {
+      const ok = await uploadFile(key, filePath);
+      if (ok) tracker[key] = size;
+    }, CONCURRENCY);
+    uploaded += toUpload.length;
+  }
 }
 
-console.log(`\n✅ Uploaded ${total} files to ${BUCKET}`);
-console.log(`   Configure custom domain: data.tn42.com → ${BUCKET}\n`);
+saveTracker(tracker);
+
+console.log(`\n✅ Uploaded ${uploaded} files, skipped ${skipped} unchanged`);
+if (FORCE) console.log('   (--force used, all files re-uploaded)');
+console.log(`   Tracker saved to .r2-uploaded.json\n`);
