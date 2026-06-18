@@ -2,13 +2,13 @@
 
 /**
  * Build and upload OG images to R2 — only regenerates changed content.
+ * Renders directly to dist/og/ so you can preview as they generate.
  * Tracks last-rendered date per slug in .og-manifest.json.
- * Uploads to R2 bucket under og/ prefix, served from data.tn42.com/og/
  *
  * Usage: node scripts/build-og-images.js [--force] [--dry-run]
  */
 
-import { existsSync, readFileSync, writeFileSync, rmSync, mkdirSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
 import { resolve, join, relative } from 'node:path';
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
@@ -19,12 +19,16 @@ const FORCE = process.argv.includes('--force');
 const DRY = process.argv.includes('--dry-run');
 const BUCKET = 'tn42-data';
 const TRACKER = resolve(ROOT, '.og-manifest.json');
-const TMP = resolve(ROOT, '.og-tmp');
+const OUT = resolve(ROOT, 'dist/og');
 const DATA_URL = process.env.DATA_URL || 'https://data.tn42.com';
 
 function loadTracker() {
   if (FORCE || !existsSync(TRACKER)) return {};
   try { return JSON.parse(readFileSync(TRACKER, 'utf-8')); } catch { return {}; }
+}
+
+function saveTracker(tracker) {
+  writeFileSync(TRACKER, JSON.stringify(tracker, null, 2) + '\n');
 }
 
 function collectItems() {
@@ -38,7 +42,6 @@ function collectItems() {
     const raw = JSON.parse(readFileSync(filePath, 'utf-8'));
     const data = jsonPath ? jsonPath.split('.').reduce((o, k) => o?.[k], raw) : raw;
     const arr = Array.isArray(data) ? data : Object.entries(data).map(([k, v]) => ({ slug: k, ...v }));
-    const paramName = pattern.match(/:(\w+)/)?.[1] || 'id';
     for (const item of arr) {
       const slug = item.slug || item.id || item.sku;
       if (!slug) continue;
@@ -81,33 +84,50 @@ console.log(`  ${toRender.length} to render, ${items.length - toRender.length} u
 if (toRender.length === 0) { console.log('✅ Nothing to do.\n'); process.exit(0); }
 if (DRY) { for (const i of toRender) console.log(`  would render: ${i.slug}`); process.exit(0); }
 
-mkdirSync(TMP, { recursive: true });
+// Save tracker on interrupt so progress isn't lost
+process.on('SIGINT', () => { saveTracker(tracker); console.log('\n⚠ Interrupted — progress saved.\n'); process.exit(1); });
+
+mkdirSync(OUT, { recursive: true });
+
+// Pre-delete files we're about to re-render so new ones are visibly fresh
+for (const i of toRender) {
+  const routes = JSON.parse(readFileSync(resolve(ROOT, 'clearstack.routes.json'), 'utf-8'));
+  for (const [pattern, config] of Object.entries(routes)) {
+    if (!pattern.includes(':')) continue;
+    const paramName = pattern.match(/:(\w+)/)?.[1] || 'id';
+    const path = pattern.replace(`:${paramName}`, i.slug);
+    const imgPath = resolve(OUT, path.slice(1) + '.png');
+    if (existsSync(imgPath)) { rmSync(imgPath); }
+  }
+}
+console.log(`  Cleared ${toRender.length} existing images\n`);
 
 const { buildOGImages } = await import('@techninja/clearstack/lib/build-og-images.js');
-
 const slugSet = new Set(toRender.map((i) => i.slug));
 let rendered = 0;
+
 console.log('  Launching Playwright...');
+const heartbeat = setInterval(() => process.stdout.write('.'), 5000);
 await buildOGImages({
-  projectDir: ROOT, outDir: '.og-tmp', siteName: 'tn42',
+  projectDir: ROOT, outDir: 'dist/og', siteName: 'tn42',
   filter: (slug) => slugSet.has(slug),
-  onProgress: (slug) => console.log(`  [${++rendered}/${toRender.length}] ${slug}`),
+  onProgress: (slug) => {
+    clearInterval(heartbeat);
+    const n = ++rendered;
+    const item = toRender.find((i) => i.slug === slug);
+    if (item) tracker[item.slug] = item.date || new Date().toISOString();
+    if (n % 10 === 0) saveTracker(tracker);
+    console.log(`  [${n}/${toRender.length}] ${slug}`);
+  },
 });
 console.log('');
 
-// Upload to R2
+// Upload new renders to R2
 let uploaded = 0;
-for (const { full, key } of walk(TMP)) {
+for (const { full, key } of walk(OUT)) {
   const ok = await uploadToR2(key, full);
-  if (ok) {
-    const slug = full.split('/').pop().replace('.png', '');
-    const item = toRender.find((i) => i.slug === slug);
-    if (item) tracker[item.slug] = item.date || new Date().toISOString();
-    uploaded++;
-    console.log(`  ✓ ${key}`);
-  }
+  if (ok) { uploaded++; console.log(`  ✓ ${key}`); }
 }
 
-rmSync(TMP, { recursive: true });
-writeFileSync(TRACKER, JSON.stringify(tracker, null, 2) + '\n');
+saveTracker(tracker);
 console.log(`\n✅ Uploaded ${uploaded} OG images → ${DATA_URL}/og/\n`);

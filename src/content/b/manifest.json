@@ -14,7 +14,7 @@
       "title": "The Beans Have Arrived",
       "description": "The Beans Have Arrived",
       "date": "2021-06-01T12:00:00",
-      "image": "/images/blog/the-beans-have-arrived/D75_5111.jpg",
+      "image": "https://data.tn42.com/images/blog/the-beans-have-arrived/D75_5111.jpg",
       "tags": ["family", "milestone", "data"],
       "author": "techninja"
     },
@@ -23,7 +23,7 @@
       "title": "CNCServer v3 & Automating Art in Lockdown",
       "description": "CNCServer v3 & Automating Art in Lockdown",
       "date": "2020-04-01T12:00:00",
-      "image": "/images/blog/cncserver-v3-automating-art-2020/IMG_20200210_164841.jpg",
+      "image": "https://data.tn42.com/images/blog/cncserver-v3-automating-art-2020/IMG_20200210_164841.jpg",
       "tags": ["cncserver", "art", "pen-plotting"],
       "author": "techninja"
     },
@@ -32,7 +32,7 @@
       "title": "Go Kart Roundup",
       "description": "Go Kart Roundup",
       "date": "2014-07-01T12:00:00",
-      "image": "/images/blog/go-kart-roundup-2014/20140615_200150.jpg",
+      "image": "https://data.tn42.com/images/blog/go-kart-roundup-2014/20140615_200150.jpg",
       "tags": ["electronics", "ev", "builds"],
       "author": "techninja"
     },
@@ -41,7 +41,7 @@
       "title": "RobotsConf Keynote & WaterColorBot",
       "description": "RobotsConf Keynote & WaterColorBot",
       "date": "2013-11-01T12:00:00",
-      "image": "/images/blog/robotsconf-watercolorbot-2013/IMG_20130410_231346.jpg",
+      "image": "https://data.tn42.com/images/blog/robotsconf-watercolorbot-2013/IMG_20130410_231346.jpg",
       "tags": ["cncserver", "watercolorbot", "conference", "robots", "speaking"],
       "author": "techninja"
     },
@@ -50,7 +50,7 @@
       "title": "DML 2012, on stage and demo tech",
       "description": "DML 2012, on stage and demo tech",
       "date": "2012-05-01T12:00:00",
-      "image": "/images/blog/ted-talk-dml-2012/lights.jpg",
+      "image": "https://data.tn42.com/images/blog/ted-talk-dml-2012/lights.jpg",
       "tags": ["speaking", "conference", "education", "arduino"],
       "author": "techninja"
     },
@@ -68,7 +68,7 @@
       "title": "Portal Turret Project",
       "description": "Portal Turret Project",
       "date": "2011-09-01T12:00:00",
-      "image": "/images/blog/portal-turret-project-2011/IMG_3633.jpg",
+      "image": "https://data.tn42.com/images/blog/portal-turret-project-2011/IMG_3633.jpg",
       "tags": ["electronics", "cosplay", "arduino", "gaming", "collaboration"],
       "author": "techninja"
     },
@@ -216,7 +216,7 @@
       "title": "October Melty 2009: Direct sand casting without foam!",
       "description": "October Melty 2009: Direct sand casting without foam!",
       "date": "2009-11-07T15:52:00",
-      "image": "/images/IMG_3958/index.jpg",
+      "image": "https://data.tn42.com/images/IMG_3958/index.jpg",
       "tags": ["aluminum", "egg", "green sand", "lfc", "melty", "spatula", "how to...", "neat"],
       "author": "techninja"
     },
@@ -342,7 +342,7 @@
       "title": "Aluminum melty, from styrofoam to end result",
       "description": "Aluminum melty, from styrofoam to end result",
       "date": "2009-08-13T20:19:00",
-      "image": "/images/IMG_3636/index.jpg",
+      "image": "https://data.tn42.com/images/IMG_3636/index.jpg",
       "tags": ["aluminum", "furnace", "lfc", "melty", "styrofoam", "how to...", "neat"],
       "author": "techninja"
     },
@@ -378,7 +378,7 @@
       "title": "My spore adventure!",
       "description": "My spore adventure!",
       "date": "2009-06-30T20:15:00",
-      "image": "/images/CRE_Bean-08745526_fulcrop/index.png",
+      "image": "https://data.tn42.com/images/CRE_Bean-08745526_fulcrop/index.png",
       "tags": ["sylvia's stuff"],
       "author": "sylvia"
     },
@@ -468,7 +468,7 @@
       "title": "old hard drives + fire + styrofoam + sand = fun.. oh yes.",
       "description": "old hard drives + fire + styrofoam + sand = fun.. oh yes.",
       "date": "2009-06-22T23:28:00",
-      "image": "/images/MVI_9173-2/index.jpg",
+      "image": "https://data.tn42.com/images/MVI_9173-2/index.jpg",
       "tags": ["aluminum", "furnace", "lfc", "melty", "styrofoam", "how to..."],
       "author": "techninja"
     },
@@ -531,7 +531,7 @@
       "title": "Maker Faire 2009",
       "description": "Maker Faire 2009",
       "date": "2009-06-03T12:44:00",
-      "image": "/images/IMG_1552/index.jpg",
+      "image": "https://data.tn42.com/images/IMG_1552/index.jpg",
       "tags": [],
       "author": "techninja"
     },
@@ -576,7 +576,7 @@
       "title": "Maker Faire - An incredible experience",
       "description": "Maker Faire - An incredible experience",
       "date": "2009-05-09T09:26:00",
-      "image": "/images/DSC01198/index.jpg",
+      "image": "https://data.tn42.com/images/DSC01198/index.jpg",
       "tags": ["neat"],
       "author": "techninja"
     },
@@ -585,7 +585,7 @@
       "title": "Lighted Piano Project",
       "description": "Lighted Piano Project",
       "date": "2009-05-03T00:19:00",
-      "image": "/images/IMG_5649/index.jpg",
+      "image": "https://data.tn42.com/images/IMG_5649/index.jpg",
       "tags": ["electronics", "keyboard", "led", "piano", "project", "neat"],
       "author": "techninja"
     },
@@ -594,7 +594,7 @@
       "title": "pShops.. Feline Edition",
       "description": "pShops.. Feline Edition",
       "date": "2009-04-12T22:55:00",
-      "image": "/images/Cathouse3/index.jpg",
+      "image": "https://data.tn42.com/images/Cathouse3/index.jpg",
       "tags": ["graphics"],
       "author": "techninja"
     },
@@ -612,7 +612,7 @@
       "title": "Arduino Beginnings",
       "description": "Arduino Beginnings",
       "date": "2008-06-01T12:00:00",
-      "image": "/images/blog/arduino-beginnings-2008/IMG_5944.jpg",
+      "image": "https://data.tn42.com/images/blog/arduino-beginnings-2008/IMG_5944.jpg",
       "tags": ["arduino", "electronics", "hardware"],
       "author": "techninja"
     }

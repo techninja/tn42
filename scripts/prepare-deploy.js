@@ -73,7 +73,15 @@ console.log('\n→ Generating OG metadata pages...');
 const { buildOG } = await import('@techninja/clearstack/lib/build-og.js');
 buildOG({ projectDir: ROOT, outDir: 'dist', baseUrl: 'https://tn42.com' });
 
+console.log('→ Generating sitemap...');
+const { buildSitemap } = await import('@techninja/clearstack/lib/build-sitemap.js');
+buildSitemap({ projectDir: ROOT, outDir: 'dist', baseUrl: 'https://tn42.com' });
+
 // OG images built and synced to R2 separately via: node scripts/build-og-images.js
+
+console.log('\n→ Injecting modulepreload hints...');
+const { buildModulePreload } = await import('@techninja/clearstack/lib/build-modulepreload.js');
+buildModulePreload({ projectDir: ROOT, outDir: 'dist' });
 
 writeFileSync(resolve(DIST, '_redirects'), redirects);
 
