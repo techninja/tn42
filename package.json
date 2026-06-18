@@ -14,7 +14,9 @@
     "convert": "node scripts/convert-legacy.js --clean",
     "convert:insta": "node scripts/convert-insta.js --clean",
     "spec": "node scripts/spec.js",
-    "release": "node scripts/release.js"
+    "release": "node scripts/release.js",
+    "build:og": "PLAYWRIGHT_EXECUTABLE_PATH=/home/techninja/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome node scripts/build-og-images.js",
+    "build:og:force": "PLAYWRIGHT_EXECUTABLE_PATH=/home/techninja/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome node scripts/build-og-images.js --force"
   },
   "repository": {
     "type": "git",
@@ -38,7 +40,7 @@
     "eslint-plugin-jsdoc": "^62.8.1",
     "eslint-plugin-unused-imports": "^4.0.0",
     "markdownlint-cli2": "^0.22.0",
-    "playwright": "^1.50.0",
+    "playwright": "^1.61.0",
     "prettier": "^3.8.1",
     "stylelint": "^17.6.0",
     "stylelint-config-standard": "^40.0.0",

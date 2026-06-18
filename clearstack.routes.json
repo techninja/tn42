@@ -13,7 +13,7 @@
     "title": "{slug.title} | tn42.com",
     "description": "{slug.description}",
     "image": "{slug.image}",
-    "ogImage": "https://tn42.com/b/{slug.slug}.png",
+    "ogImage": "https://data.tn42.com/og/b/{slug.slug}.png",
     "data": "src/content/b/manifest.json:posts",
     "ogTemplate": "post"
   },
@@ -21,7 +21,7 @@
     "title": "{slug.title} | tn42.com",
     "description": "{slug.title}",
     "image": "{slug.image}",
-    "ogImage": "https://tn42.com/g/{slug.slug}.png",
+    "ogImage": "https://data.tn42.com/og/g/{slug.slug}.png",
     "data": "src/content/g/manifest.json:posts",
     "ogTemplate": "post"
   },
@@ -34,7 +34,7 @@
     "title": "{slug.caption} | tn42.com",
     "description": "{slug.caption}",
     "image": "{slug.image}",
-    "ogImage": "https://tn42.com/media/detail/{slug.slug}.png",
+    "ogImage": "https://data.tn42.com/og/media/detail/{slug.slug}.png",
     "data": "src/content/media/manifest.json:posts",
     "ogTemplate": "media"
   },
@@ -50,7 +50,7 @@
   "/portfolio/:id": {
     "title": "{id.name} | tn42.com",
     "description": "{id.description}",
-    "ogImage": "https://tn42.com/portfolio/{id.id}.png",
+    "ogImage": "https://data.tn42.com/og/portfolio/{id.id}.png",
     "data": "src/content/portfolio/projects.json:projects",
     "ogTemplate": "portfolio"
   },

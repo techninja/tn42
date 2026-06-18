@@ -17,3 +17,5 @@ _insta_source/
 _converted/
 _drafts/
 .r2-uploaded.json
+.og-manifest.json
+.og-tmp/

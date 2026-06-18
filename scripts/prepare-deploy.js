@@ -68,20 +68,12 @@ if (existsSync(mediaManifest)) {
 // Create _redirects for Cloudflare Pages to proxy assets from R2
 const redirects = [`/* /index.html 200`].join('\n');
 
-// OG metadata pages + images
+// OG metadata pages (HTML shells for crawlers)
 console.log('\n→ Generating OG metadata pages...');
 const { buildOG } = await import('@techninja/clearstack/lib/build-og.js');
 buildOG({ projectDir: ROOT, outDir: 'dist', baseUrl: 'https://tn42.com' });
 
-console.log('→ Generating OG images...');
-try {
-  const { execSync } = await import('node:child_process');
-  execSync('npx playwright install chromium', { cwd: ROOT, stdio: 'pipe' });
-  const { buildOGImages } = await import('@techninja/clearstack/lib/build-og-images.js');
-  await buildOGImages({ projectDir: ROOT, outDir: 'dist', siteName: 'tn42' });
-} catch (e) {
-  console.warn('⚠ OG image generation failed:', e.message);
-}
+// OG images built and synced to R2 separately via: node scripts/build-og-images.js
 
 writeFileSync(resolve(DIST, '_redirects'), redirects);
 
