@@ -121,7 +121,7 @@ export default define({
                           <div class="post-tags">
                             ${post.meta.tags.map(
                               (t) =>
-                                html`<a href="/t/${encodeURIComponent(t)}" class="tag"
+                                html`<a href="/t/${encodeURIComponent(t)}" class="tag" data-native
                                   >${correctTag(t)}</a
                                 >`,
                             )}

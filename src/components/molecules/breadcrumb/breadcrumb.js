@@ -47,7 +47,7 @@ export default define({
                   ></span>`
                 : html``}
               ${item.href
-                ? html`<a href="${item.href}">${item.label}</a>`
+                ? html`<a href="${item.href}" data-native>${item.label}</a>`
                 : html`<span class="breadcrumb__current">${item.label}</span>`}
             `,
           )}
