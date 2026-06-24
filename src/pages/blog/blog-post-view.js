@@ -80,7 +80,7 @@ export default define({
                 <div class="not-found__content">
                   <h1>404</h1>
                   <p>This post doesn't exist.</p>
-                  <a href="${router.backUrl() || '/'}" class="btn btn-primary">← Back to home</a>
+                  <a href="${router.backUrl() || '/b'}" class="btn btn-primary">← Back to blog</a>
                 </div>
               `
             : html`
@@ -132,15 +132,8 @@ export default define({
                   <div
                     class="post-body"
                     innerHTML="${post.html}"
-                    onclick="${(h, e) => {
-                      const a = e.composedPath().find((el) => el.tagName === 'A');
-                      if (a?.href && a.origin === location.origin) {
-                        e.preventDefault();
-                        window.location.href = a.href;
-                      }
-                    }}"
                   ></div>
-                  <a href="${router.backUrl() || '/'}" class="btn btn-ghost">← Back to posts</a>
+                  <a href="${router.backUrl() || '/b'}" class="btn btn-ghost">← Back to posts</a>
                 </article>
               `}
       </main>
