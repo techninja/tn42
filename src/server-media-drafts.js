@@ -5,11 +5,8 @@
  */
 
 import { Router } from 'express';
-import {
-  readFileSync, writeFileSync, existsSync, mkdirSync,
-  readdirSync, copyFileSync, renameSync, unlinkSync,
-} from 'fs';
-import { join, resolve, parse, extname } from 'path';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { join, resolve, parse } from 'path';
 import { execFile } from 'child_process';
 import { promisify } from 'util';
 import sharp from 'sharp';
@@ -23,18 +20,30 @@ const IMAGE_EXT = /\.(jpe?g|png|gif|webp|svg|nef|cr2|arw|dng|raf|rw2)$/i;
 const RAW_EXT = /\.(nef|cr2|arw|dng|raf|rw2)$/i;
 const VIDEO_EXT = /\.(mp4|webm|mov|avi)$/i;
 
+/**
+ *
+ */
 function readData() {
   if (!existsSync(DATA_FILE)) return { items: [] };
   return JSON.parse(readFileSync(DATA_FILE, 'utf-8'));
 }
 
+/**
+ *
+ */
 function writeData(data) {
   writeFileSync(DATA_FILE, JSON.stringify(data, null, 2) + '\n');
 }
 
+/**
+ *
+ */
 function makeSlug(filename) {
   const { name } = parse(filename);
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
 const mediaRouter = Router();
@@ -77,11 +86,17 @@ mediaRouter.post('/upload', (req, res) => {
         proxyFile = `${baseName}_proxy.jpg`;
         try {
           const proxyPath = join(DRAFTS_DIR, proxyFile);
-          const { stdout: previewBuf } = await exec('exiftool', ['-b', '-PreviewImage', dest], { encoding: 'buffer', maxBuffer: 10 * 1024 * 1024 });
+          const { stdout: previewBuf } = await exec('exiftool', ['-b', '-PreviewImage', dest], {
+            encoding: 'buffer',
+            maxBuffer: 10 * 1024 * 1024,
+          });
           if (previewBuf.length > 1000) {
             writeFileSync(proxyPath, previewBuf);
           } else {
-            const { stdout: rawBuf } = await exec('dcraw', ['-T', '-c', '-w', '-h', dest], { encoding: 'buffer', maxBuffer: 50 * 1024 * 1024 });
+            const { stdout: rawBuf } = await exec('dcraw', ['-T', '-c', '-w', '-h', dest], {
+              encoding: 'buffer',
+              maxBuffer: 50 * 1024 * 1024,
+            });
             await sharp(rawBuf).resize({ width: 800 }).jpeg({ quality: 75 }).toFile(proxyPath);
           }
         } catch (e) {
@@ -92,8 +107,14 @@ mediaRouter.post('/upload', (req, res) => {
         proxyFile = `${baseName}_poster.jpg`;
         try {
           await exec('ffmpeg', [
-            '-i', dest, '-ss', '00:00:01', '-frames:v', '1',
-            '-y', join(DRAFTS_DIR, proxyFile),
+            '-i',
+            dest,
+            '-ss',
+            '00:00:01',
+            '-frames:v',
+            '1',
+            '-y',
+            join(DRAFTS_DIR, proxyFile),
           ]);
         } catch (e) {
           proxyFile = null;
@@ -115,7 +136,9 @@ mediaRouter.post('/upload', (req, res) => {
               date = `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}T${dateMatch[4]}:${dateMatch[5]}:${dateMatch[6]}`;
             }
           }
-        } catch (e) { /* no exif, use default */ }
+        } catch (e) {
+          /* no exif, use default */
+        }
       }
 
       const item = {
@@ -218,7 +241,10 @@ mediaRouter.get('/:slug/preview', async (req, res) => {
   try {
     let inputBuffer;
     if (RAW_EXT.test(file)) {
-      const { stdout } = await exec('dcraw', ['-T', '-c', '-w', '-h', src], { encoding: 'buffer', maxBuffer: 50 * 1024 * 1024 });
+      const { stdout } = await exec('dcraw', ['-T', '-c', '-w', '-h', src], {
+        encoding: 'buffer',
+        maxBuffer: 50 * 1024 * 1024,
+      });
       inputBuffer = stdout;
     }
 
@@ -226,15 +252,23 @@ mediaRouter.get('/:slug/preview', async (req, res) => {
 
     // Apply crop
     if (item.crop) {
-      const meta = await sharp(inputBuffer || previewSrc).rotate().metadata();
+      const meta = await sharp(inputBuffer || previewSrc)
+        .rotate()
+        .metadata();
       const [rw, rh] = item.crop.ratio.split(':').map(Number);
       let cw = meta.width;
-      let ch = Math.round(cw * rh / rw);
-      if (ch > meta.height) { ch = meta.height; cw = Math.round(ch * rw / rh); }
+      let ch = Math.round((cw * rh) / rw);
+      if (ch > meta.height) {
+        ch = meta.height;
+        cw = Math.round((ch * rw) / rh);
+      }
       const left = Math.round((item.crop.x || 0.5) * (meta.width - cw));
       const top = Math.round((item.crop.y || 0.5) * (meta.height - ch));
       pipeline = pipeline.extract({
-        left: Math.max(0, left), top: Math.max(0, top), width: cw, height: ch,
+        left: Math.max(0, left),
+        top: Math.max(0, top),
+        width: cw,
+        height: ch,
       });
     }
 
@@ -302,22 +336,33 @@ mediaRouter.post('/:slug/publish', async (req, res) => {
 
       // For raw files, decode with dcraw first
       if (RAW_EXT.test(file)) {
-        const { stdout } = await exec('dcraw', ['-T', '-c', '-w', src], { encoding: 'buffer', maxBuffer: 100 * 1024 * 1024 });
+        const { stdout } = await exec('dcraw', ['-T', '-c', '-w', src], {
+          encoding: 'buffer',
+          maxBuffer: 100 * 1024 * 1024,
+        });
         inputBuffer = stdout;
       }
 
       let pipeline = sharp(inputBuffer || src).rotate();
       if (item.crop) {
-        const meta = await sharp(inputBuffer || src).rotate().metadata();
+        const meta = await sharp(inputBuffer || src)
+          .rotate()
+          .metadata();
         const { ratio, x, y } = item.crop;
         const [rw, rh] = ratio.split(':').map(Number);
         let cw = meta.width;
-        let ch = Math.round(cw * rh / rw);
-        if (ch > meta.height) { ch = meta.height; cw = Math.round(ch * rw / rh); }
+        let ch = Math.round((cw * rh) / rw);
+        if (ch > meta.height) {
+          ch = meta.height;
+          cw = Math.round((ch * rw) / rh);
+        }
         const left = Math.round((x || 0.5) * (meta.width - cw));
         const top = Math.round((y || 0.5) * (meta.height - ch));
         pipeline = pipeline.extract({
-          left: Math.max(0, left), top: Math.max(0, top), width: cw, height: ch,
+          left: Math.max(0, left),
+          top: Math.max(0, top),
+          width: cw,
+          height: ch,
         });
       }
       pipeline = pipeline.resize({ width: 1200, withoutEnlargement: true });
@@ -359,15 +404,24 @@ mediaRouter.post('/:slug/publish', async (req, res) => {
       if (item.crop) {
         // Probe video dimensions
         const probe = await exec('ffprobe', [
-          '-v', 'error', '-select_streams', 'v:0',
-          '-show_entries', 'stream=width,height',
-          '-of', 'csv=p=0', src,
+          '-v',
+          'error',
+          '-select_streams',
+          'v:0',
+          '-show_entries',
+          'stream=width,height',
+          '-of',
+          'csv=p=0',
+          src,
         ]);
         const [vw, vh] = probe.stdout.trim().split(',').map(Number);
         const [rw, rh] = item.crop.ratio.split(':').map(Number);
         let cw = vw;
-        let ch = Math.round(vw * rh / rw);
-        if (ch > vh) { ch = vh; cw = Math.round(vh * rw / rh); }
+        let ch = Math.round((vw * rh) / rw);
+        if (ch > vh) {
+          ch = vh;
+          cw = Math.round((vh * rw) / rh);
+        }
         const cx = Math.round((item.crop.x || 0.5) * (vw - cw));
         const cy = Math.round((item.crop.y || 0.5) * (vh - ch));
         filters.push(`crop=${cw}:${ch}:${cx}:${cy}`);
@@ -376,8 +430,18 @@ mediaRouter.post('/:slug/publish', async (req, res) => {
       const args = ['-i', src];
       if (filters.length) args.push('-vf', filters.join(','));
       args.push(
-        '-c:v', 'libx264', '-preset', 'fast', '-crf', '23',
-        '-c:a', 'aac', '-movflags', '+faststart', '-y', dest,
+        '-c:v',
+        'libx264',
+        '-preset',
+        'fast',
+        '-crf',
+        '23',
+        '-c:a',
+        'aac',
+        '-movflags',
+        '+faststart',
+        '-y',
+        dest,
       );
       await exec('ffmpeg', args);
       processedFiles.push(outName);
@@ -394,9 +458,7 @@ mediaRouter.post('/:slug/publish', async (req, res) => {
     tags: item.tags,
     date: item.date,
     type: item.type,
-    image: item.type !== 'video'
-      ? `https://data.tn42.com/assets-media/${processedFiles[0]}`
-      : null,
+    image: item.type !== 'video' ? `https://data.tn42.com/assets-media/${processedFiles[0]}` : null,
   };
   manifest.posts.unshift(entry);
   manifest.posts.sort((a, b) => new Date(b.date) - new Date(a.date));

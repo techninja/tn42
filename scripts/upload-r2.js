@@ -26,7 +26,11 @@ const folders = [
 /** Load upload tracker. */
 function loadTracker() {
   if (FORCE || !existsSync(TRACKER)) return {};
-  try { return JSON.parse(readFileSync(TRACKER, 'utf-8')); } catch { return {}; }
+  try {
+    return JSON.parse(readFileSync(TRACKER, 'utf-8'));
+  } catch {
+    return {};
+  }
 }
 
 /** Save upload tracker. */
@@ -90,13 +94,19 @@ for (const { local, remote } of folders) {
     }
   }
 
-  console.log(`  ${local}/ → ${remote}/ (${toUpload.length} new, ${files.length - toUpload.length} skipped)`);
+  console.log(
+    `  ${local}/ → ${remote}/ (${toUpload.length} new, ${files.length - toUpload.length} skipped)`,
+  );
 
   if (toUpload.length) {
-    await batch(toUpload, async ({ key, filePath, size }) => {
-      const ok = await uploadFile(key, filePath);
-      if (ok) tracker[key] = size;
-    }, CONCURRENCY);
+    await batch(
+      toUpload,
+      async ({ key, filePath, size }) => {
+        const ok = await uploadFile(key, filePath);
+        if (ok) tracker[key] = size;
+      },
+      CONCURRENCY,
+    );
     uploaded += toUpload.length;
   }
 }

@@ -13,12 +13,14 @@
   text-align: center;
   color: var(--color-text-muted, #888);
   margin-bottom: 1.5rem;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 
 .media-drafts__dropzone.drag-over {
   border-color: var(--color-accent, #3498db);
-  background: rgba(52, 152, 219, 0.08);
+  background: rgb(52 152 219 / 8%);
 }
 
 .media-drafts__dropzone p {
@@ -53,7 +55,9 @@
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  transition: border-color 0.2s, transform 0.1s;
+  transition:
+    border-color 0.2s,
+    transform 0.1s;
 }
 
 .media-drafts__card:hover {
@@ -63,7 +67,7 @@
 .media-drafts__card.selected {
   border-color: var(--color-accent, #3498db);
   transform: scale(1.02);
-  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+  box-shadow: 0 0 0 2px rgb(52 152 219 / 30%);
 }
 
 .media-drafts__card.publishing {
@@ -85,8 +89,13 @@
 }
 
 @keyframes pulse {
-  from { opacity: 0.5; }
-  to { opacity: 0.8; }
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 0.8;
+  }
 }
 
 .media-drafts__thumb {
@@ -107,7 +116,7 @@
   position: absolute;
   top: 6px;
   right: 6px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgb(0 0 0 / 70%);
   color: #fff;
   font-size: 0.7rem;
   padding: 2px 6px;
@@ -119,7 +128,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.6);
+  background: rgb(0 0 0 / 60%);
   color: #fff;
   font-size: 1.2rem;
   width: 36px;
@@ -175,12 +184,12 @@
 }
 
 .tag-pill--suggest {
-  background: rgba(52, 152, 219, 0.2);
+  background: rgb(52 152 219 / 20%);
   color: var(--color-accent, #3498db);
 }
 
 .tag-pill--existing {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgb(255 255 255 / 8%);
   color: var(--color-text-muted, #aaa);
 }
 
@@ -189,7 +198,7 @@
   position: fixed;
   inset: 0;
   z-index: 9000;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgb(0 0 0 / 85%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -272,7 +281,7 @@
   font-size: 0.8rem;
 }
 
-.crop-modal__slider input[type="range"] {
+.crop-modal__slider input[type='range'] {
   width: 100%;
 }
 

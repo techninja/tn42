@@ -129,10 +129,7 @@ export default define({
                         `
                       : html``}
                   </header>
-                  <div
-                    class="post-body"
-                    innerHTML="${post.html}"
-                  ></div>
+                  <div class="post-body" innerHTML="${post.html}"></div>
                   <a href="${router.backUrl() || '/b'}" class="btn btn-ghost">← Back to posts</a>
                 </article>
               `}

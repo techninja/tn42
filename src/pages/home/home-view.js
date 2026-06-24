@@ -33,7 +33,9 @@ async function loadLatest() {
 
 export default define({
   tag: 'home-view',
-  [router.connect]: { stack: [BlogListView, MediaGridView, PortfolioView, UserView, DraftsView, MediaDraftsView] },
+  [router.connect]: {
+    stack: [BlogListView, MediaGridView, PortfolioView, UserView, DraftsView, MediaDraftsView],
+  },
   data: {
     value: undefined,
     connect(host) {

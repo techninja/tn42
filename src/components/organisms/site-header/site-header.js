@@ -20,8 +20,12 @@ export default define({
           <a href="/" data-native class="${active === 'home' ? 'active' : ''}">home</a>
           <a href="/b" data-native class="${active === 'blog' ? 'active' : ''}">blog</a>
           <a href="/media" data-native class="${active === 'media' ? 'active' : ''}">media</a>
-          <a href="/portfolio" data-native class="${active === 'portfolio' ? 'active' : ''}">portfolio</a>
-          <a href="/users/techninja" data-native class="${active === 'about' ? 'active' : ''}">who is tn?</a>
+          <a href="/portfolio" data-native class="${active === 'portfolio' ? 'active' : ''}"
+            >portfolio</a
+          >
+          <a href="/users/techninja" data-native class="${active === 'about' ? 'active' : ''}"
+            >who is tn?</a
+          >
           <theme-toggle></theme-toggle>
         </nav>
       </header>
